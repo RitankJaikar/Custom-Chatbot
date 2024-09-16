@@ -1,0 +1,5526 @@
+{
+  "entity": "workflow",
+  "rootId": "669a0f8f062bab480db53acc",
+  "ref": {
+    "669a0f8f062bab480db53acc": {
+      "entity": "workflow",
+      "name": "Swiggy_Chatbot2",
+      "dependencies": [
+        "669a0f8f062bab480db53acd"
+      ],
+      "data": {
+        "name": "Swiggy_Chatbot2",
+        "startNode": "node_ly7biwa3lfy9xdnbb3d",
+        "version": "draft",
+        "trigger": {
+          "apiNode": "1"
+        },
+        "nodes": [
+          {
+            "position": {
+              "x": -2006.65234375,
+              "y": 0
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "1",
+            "type": "trigger",
+            "data": {
+              "input": {
+                "prev_q": {
+                  "executedValue": "help_with_order1",
+                  "name": "prev_q",
+                  "dataType": "string"
+                },
+                "prev_q_list": {
+                  "executedValue": [
+                    "start",
+                    "intro_message",
+                    "select_order",
+                    "confirm_order",
+                    "help_with_order1",
+                    "help_with_order2"
+                  ],
+                  "name": "prev_q_list",
+                  "dataType": "list"
+                },
+                "delivery_agent_name": {
+                  "executedValue": "agent name",
+                  "name": "delivery_agent_name",
+                  "dataType": "string",
+                  "isNullable": true
+                },
+                "delivery_agent_number": {
+                  "executedValue": "+12394811",
+                  "name": "delivery_agent_number",
+                  "dataType": "string",
+                  "isNullable": true
+                },
+                "email": {
+                  "executedValue": "a@b.com",
+                  "name": "email",
+                  "dataType": "string",
+                  "isNullable": true
+                },
+                "user_id": {
+                  "executedValue": 1,
+                  "name": "user_id",
+                  "dataType": "numeric"
+                },
+                "delivered": {
+                  "executedValue": false,
+                  "name": "delivered",
+                  "dataType": "boolean",
+                  "isNullable": true
+                },
+                "answer": {
+                  "executedValue": "Payment and billing related query",
+                  "name": "answer",
+                  "dataType": "string",
+                  "isNullable": true
+                },
+                "eta": {
+                  "executedValue": "01/12/2023 00:00:00",
+                  "name": "eta",
+                  "dataType": "dateTime",
+                  "isNullable": true
+                }
+              },
+              "executedValue": {
+                "delivery_agent_name": "agent name",
+                "prev_q_list": [
+                  "start",
+                  "intro_message",
+                  "select_order",
+                  "confirm_order",
+                  "help_with_order1",
+                  "help_with_order2"
+                ],
+                "delivery_agent_number": "+12394811",
+                "prev_q": "help_with_order1",
+                "user_id": 1,
+                "answer": "Payment and billing related query",
+                "delivered": false,
+                "eta": "01/12/2023 00:00:00",
+                "email": "a@b.com"
+              },
+              "settings": {
+                "authType": "none",
+                "isEnabled": true
+              },
+              "nodeType": "apiTrigger",
+              "name": "Trigger",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 130,
+              "x": -2006.65234375
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly7bczvn1avdw34xakj",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 205,
+              "x": -2006.65234375
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly7biwa3lfy9xdnbb3d",
+            "type": "restApiNode",
+            "data": {
+              "input": {
+                "baseUrl": {
+                  "value": "https://65bb3e3452189914b5bb8364.mockapi.io",
+                  "executedValue": null
+                },
+                "contentType": {
+                  "value": "",
+                  "executedValue": null
+                },
+                "headers": {
+                  "value": [],
+                  "executedValue": null
+                },
+                "method": {
+                  "value": "GET",
+                  "executedValue": null
+                },
+                "path": {
+                  "value": "/user_data/{{.Trigger.user_id}}",
+                  "executedValue": null
+                },
+                "queryParams": {
+                  "value": [],
+                  "executedValue": null
+                },
+                "authentication": {
+                  "value": "None",
+                  "executedValue": null
+                }
+              },
+              "executedValue": {
+                "output": {
+                  "Body": {
+                    "user_id": "1",
+                    "email": "prabhat@example.com",
+                    "name": "Prabhat",
+                    "orders": [
+                      {
+                        "order_num": 1,
+                        "delivered": true,
+                        "delivery_agent_name": "James Smith",
+                        "delivery_agent_number": "+1987654321",
+                        "eta": "25/06/2024 00:00:00",
+                        "order_name": "Domino's | Veg Margherita Pizza (1), French Fries (2), Pepsi (1)"
+                      },
+                      {
+                        "order_name": "McDonald's | Cheeseburger (1), French Fries (1), Coke (2)",
+                        "order_num": 2,
+                        "delivered": true,
+                        "delivery_agent_name": "Emma Johnson",
+                        "delivery_agent_number": "+1234567890",
+                        "eta": "10/07/2024 00:00:00"
+                      },
+                      {
+                        "delivery_agent_number": "+1478523690",
+                        "eta": "25/06/2024 00:00:00",
+                        "order_name": "Sushi House | Sushi Roll (2)",
+                        "order_num": 3,
+                        "delivered": false,
+                        "delivery_agent_name": "Michael Brown"
+                      },
+                      {
+                        "delivery_agent_number": "+1593572846",
+                        "eta": "10/07/2024 00:00:00",
+                        "order_name": "Olive Garden | Pasta (1), Breadsticks (1)",
+                        "order_num": 4,
+                        "delivered": true,
+                        "delivery_agent_name": "Olivia Davis"
+                      }
+                    ],
+                    "phone_no": "+1234567890"
+                  },
+                  "Headers": {
+                    "Access-Control-Allow-Origin": "*",
+                    "Reporting-Endpoints": "heroku-nel=https://nel.heroku.com/reports?ts=1721372506&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=ME9kx7Ox0ELhuwmJZ6150pNpEOSZrgI8Ec%2BVKN7rSC8%3D",
+                    "Connection": "keep-alive",
+                    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,OPTIONS",
+                    "Server": "Cowboy",
+                    "Etag": "\"97857686\"",
+                    "Nel": "{\"report_to\":\"heroku-nel\",\"max_age\":3600,\"success_fraction\":0.005,\"failure_fraction\":0.05,\"response_headers\":[\"Via\"]}",
+                    "Via": "1.1 vegur",
+                    "Report-To": "{\"group\":\"heroku-nel\",\"max_age\":3600,\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?ts=1721372506&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=ME9kx7Ox0ELhuwmJZ6150pNpEOSZrgI8Ec%2BVKN7rSC8%3D\"}]}",
+                    "Date": "Fri, 19 Jul 2024 07:01:46 GMT",
+                    "Content-Type": "application/json",
+                    "X-Powered-By": "Express",
+                    "Access-Control-Allow-Headers": "X-Requested-With,Content-Type,Cache-Control,access_token",
+                    "Content-Length": "897"
+                  },
+                  "StatusCode": 200
+                }
+              },
+              "settings": {
+                "timeout": 30
+              },
+              "nodeType": "restApiNode",
+              "entity": "connector",
+              "entityId": "669a0f8f062bab480db53acd",
+              "-": "success",
+              "name": "user_data",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -2006.65234375,
+              "y": 335
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly7biwa3al3k5g60kal",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -2006.65234375,
+              "y": 410
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly7bqowa97i3ki9u3aa",
+            "type": "switchNode",
+            "data": {
+              "input": {
+                "defaultPath": {
+                  "value": false,
+                  "executedValue": null
+                }
+              },
+              "executedValue": {
+                "output": {
+                  "path": "contains_prev_q"
+                }
+              },
+              "settings": {
+                "timeout": 30
+              },
+              "nodeType": "switchNode",
+              "entity": "switch",
+              "entityId": "node_ly7bqowa97i3ki9u3aa",
+              "-": "success",
+              "name": "StartNode",
+              "runInLoop": {},
+              "switcher": [
+                {
+                  "name": "start",
+                  "pathId": "group_ly7bqowazsyf8bz84v"
+                },
+                {
+                  "name": "contains_prev_q",
+                  "pathId": "group_ly8f5m21cxcbcsgkjcl"
+                }
+              ],
+              "conditions": {
+                "nodes": {
+                  "condition_ly99lxnbmsduo3mko9": {
+                    "dataType": "list",
+                    "leftNode": [
+                      "lhs_ly99lxnbjbrq306zll"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "contains",
+                    "parent": "group_ly8f5m21cxcbcsgkjcl",
+                    "rightNode": [
+                      "rhs_ly99m6zror9v1bpgr4n"
+                    ]
+                  },
+                  "group_ly7bqowazsyf8bz84v": {
+                    "name": "start",
+                    "nodeType": "group",
+                    "operator": "",
+                    "children": [
+                      "condition_ly7bqowak7w437tjlqq"
+                    ]
+                  },
+                  "group_ly8f5m21cxcbcsgkjcl": {
+                    "children": [
+                      "condition_ly99lxnbmsduo3mko9"
+                    ],
+                    "name": "contains_prev_q",
+                    "nodeType": "group",
+                    "operator": "and"
+                  },
+                  "lhs_ly7bqowag4fpfyk1ilp": {
+                    "parent": "condition_ly7bqowak7w437tjlqq",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q",
+                    "dataType": "string",
+                    "nodeType": "params"
+                  },
+                  "lhs_ly99lxnbjbrq306zll": {
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q_list",
+                    "dataType": "list",
+                    "nodeType": "params",
+                    "parent": "condition_ly99lxnbmsduo3mko9"
+                  },
+                  "rhs_ly7bubunf7ipoxkxzfn": {
+                    "value": "start",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "start",
+                    "nodeType": "constant",
+                    "parent": "condition_ly7bqowak7w437tjlqq",
+                    "source": null,
+                    "sourceType": ""
+                  },
+                  "rhs_ly99m6zror9v1bpgr4n": {
+                    "parent": "condition_ly99lxnbmsduo3mko9",
+                    "source": null,
+                    "sourceType": "",
+                    "value": [
+                      "start"
+                    ],
+                    "attribute": null,
+                    "dataType": "list",
+                    "executedValue": [
+                      "start"
+                    ],
+                    "nodeType": "constant"
+                  },
+                  "condition_ly7bqowak7w437tjlqq": {
+                    "operator": "eq",
+                    "parent": "group_ly7bqowazsyf8bz84v",
+                    "rightNode": [
+                      "rhs_ly7bubunf7ipoxkxzfn"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly7bqowag4fpfyk1ilp"
+                    ],
+                    "nodeType": "condition"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "y": 2857.5,
+              "x": -2006.65234375
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly7bqowah0eorobvv0m",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly7bqowa97i3ki9u3aa",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -2236.65234375,
+              "y": 3090
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly7bqowanma9eqtioi",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly7bqowa97i3ki9u3aa",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -2006.65234375,
+              "y": 3165
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly7bqowaz6w12sqyqrk",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly7bqowa97i3ki9u3aa",
+              "isMergeNode": true,
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -1546.65234375,
+              "y": 540
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8f6by75t28c7r0ro4",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly7bqowa97i3ki9u3aa",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2960,
+              "x": -2006.65234375
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8f9idekkxuoh4yol",
+            "type": "responseNode",
+            "data": {
+              "input": {
+                "next_step": {
+                  "value": "{\n  \"type\": \"message\",\n  \"key\": \"intro_message\",\n  \"text\": \"Hi {{.user_data.output.Body.name}}, I am your Swiggy assistant.\",\n  \"followup\": {\n    \"type\": \"list\",\n    \"key\": \"select_order\",\n    \"text\": \"Choose an order:\",\n    \"user_data\": {{.user_data.output.Body}}\n  }\n}",
+                  "executedValue": null,
+                  "name": "next_step",
+                  "dataType": "json"
+                }
+              },
+              "executedValue": {
+                "next_step": {
+                  "text": "Hi Prabhat, I am your Swiggy assistant.",
+                  "type": "message",
+                  "followup": {
+                    "key": "select_order",
+                    "text": "Choose an order:",
+                    "type": "list",
+                    "user_data": {
+                      "orders": [
+                        {
+                          "delivered": true,
+                          "delivery_agent_name": "James Smith",
+                          "delivery_agent_number": "+1987654321",
+                          "eta": "25/06/2024 00:00:00",
+                          "order_name": "Domino's | Veg Margherita Pizza (1), French Fries (2), Pepsi (1)",
+                          "order_num": 1
+                        },
+                        {
+                          "eta": "10/07/2024 00:00:00",
+                          "order_name": "McDonald's | Cheeseburger (1), French Fries (1), Coke (2)",
+                          "order_num": 2,
+                          "delivered": true,
+                          "delivery_agent_name": "Emma Johnson",
+                          "delivery_agent_number": "+1234567890"
+                        },
+                        {
+                          "order_num": 3,
+                          "delivered": false,
+                          "delivery_agent_name": "Michael Brown",
+                          "delivery_agent_number": "+1478523690",
+                          "eta": "25/06/2024 00:00:00",
+                          "order_name": "Sushi House | Sushi Roll (2)"
+                        },
+                        {
+                          "eta": "10/07/2024 00:00:00",
+                          "order_name": "Olive Garden | Pasta (1), Breadsticks (1)",
+                          "order_num": 4,
+                          "delivered": true,
+                          "delivery_agent_name": "Olivia Davis",
+                          "delivery_agent_number": "+1593572846"
+                        }
+                      ],
+                      "phone_no": "+1234567890",
+                      "user_id": "1",
+                      "email": "prabhat@example.com",
+                      "name": "Prabhat"
+                    }
+                  },
+                  "key": "intro_message"
+                }
+              },
+              "settings": {
+                "timeout": 60
+              },
+              "nodeType": "responseNode",
+              "entity": "responseNode",
+              "entityId": "node_ly8f9idekkxuoh4yol",
+              "-": "success",
+              "name": "Response1",
+              "rootId": "node_ly7bqowa97i3ki9u3aa",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -2006.65234375,
+              "y": 3090
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8f9idey4slnj716po",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly7bqowa97i3ki9u3aa",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 615,
+              "x": -1546.65234375
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8fdwhqwc6kc1t2m",
+            "type": "switchNode",
+            "data": {
+              "input": {
+                "defaultPath": {
+                  "value": false,
+                  "executedValue": null
+                }
+              },
+              "executedValue": {
+                "output": {
+                  "path": "contains_prev_q"
+                }
+              },
+              "settings": {
+                "timeout": 30
+              },
+              "nodeType": "switchNode",
+              "entity": "switch",
+              "entityId": "node_ly8fdwhqwc6kc1t2m",
+              "-": "success",
+              "name": "DifferentOrder",
+              "rootId": "node_ly7bqowa97i3ki9u3aa",
+              "runInLoop": {},
+              "switcher": [
+                {
+                  "name": "No, different order",
+                  "pathId": "group_ly8fdwhq8y4m2w8dh9v"
+                },
+                {
+                  "name": "contains_prev_q",
+                  "pathId": "group_ly8js28h5l4reaxe4h"
+                }
+              ],
+              "conditions": {
+                "nodes": {
+                  "lhs_ly8fdwhqzwqszvo6ff": {
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "answer",
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8fdwhq0w5mtkckpokq"
+                  },
+                  "rhs_ly9qjg23yapmdrsdda": {
+                    "attribute": null,
+                    "dataType": "list",
+                    "executedValue": [
+                      "start"
+                    ],
+                    "nodeType": "constant",
+                    "parent": "condition_ly9qj6ynhgiy3byudjt",
+                    "source": null,
+                    "sourceType": "",
+                    "value": [
+                      "start"
+                    ]
+                  },
+                  "lhs_ly9qj6ynzkkyfu7sifg": {
+                    "value": null,
+                    "attribute": "prev_q_list",
+                    "dataType": "list",
+                    "nodeType": "params",
+                    "parent": "condition_ly9qj6ynhgiy3byudjt",
+                    "sourceType": "Trigger"
+                  },
+                  "group_ly8js28h5l4reaxe4h": {
+                    "operator": "and",
+                    "children": [
+                      "condition_ly9qj6ynhgiy3byudjt"
+                    ],
+                    "name": "contains_prev_q",
+                    "nodeType": "group"
+                  },
+                  "condition_ly9qk6eh1v0lm2p5dqq": {
+                    "rightNode": [
+                      "rhs_ly9qkbxnt9z25r5jf4"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly9qk6ehmq4dpwxjq4o"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "eq",
+                    "parent": "group_ly8fdwhq8y4m2w8dh9v"
+                  },
+                  "condition_ly9qj6ynhgiy3byudjt": {
+                    "dataType": "list",
+                    "leftNode": [
+                      "lhs_ly9qj6ynzkkyfu7sifg"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "contains",
+                    "parent": "group_ly8js28h5l4reaxe4h",
+                    "rightNode": [
+                      "rhs_ly9qjg23yapmdrsdda"
+                    ]
+                  },
+                  "lhs_ly9qk6ehmq4dpwxjq4o": {
+                    "attribute": "answer",
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly9qk6eh1v0lm2p5dqq",
+                    "sourceType": "Trigger",
+                    "value": null
+                  },
+                  "rhs_ly8m8sh42jr4kdcytlp": {
+                    "nodeType": "constant",
+                    "parent": "condition_ly8fdwhq0w5mtkckpokq",
+                    "source": null,
+                    "sourceType": "",
+                    "value": "No, different order",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "No, different order"
+                  },
+                  "condition_ly8fdwhq0w5mtkckpokq": {
+                    "operator": "eq",
+                    "parent": "group_ly8fdwhq8y4m2w8dh9v",
+                    "rightNode": [
+                      "rhs_ly8m8sh42jr4kdcytlp"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8fdwhqzwqszvo6ff"
+                    ],
+                    "nodeType": "condition"
+                  },
+                  "group_ly8fdwhq8y4m2w8dh9v": {
+                    "nodeType": "group",
+                    "operator": "or",
+                    "children": [
+                      "condition_ly8fdwhq0w5mtkckpokq",
+                      "condition_ly9qk6eh1v0lm2p5dqq"
+                    ],
+                    "name": "No, different order"
+                  },
+                  "rhs_ly9qkbxnt9z25r5jf4": {
+                    "dataType": "string",
+                    "executedValue": "Back to Main Menu",
+                    "nodeType": "constant",
+                    "parent": "condition_ly9qk6eh1v0lm2p5dqq",
+                    "source": null,
+                    "sourceType": "",
+                    "value": "Back to Main Menu",
+                    "attribute": null
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": -1546.65234375,
+              "y": 2727.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8fdwhqty3lpx65dc",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8fdwhqwc6kc1t2m",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -1776.65234375,
+              "y": 2987.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8fdwhq0rdu2hx2pqc",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8fdwhqwc6kc1t2m",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 3090,
+              "x": -1546.65234375
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8fdwhq6qw28lkgq3u",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8fdwhqwc6kc1t2m",
+              "isMergeNode": true,
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -1086.65234375,
+              "y": 745
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8jsx3b47xkks8n9av",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8fdwhqwc6kc1t2m",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -1546.65234375,
+              "y": 2830
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8ld00w08k8t1ycjr5o",
+            "type": "responseNode",
+            "data": {
+              "input": {
+                "next_step": {
+                  "value": "{\n  \"type\": \"list\",\n  \"key\": \"select_order\",\n  \"text\": \"Choose an order:\",\n  \"user_data\": {{.user_data.output.Body}}\n}",
+                  "executedValue": null,
+                  "name": "next_step",
+                  "dataType": "json"
+                }
+              },
+              "executedValue": {
+                "output": {
+                  "next_step": {
+                    "user_data": {
+                      "user_id": "1",
+                      "email": "prabhat@example.com",
+                      "name": "Prabhat",
+                      "orders": [
+                        {
+                          "order_name": "Domino's | Veg Margherita Pizza (1), French Fries (2), Pepsi (1)",
+                          "order_num": 1,
+                          "delivered": true,
+                          "delivery_agent_name": "James Smith",
+                          "delivery_agent_number": "+1987654321",
+                          "eta": "25/06/2024 00:00:00"
+                        },
+                        {
+                          "order_name": "McDonald's | Cheeseburger (1), French Fries (1), Coke (2)",
+                          "order_num": 2,
+                          "delivered": true,
+                          "delivery_agent_name": "Emma Johnson",
+                          "delivery_agent_number": "+1234567890",
+                          "eta": "10/07/2024 00:00:00"
+                        },
+                        {
+                          "delivery_agent_name": "Michael Brown",
+                          "delivery_agent_number": "+1478523690",
+                          "eta": "25/06/2024 00:00:00",
+                          "order_name": "Sushi House | Sushi Roll (2)",
+                          "order_num": 3,
+                          "delivered": false
+                        },
+                        {
+                          "eta": "10/07/2024 00:00:00",
+                          "order_name": "Olive Garden | Pasta (1), Breadsticks (1)",
+                          "order_num": 4,
+                          "delivered": true,
+                          "delivery_agent_name": "Olivia Davis",
+                          "delivery_agent_number": "+1593572846"
+                        }
+                      ],
+                      "phone_no": "+1234567890"
+                    },
+                    "key": "select_order",
+                    "text": "Choose an order:",
+                    "type": "list"
+                  }
+                }
+              },
+              "settings": {
+                "timeout": 60
+              },
+              "nodeType": "responseNode",
+              "entity": "responseNode",
+              "entityId": "node_ly8ld00w08k8t1ycjr5o",
+              "-": "success",
+              "name": "Response2",
+              "rootId": "node_ly8fdwhqwc6kc1t2m",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -1546.65234375,
+              "y": 2987.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8ld00wh6fbra5i1a",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8fdwhqwc6kc1t2m",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -1086.65234375,
+              "y": 820
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8lgxio1dceuuj7z8v",
+            "type": "switchNode",
+            "data": {
+              "input": {
+                "defaultPath": {
+                  "value": false,
+                  "executedValue": null
+                }
+              },
+              "executedValue": {
+                "output": {
+                  "path": "contains_prev_q"
+                }
+              },
+              "settings": {
+                "timeout": 30
+              },
+              "nodeType": "switchNode",
+              "entity": "switch",
+              "entityId": "node_ly8lgxio1dceuuj7z8v",
+              "-": "success",
+              "name": "SelectOrder",
+              "rootId": "node_ly8fdwhqwc6kc1t2m",
+              "runInLoop": {},
+              "switcher": [
+                {
+                  "name": "select_order",
+                  "pathId": "group_ly8lgxiov3bekbb5ibo"
+                },
+                {
+                  "name": "contains_prev_q",
+                  "pathId": "group_ly8lhp8cgoyi5to2tha"
+                }
+              ],
+              "conditions": {
+                "nodes": {
+                  "rhs_ly8lhmyetewkefv63p": {
+                    "sourceType": "",
+                    "value": "select_order",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "select_order",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8lgxiow8n0yw4139",
+                    "source": null
+                  },
+                  "rhs_ly9qzk7d2orbhj5uomy": {
+                    "sourceType": "",
+                    "value": [
+                      "select_order"
+                    ],
+                    "attribute": null,
+                    "dataType": "list",
+                    "executedValue": [
+                      "select_order"
+                    ],
+                    "nodeType": "constant",
+                    "parent": "condition_ly9qxk341fx9wn5p8ap",
+                    "source": null
+                  },
+                  "condition_ly8lgxiow8n0yw4139": {
+                    "nodeType": "condition",
+                    "operator": "eq",
+                    "parent": "group_ly8lgxiov3bekbb5ibo",
+                    "rightNode": [
+                      "rhs_ly8lhmyetewkefv63p"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8lgxiopvahlv1jbij"
+                    ]
+                  },
+                  "condition_ly9qxk341fx9wn5p8ap": {
+                    "nodeType": "condition",
+                    "operator": "contains",
+                    "parent": "group_ly8lhp8cgoyi5to2tha",
+                    "rightNode": [
+                      "rhs_ly9qzk7d2orbhj5uomy"
+                    ],
+                    "dataType": "list",
+                    "leftNode": [
+                      "lhs_ly9qxk34q0ip3qhdpuc"
+                    ]
+                  },
+                  "group_ly8lgxiov3bekbb5ibo": {
+                    "children": [
+                      "condition_ly8lgxiow8n0yw4139"
+                    ],
+                    "name": "select_order",
+                    "nodeType": "group",
+                    "operator": ""
+                  },
+                  "group_ly8lhp8cgoyi5to2tha": {
+                    "operator": "and",
+                    "children": [
+                      "condition_ly9qxk341fx9wn5p8ap"
+                    ],
+                    "name": "contains_prev_q",
+                    "nodeType": "group"
+                  },
+                  "lhs_ly8lgxiopvahlv1jbij": {
+                    "nodeType": "params",
+                    "parent": "condition_ly8lgxiow8n0yw4139",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q",
+                    "dataType": "string"
+                  },
+                  "lhs_ly9qxk34q0ip3qhdpuc": {
+                    "attribute": "prev_q_list",
+                    "dataType": "list",
+                    "nodeType": "params",
+                    "parent": "condition_ly9qxk341fx9wn5p8ap",
+                    "sourceType": "Trigger",
+                    "value": null
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": -1086.65234375,
+              "y": 2597.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8lgxio0obr7cf8w2l",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8lgxio1dceuuj7z8v",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -1316.65234375,
+              "y": 2857.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8lgxiovuljsw1rwpi",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8lgxio1dceuuj7z8v",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -1086.65234375,
+              "y": 2987.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8lgxio473th0b02aq",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8lgxio1dceuuj7z8v",
+              "isMergeNode": true,
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -626.65234375,
+              "y": 950
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8lj0ukfdjci62al16",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8lgxio1dceuuj7z8v",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -1086.65234375,
+              "y": 2700
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8lm9tmkng23f07ct",
+            "type": "responseNode",
+            "data": {
+              "input": {
+                "next_step": {
+                  "value": "{\n  \"type\": \"question\",\n  \"key\": \"confirm_order\",\n  \"text\": \"You selected: \\\"{{.Trigger.answer}}\\\".  Would you like help with this order?\",\n  \"options\": [\"Yes\", \"No, different order\"]\n}",
+                  "executedValue": null,
+                  "name": "next_step",
+                  "dataType": "json"
+                }
+              },
+              "executedValue": {
+                "next_step": {
+                  "text": "You selected: \"Yes\".  Would you like help with this order?",
+                  "type": "question",
+                  "key": "confirm_order",
+                  "options": [
+                    "Yes",
+                    "No, different order"
+                  ]
+                }
+              },
+              "settings": {
+                "timeout": 60
+              },
+              "nodeType": "responseNode",
+              "entity": "responseNode",
+              "entityId": "node_ly8lm9tmkng23f07ct",
+              "-": "success",
+              "name": "Response3",
+              "rootId": "node_ly8lgxio1dceuuj7z8v",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2857.5,
+              "x": -1086.65234375
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8lm9tm7z839138f6h",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8lgxio1dceuuj7z8v",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 1025,
+              "x": -626.65234375
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8lpvsxekf75wcutjd",
+            "type": "switchNode",
+            "data": {
+              "input": {
+                "defaultPath": {
+                  "value": false,
+                  "executedValue": null
+                }
+              },
+              "executedValue": {
+                "output": {
+                  "path": "contains_prev_q"
+                }
+              },
+              "settings": {
+                "timeout": 30
+              },
+              "nodeType": "switchNode",
+              "entity": "switch",
+              "entityId": "node_ly8lpvsxekf75wcutjd",
+              "-": "success",
+              "name": "ConfirmOrder",
+              "rootId": "node_ly8lgxio1dceuuj7z8v",
+              "runInLoop": {},
+              "switcher": [
+                {
+                  "name": "confirm_order",
+                  "pathId": "group_ly8lpvsxgu4ff7df8jr"
+                },
+                {
+                  "name": "contains_prev_q",
+                  "pathId": "group_ly8ltazqgtesi9laxwo"
+                }
+              ],
+              "conditions": {
+                "nodes": {
+                  "lhs_ly8lpvsx7jykixc4e0f": {
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8lpvsxpkt4wrsbre",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q"
+                  },
+                  "group_ly8lpvsxgu4ff7df8jr": {
+                    "children": [
+                      "condition_ly8lpvsxpkt4wrsbre",
+                      "condition_ly8ls7d5227j0vdktyb"
+                    ],
+                    "name": "confirm_order",
+                    "nodeType": "group",
+                    "operator": "and"
+                  },
+                  "lhs_ly8ls7d6zr8nhco993m": {
+                    "attribute": "answer",
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8ls7d5227j0vdktyb",
+                    "sourceType": "Trigger",
+                    "value": null
+                  },
+                  "condition_ly9r0rom3ji5ynaygzi": {
+                    "dataType": "list",
+                    "leftNode": [
+                      "lhs_ly9r0romrr7xfzvoefq"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "contains",
+                    "parent": "group_ly8ltazqgtesi9laxwo",
+                    "rightNode": [
+                      "rhs_ly9rqigcpzku0h4u01f"
+                    ]
+                  },
+                  "condition_ly8lpvsxpkt4wrsbre": {
+                    "nodeType": "condition",
+                    "operator": "eq",
+                    "parent": "group_ly8lpvsxgu4ff7df8jr",
+                    "rightNode": [
+                      "rhs_ly8lrus1vityoic3yd"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8lpvsx7jykixc4e0f"
+                    ]
+                  },
+                  "condition_ly8ls7d5227j0vdktyb": {
+                    "rightNode": [
+                      "rhs_ly8lsgvain4i4wtgy1"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8ls7d6zr8nhco993m"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "eq",
+                    "parent": "group_ly8lpvsxgu4ff7df8jr"
+                  },
+                  "rhs_ly9rqigcpzku0h4u01f": {
+                    "sourceType": "",
+                    "value": [
+                      "confirm_order"
+                    ],
+                    "attribute": null,
+                    "dataType": "list",
+                    "executedValue": [
+                      "confirm_order"
+                    ],
+                    "nodeType": "constant",
+                    "parent": "condition_ly9r0rom3ji5ynaygzi",
+                    "source": null
+                  },
+                  "rhs_ly8lsgvain4i4wtgy1": {
+                    "sourceType": "",
+                    "value": "Yes",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "Yes",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8ls7d5227j0vdktyb",
+                    "source": null
+                  },
+                  "rhs_ly8lrus1vityoic3yd": {
+                    "sourceType": "",
+                    "value": "confirm_order",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "confirm_order",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8lpvsxpkt4wrsbre",
+                    "source": null
+                  },
+                  "lhs_ly9r0romrr7xfzvoefq": {
+                    "dataType": "list",
+                    "nodeType": "params",
+                    "parent": "condition_ly9r0rom3ji5ynaygzi",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q_list"
+                  },
+                  "group_ly8ltazqgtesi9laxwo": {
+                    "name": "contains_prev_q",
+                    "nodeType": "group",
+                    "operator": "and",
+                    "children": [
+                      "condition_ly9r0rom3ji5ynaygzi"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": -626.65234375,
+              "y": 2467.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8lpvsxxuaaho5lhtm",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8lpvsxekf75wcutjd",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -856.65234375,
+              "y": 2727.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8lpvsx7o2vha78pq",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8lpvsxekf75wcutjd",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -626.65234375,
+              "y": 2857.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8lpvsxffs7jehnhq8",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8lpvsxekf75wcutjd",
+              "isMergeNode": true,
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 408.34765625,
+              "y": 1155
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8lu83w3ez8goy7jxx",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8lpvsxekf75wcutjd",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2570,
+              "x": -626.65234375
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8lwf79c3slhe89cae",
+            "type": "responseNode",
+            "data": {
+              "input": {
+                "next_step": {
+                  "value": "{\n  \"type\": \"question\",\n  \"key\": \"help_with_order1\",\n  \"text\": \"Please select an issue:\",\n  \"options\": [\n    \"I did not receive this order\", \n    \"Item(s) portion size is not adequate\", \n    \"Few item(s) are missing in my order\",\n    \"Item delivered are incorrect or wrong\",\n    \"Other Issues\"\n   ]\n}",
+                  "executedValue": null,
+                  "name": "next_step",
+                  "dataType": "json"
+                }
+              },
+              "executedValue": {
+                "next_step": {
+                  "type": "question",
+                  "key": "help_with_order1",
+                  "options": [
+                    "I did not receive this order",
+                    "Item(s) portion size is not adequate",
+                    "Few item(s) are missing in my order",
+                    "Item delivered are incorrect or wrong",
+                    "Other Issues"
+                  ],
+                  "text": "Please select an issue:"
+                }
+              },
+              "settings": {
+                "timeout": 60
+              },
+              "nodeType": "responseNode",
+              "entity": "responseNode",
+              "entityId": "node_ly8lwf79c3slhe89cae",
+              "-": "success",
+              "name": "Response4",
+              "rootId": "node_ly8lpvsxekf75wcutjd",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -626.65234375,
+              "y": 2727.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8lwf79mzjymw254jd",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8lpvsxekf75wcutjd",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 408.34765625,
+              "y": 1230
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8mfy9aeqr0m2w7b5e",
+            "type": "switchNode",
+            "data": {
+              "input": {
+                "defaultPath": {
+                  "value": true,
+                  "executedValue": null
+                }
+              },
+              "executedValue": {
+                "output": {
+                  "path": "contains_prev_q"
+                }
+              },
+              "settings": {
+                "timeout": 30
+              },
+              "nodeType": "switchNode",
+              "entity": "switch",
+              "entityId": "node_ly8mfy9aeqr0m2w7b5e",
+              "-": "success",
+              "name": "HelpWithOrder",
+              "rootId": "node_ly8lpvsxekf75wcutjd",
+              "runInLoop": {},
+              "switcher": [
+                {
+                  "name": "help_with_order1",
+                  "pathId": "group_ly8mfy9a49ts1bvejw9"
+                },
+                {
+                  "name": "help_with_order2",
+                  "pathId": "group_ly8mqhort6qkrfrmjhh"
+                },
+                {
+                  "name": "I did not receive this order 1",
+                  "pathId": "group_ly8o57a47adtg0v36pe"
+                },
+                {
+                  "name": "I did not receive this order 2",
+                  "pathId": "group_ly8o57xwh08o9gbnj0c"
+                },
+                {
+                  "name": "all_other_options",
+                  "pathId": "group_ly8pvto29nf46stnrur"
+                },
+                {
+                  "name": "coupon_option",
+                  "pathId": "group_ly8pvuqaduin3u3s8q"
+                },
+                {
+                  "name": "contains_prev_q",
+                  "pathId": "group_ly8odb4z7hxzclje1bo"
+                }
+              ],
+              "conditions": {
+                "nodes": {
+                  "condition_ly8o57xwlx9m4osh5b": {
+                    "leftNode": [
+                      "lhs_ly8o57xwerq7cl1njm"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "eq",
+                    "parent": "group_ly8o57xwh08o9gbnj0c",
+                    "rightNode": [
+                      "rhs_ly8ocboj4csfdyufwaj"
+                    ],
+                    "dataType": "string"
+                  },
+                  "lhs_ly8mpwx3jdzi6i3mx8k": {
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8mpwx3rh785a183pa",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "answer"
+                  },
+                  "lhs_ly8mqhorec4dvmu6ypg": {
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8mqhorktd75nkzygk",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q"
+                  },
+                  "group_ly8o57xwh08o9gbnj0c": {
+                    "children": [
+                      "condition_ly8o57xwlx9m4osh5b",
+                      "condition_ly8obs0o6qha94all2o",
+                      "condition_ly8obsky36p5mb22g73"
+                    ],
+                    "name": "I did not receive this order 2",
+                    "nodeType": "group",
+                    "operator": "and"
+                  },
+                  "condition_ly8pyt7vhhfhcfh4w6s": {
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8pyt7v3r0f4yao4s"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "eq",
+                    "parent": "group_ly8pvto29nf46stnrur",
+                    "rightNode": [
+                      "rhs_lyrrk168t61us28naze"
+                    ]
+                  },
+                  "lhs_ly8obskyvr5s936n7bp": {
+                    "attribute": "eta",
+                    "dataType": "dateTime",
+                    "nodeType": "params",
+                    "parent": "condition_ly8obsky36p5mb22g73",
+                    "sourceType": "Trigger",
+                    "value": null
+                  },
+                  "condition_ly8odb4zjag6o37moyc": {
+                    "dataType": "list",
+                    "leftNode": [
+                      "lhs_ly8odb4zp4qui5c8m4n"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "contains",
+                    "parent": "group_ly8odb4z7hxzclje1bo",
+                    "rightNode": [
+                      "rhs_ly9rtaoew0pglwkr6xg"
+                    ]
+                  },
+                  "condition_ly8pvuqa91y57mg7j4i": {
+                    "operator": "eq",
+                    "parent": "group_ly8pxm15e08lek5o4j6",
+                    "rightNode": [
+                      "rhs_ly8px9kopzyxv8f0o3"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8pvuqau4t738l42ze"
+                    ],
+                    "nodeType": "condition"
+                  },
+                  "condition_ly8obs0o6qha94all2o": {
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8obs0oal0dktz7yad"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "eq",
+                    "parent": "group_ly8o57xwh08o9gbnj0c",
+                    "rightNode": [
+                      "rhs_ly8oc9kc2vzbz743s9h"
+                    ]
+                  },
+                  "condition_ly8mr4j1053v9b4uv4w7": {
+                    "parent": "group_ly8mqhort6qkrfrmjhh",
+                    "rightNode": [
+                      "rhs_ly8mrgo4hgq5a0mbejj"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8mr4j1zf2zbph7rbm"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "eq"
+                  },
+                  "group_ly8pvuqaduin3u3s8q": {
+                    "operator": "and",
+                    "children": [
+                      "group_ly8pxm15e08lek5o4j6",
+                      "condition_ly8pzu6lr8s0552jn4"
+                    ],
+                    "name": "coupon_option",
+                    "nodeType": "group"
+                  },
+                  "group_ly8pxm15e08lek5o4j6": {
+                    "nodeType": "group",
+                    "operator": "or",
+                    "parent": "group_ly8pvuqaduin3u3s8q",
+                    "children": [
+                      "condition_ly8pvuqa91y57mg7j4i",
+                      "condition_ly8pxncpsjg12njuzsl"
+                    ]
+                  },
+                  "lhs_ly8o8wkvs5arq6gl9z8": {
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q",
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8o8wkv6jzod6dykto"
+                  },
+                  "lhs_ly8pxncprzcs5f13p9e": {
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8pxncpsjg12njuzsl",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q"
+                  },
+                  "rhs_ly8mp93dni00kyke4x9": {
+                    "dataType": "string",
+                    "executedValue": "help_with_order1",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8mfy9aiyzks184jmp",
+                    "source": null,
+                    "sourceType": "",
+                    "value": "help_with_order1",
+                    "attribute": null
+                  },
+                  "group_ly8mfy9a49ts1bvejw9": {
+                    "operator": "and",
+                    "children": [
+                      "condition_ly8mfy9aiyzks184jmp",
+                      "condition_ly8mpwx3rh785a183pa"
+                    ],
+                    "name": "help_with_order1",
+                    "nodeType": "group"
+                  },
+                  "rhs_ly8ocboj4csfdyufwaj": {
+                    "nodeType": "constant",
+                    "parent": "condition_ly8o57xwlx9m4osh5b",
+                    "source": null,
+                    "sourceType": "",
+                    "value": "help_with_order1",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "help_with_order1"
+                  },
+                  "rhs_ly9us5hhmjjigggxovh": {
+                    "source": null,
+                    "nodeType": "constant",
+                    "dataType": "list",
+                    "parent": "condition_ly9urz4qcrg3b21326q",
+                    "key": "",
+                    "executedValue": "help_with_order2",
+                    "value": [
+                      "help_with_order2"
+                    ],
+                    "attribute": null,
+                    "sourceType": null
+                  },
+                  "condition_ly8mfy9aiyzks184jmp": {
+                    "nodeType": "condition",
+                    "operator": "eq",
+                    "parent": "group_ly8mfy9a49ts1bvejw9",
+                    "rightNode": [
+                      "rhs_ly8mp93dni00kyke4x9"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8mfy9abofnx5kkqy6"
+                    ]
+                  },
+                  "group_ly8odb4z7hxzclje1bo": {
+                    "name": "contains_prev_q",
+                    "nodeType": "group",
+                    "operator": "or",
+                    "children": [
+                      "condition_ly8odb4zjag6o37moyc",
+                      "condition_ly9urz4qcrg3b21326q"
+                    ]
+                  },
+                  "lhs_ly8pvto2xpg9ww013zm": {
+                    "value": null,
+                    "attribute": "prev_q",
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8pvto2ahngb0yy0zq",
+                    "sourceType": "Trigger"
+                  },
+                  "condition_ly8mqhorktd75nkzygk": {
+                    "operator": "eq",
+                    "parent": "group_ly8mqhort6qkrfrmjhh",
+                    "rightNode": [
+                      "rhs_ly8mqyd8jydn6jgxa6"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8mqhorec4dvmu6ypg"
+                    ],
+                    "nodeType": "condition"
+                  },
+                  "rhs_ly8py21esvoplg2hki": {
+                    "value": "help_with_order2",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "help_with_order2",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8pxncpsjg12njuzsl",
+                    "source": null,
+                    "sourceType": ""
+                  },
+                  "rhs_ly8px66w6gql9vtjjwm": {
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "help_with_order1",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8pvto2ahngb0yy0zq",
+                    "source": null,
+                    "sourceType": "",
+                    "value": "help_with_order1"
+                  },
+                  "rhs_lyrrk168t61us28naze": {
+                    "executedValue": "Item(s) portion size is not adequate",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8pyt7vhhfhcfh4w6s",
+                    "source": null,
+                    "sourceType": "",
+                    "value": "Item(s) portion size is not adequate",
+                    "attribute": null,
+                    "dataType": "string"
+                  },
+                  "lhs_ly8mr4j1zf2zbph7rbm": {
+                    "nodeType": "params",
+                    "parent": "condition_ly8mr4j1053v9b4uv4w7",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "answer",
+                    "dataType": "string"
+                  },
+                  "lhs_ly8oavdz1xlwqkkr1ib": {
+                    "attribute": "eta",
+                    "dataType": "dateTime",
+                    "nodeType": "params",
+                    "parent": "condition_ly8oavdz86cq78kz49",
+                    "sourceType": "Trigger",
+                    "value": null
+                  },
+                  "condition_ly8o8yxbyznlsismoj": {
+                    "operator": "eq",
+                    "parent": "group_ly8o57a47adtg0v36pe",
+                    "rightNode": [
+                      "rhs_ly8o9scxnoe88xh083"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8o8yxbser6m99th6"
+                    ],
+                    "nodeType": "condition"
+                  },
+                  "lhs_ly8obs0oal0dktz7yad": {
+                    "parent": "condition_ly8obs0o6qha94all2o",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "answer",
+                    "dataType": "string",
+                    "nodeType": "params"
+                  },
+                  "condition_ly8pzu6lr8s0552jn4": {
+                    "leftNode": [
+                      "lhs_ly8pzu6lp33irhoa8vi"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "eq",
+                    "parent": "group_ly8pvuqaduin3u3s8q",
+                    "rightNode": [
+                      "rhs_ly8q01pqukcahupi6nh"
+                    ],
+                    "dataType": "string"
+                  },
+                  "rhs_ly8oc9kc2vzbz743s9h": {
+                    "source": null,
+                    "sourceType": "",
+                    "value": "I did not receive this order",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "I did not receive this order",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8obs0o6qha94all2o"
+                  },
+                  "rhs_ly8mrgo4hgq5a0mbejj": {
+                    "executedValue": "Previous",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8mr4j1053v9b4uv4w7",
+                    "source": null,
+                    "sourceType": "",
+                    "value": "Previous",
+                    "attribute": null,
+                    "dataType": "string"
+                  },
+                  "condition_ly8obsky36p5mb22g73": {
+                    "operator": "lt",
+                    "parent": "group_ly8o57xwh08o9gbnj0c",
+                    "rightNode": [
+                      "rhs_ly8octr017rbidkitau"
+                    ],
+                    "dataType": "dateTime",
+                    "leftNode": [
+                      "lhs_ly8obskyvr5s936n7bp"
+                    ],
+                    "nodeType": "condition"
+                  },
+                  "group_ly8o57a47adtg0v36pe": {
+                    "name": "I did not receive this order 1",
+                    "nodeType": "group",
+                    "operator": "and",
+                    "children": [
+                      "condition_ly8o8wkv6jzod6dykto",
+                      "condition_ly8o8yxbyznlsismoj",
+                      "condition_ly8oavdz86cq78kz49"
+                    ]
+                  },
+                  "group_ly8pxhf9rgsuywe8m3d": {
+                    "nodeType": "group",
+                    "operator": "or",
+                    "parent": "group_ly8pvto29nf46stnrur",
+                    "children": [
+                      "condition_ly8pvto2ahngb0yy0zq",
+                      "condition_ly8pxiya4hfsj30i3zw"
+                    ]
+                  },
+                  "lhs_ly8mfy9abofnx5kkqy6": {
+                    "nodeType": "params",
+                    "parent": "condition_ly8mfy9aiyzks184jmp",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q",
+                    "dataType": "string"
+                  },
+                  "lhs_ly8odb4zp4qui5c8m4n": {
+                    "parent": "condition_ly8odb4zjag6o37moyc",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q_list",
+                    "dataType": "list",
+                    "nodeType": "params"
+                  },
+                  "rhs_ly8octr017rbidkitau": {
+                    "executedValue": "2024-07-05T12:25:19.391Z",
+                    "key": "systemVar",
+                    "nodeType": "params",
+                    "parent": "condition_ly8obsky36p5mb22g73",
+                    "sourceType": "systemVar",
+                    "value": null,
+                    "attribute": "CurrentTime",
+                    "dataType": "dateTime"
+                  },
+                  "lhs_ly8pyt7v3r0f4yao4s": {
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8pyt7vhhfhcfh4w6s",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "answer"
+                  },
+                  "rhs_ly8px9kopzyxv8f0o3": {
+                    "dataType": "string",
+                    "executedValue": "help_with_order1",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8pvuqa91y57mg7j4i",
+                    "source": null,
+                    "sourceType": "",
+                    "value": "help_with_order1",
+                    "attribute": null
+                  },
+                  "lhs_ly8pzu6lp33irhoa8vi": {
+                    "value": null,
+                    "attribute": "answer",
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8pzu6lr8s0552jn4",
+                    "sourceType": "Trigger"
+                  },
+                  "rhs_ly8o9e605ekuldj8kym": {
+                    "sourceType": "",
+                    "value": "help_with_order1",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "help_with_order1",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8o8wkv6jzod6dykto",
+                    "source": null
+                  },
+                  "condition_ly8o8wkv6jzod6dykto": {
+                    "rightNode": [
+                      "rhs_ly8o9e605ekuldj8kym"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8o8wkvs5arq6gl9z8"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "eq",
+                    "parent": "group_ly8o57a47adtg0v36pe"
+                  },
+                  "lhs_ly9urz4qfgrirwtnxla": {
+                    "nodeType": "params",
+                    "parent": "condition_ly9urz4qcrg3b21326q",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q_list",
+                    "dataType": "list"
+                  },
+                  "condition_ly8pxiya4hfsj30i3zw": {
+                    "parent": "group_ly8pxhf9rgsuywe8m3d",
+                    "rightNode": [
+                      "rhs_ly8py4k2ruvyztakcy"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8pxiyadbnjw51hz37"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "eq"
+                  },
+                  "lhs_ly8pvuqau4t738l42ze": {
+                    "attribute": "prev_q",
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8pvuqa91y57mg7j4i",
+                    "sourceType": "Trigger",
+                    "value": null
+                  },
+                  "condition_ly8oavdz86cq78kz49": {
+                    "dataType": "dateTime",
+                    "leftNode": [
+                      "lhs_ly8oavdz1xlwqkkr1ib"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "gte",
+                    "parent": "group_ly8o57a47adtg0v36pe",
+                    "rightNode": [
+                      "rhs_ly8ob6ydg1erzkk89dm"
+                    ]
+                  },
+                  "condition_ly8pvto2ahngb0yy0zq": {
+                    "operator": "eq",
+                    "parent": "group_ly8pxhf9rgsuywe8m3d",
+                    "rightNode": [
+                      "rhs_ly8px66w6gql9vtjjwm"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8pvto2xpg9ww013zm"
+                    ],
+                    "nodeType": "condition"
+                  },
+                  "condition_ly8pxncpsjg12njuzsl": {
+                    "operator": "eq",
+                    "parent": "group_ly8pxm15e08lek5o4j6",
+                    "rightNode": [
+                      "rhs_ly8py21esvoplg2hki"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8pxncprzcs5f13p9e"
+                    ],
+                    "nodeType": "condition"
+                  },
+                  "rhs_ly8mqyd8jydn6jgxa6": {
+                    "nodeType": "constant",
+                    "parent": "condition_ly8mqhorktd75nkzygk",
+                    "source": null,
+                    "sourceType": "",
+                    "value": "help_with_order2",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "help_with_order2"
+                  },
+                  "condition_ly9urz4qcrg3b21326q": {
+                    "dataType": "list",
+                    "leftNode": [
+                      "lhs_ly9urz4qfgrirwtnxla"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "contains",
+                    "parent": "group_ly8odb4z7hxzclje1bo",
+                    "rightNode": [
+                      "rhs_ly9us5hhmjjigggxovh"
+                    ]
+                  },
+                  "lhs_ly8o8yxbser6m99th6": {
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "answer",
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8o8yxbyznlsismoj"
+                  },
+                  "group_ly8mqhort6qkrfrmjhh": {
+                    "name": "help_with_order2",
+                    "nodeType": "group",
+                    "operator": "and",
+                    "children": [
+                      "condition_ly8mqhorktd75nkzygk",
+                      "condition_ly8mr4j1053v9b4uv4w7"
+                    ]
+                  },
+                  "group_ly8pvto29nf46stnrur": {
+                    "nodeType": "group",
+                    "operator": "and",
+                    "children": [
+                      "group_ly8pxhf9rgsuywe8m3d",
+                      "condition_ly8pyt7vhhfhcfh4w6s"
+                    ],
+                    "name": "all_other_options"
+                  },
+                  "lhs_ly8o57xwerq7cl1njm": {
+                    "attribute": "prev_q",
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8o57xwlx9m4osh5b",
+                    "sourceType": "Trigger",
+                    "value": null
+                  },
+                  "condition_ly8mpwx3rh785a183pa": {
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8mpwx3jdzi6i3mx8k"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "eq",
+                    "parent": "group_ly8mfy9a49ts1bvejw9",
+                    "rightNode": [
+                      "rhs_ly8mqe8sh5vlxfsigaw"
+                    ]
+                  },
+                  "rhs_ly8mqe8sh5vlxfsigaw": {
+                    "value": "Other Issues",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "Other Issues",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8mpwx3rh785a183pa",
+                    "source": null,
+                    "sourceType": ""
+                  },
+                  "rhs_ly9rtaoew0pglwkr6xg": {
+                    "value": [
+                      "help_with_order1"
+                    ],
+                    "sourceType": null,
+                    "key": "",
+                    "source": null,
+                    "executedValue": "help_with_order1",
+                    "attribute": null,
+                    "dataType": "list",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8odb4zjag6o37moyc"
+                  },
+                  "rhs_ly8ob6ydg1erzkk89dm": {
+                    "attribute": "CurrentTime",
+                    "dataType": "dateTime",
+                    "executedValue": "2024-07-05T12:25:19.391Z",
+                    "key": "systemVar",
+                    "nodeType": "params",
+                    "parent": "condition_ly8oavdz86cq78kz49",
+                    "sourceType": "systemVar",
+                    "value": null
+                  },
+                  "rhs_ly8o9scxnoe88xh083": {
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "I did not receive this order",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8o8yxbyznlsismoj",
+                    "source": null,
+                    "sourceType": "",
+                    "value": "I did not receive this order"
+                  },
+                  "rhs_ly8q01pqukcahupi6nh": {
+                    "nodeType": "constant",
+                    "parent": "condition_ly8pzu6lr8s0552jn4",
+                    "source": null,
+                    "sourceType": "",
+                    "value": "I have coupon related query for this order",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "I have coupon related query for this order"
+                  },
+                  "lhs_ly8pxiyadbnjw51hz37": {
+                    "nodeType": "params",
+                    "parent": "condition_ly8pxiya4hfsj30i3zw",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q",
+                    "dataType": "string"
+                  },
+                  "rhs_ly8py4k2ruvyztakcy": {
+                    "source": null,
+                    "sourceType": "",
+                    "value": "help_with_order2",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "help_with_order2",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8pxiya4hfsj30i3zw"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "y": 2337.5,
+              "x": -166.65234375
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8mfy9a0n3psxe73iz",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2597.5,
+              "x": -396.65234375
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8mfy9a95dtpe7ru9",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 408.34765625,
+              "y": 2727.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8mfy9apk78o6pagz",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "isMergeNode": true,
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2337.5,
+              "x": 63.34765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8mwbevotzu0mle7zk",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -166.65234375,
+              "y": 2440
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8mwitagj6kww9hc2t",
+            "type": "responseNode",
+            "data": {
+              "input": {
+                "next_step": {
+                  "value": "{\n  \"type\": \"question\",\n  \"key\": \"help_with_order2\",\n  \"text\": \"Please select an issue:\",\n  \"options\": [\n    \"Item(s) quality is poor\",\n    \"Item(s) has spillage issue\",\n    \"I have coupon related query for this order\",\n    \"Payment and billing related query\",\n    \"Previous\"\n   ]\n}",
+                  "executedValue": null,
+                  "name": "next_step",
+                  "dataType": "json"
+                }
+              },
+              "executedValue": {
+                "next_step": {
+                  "key": "help_with_order2",
+                  "options": [
+                    "Item(s) quality is poor",
+                    "Item(s) has spillage issue",
+                    "I have coupon related query for this order",
+                    "Payment and billing related query",
+                    "Previous"
+                  ],
+                  "text": "Please select an issue:",
+                  "type": "question"
+                }
+              },
+              "settings": {
+                "timeout": 60
+              },
+              "nodeType": "responseNode",
+              "entity": "responseNode",
+              "entityId": "node_ly8mwitagj6kww9hc2t",
+              "-": "success",
+              "name": "Response5",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": -166.65234375,
+              "y": 2597.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8mwita5hwf2dwtpss",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2440,
+              "x": 63.34765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8mxiz6hjv82wp29ip",
+            "type": "responseNode",
+            "data": {
+              "input": {
+                "next_step": {
+                  "value": "{\n  \"type\": \"question\",\n  \"key\": \"help_with_order1\",\n  \"text\": \"Please select an issue:\",\n  \"options\": [\n    \"I did not receive this order\", \n    \"Item(s) portion size is not adequate\", \n    \"Few item(s) are missing in my order\",\n    \"Item delivered are incorrect or wrong\",\n    \"Other Issues\"\n   ]\n}",
+                  "executedValue": null,
+                  "name": "next_step",
+                  "dataType": "json"
+                }
+              },
+              "executedValue": {
+                "output": {
+                  "next_step": {
+                    "text": "Please select an issue:",
+                    "type": "question",
+                    "key": "help_with_order1",
+                    "options": [
+                      "I did not receive this order",
+                      "Item(s) portion size is not adequate",
+                      "Few item(s) are missing in my order",
+                      "Item delivered are incorrect or wrong",
+                      "Other Issues"
+                    ]
+                  }
+                }
+              },
+              "settings": {
+                "timeout": 60
+              },
+              "nodeType": "responseNode",
+              "entity": "responseNode",
+              "entityId": "node_ly8mxiz6hjv82wp29ip",
+              "-": "success",
+              "name": "Response6",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2597.5,
+              "x": 63.34765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8mxiz63o141s7ysa9",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2337.5,
+              "x": 293.34765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8oemm6rtje9h4s0yq",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2337.5,
+              "x": 523.34765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8oemm6hxj5dtpdj56",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 1443.34765625,
+              "y": 1360
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8oemm6yd8etc4kpdl",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 293.34765625,
+              "y": 2440
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8off7d98gfalghka",
+            "type": "responseNode",
+            "data": {
+              "input": {
+                "next_step": {
+                  "value": "{\n  \"type\": \"message\",\n  \"key\": \"on_the_way\",\n  \"text\": \"We apologize for any inconvenience. Our system shows that your order is currently on its way and is expected to arrive by {{.Trigger.eta}}. Please allow some more time, or feel free to contact our delivery executive for further assistance.\",\n  \"followup\": {\n    \"type\": \"question\",\n    \"key\": \"is_resolved\",\n    \"text\": \"Has your concern been resolved?\",\n    \"options\": [\"No\", \"Call delivery executive\", \"I have other concerns\", \"Resolved!\"]\n  }\n}",
+                  "executedValue": null,
+                  "name": "next_step",
+                  "dataType": "json"
+                }
+              },
+              "executedValue": {
+                "next_step": {
+                  "key": "on_the_way",
+                  "text": "We apologize for any inconvenience. Our system shows that your order is currently on its way and is expected to arrive by 2023-11-30T18:30:00.000Z. Please allow some more time, or feel free to contact our delivery executive for further assistance.",
+                  "type": "message",
+                  "followup": {
+                    "options": [
+                      "No",
+                      "Call delivery executive",
+                      "I have other concerns",
+                      "Resolved!"
+                    ],
+                    "text": "Has your concern been resolved?",
+                    "type": "question",
+                    "key": "is_resolved"
+                  }
+                }
+              },
+              "settings": {
+                "timeout": 60
+              },
+              "nodeType": "responseNode",
+              "entity": "responseNode",
+              "entityId": "node_ly8off7d98gfalghka",
+              "-": "success",
+              "name": "Response7",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 293.34765625,
+              "y": 2597.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8off7dj6j4hj08ps",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2440,
+              "x": 523.34765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8ogqcz5mpvwkfc2xb",
+            "type": "responseNode",
+            "data": {
+              "input": {
+                "next_step": {
+                  "value": "{\n  \"type\": \"question\",\n  \"key\": \"eta_breached\",\n  \"text\": \"We apologize for any inconvenience. Our system shows that your order was expected to arrive by {{.Trigger.eta}}. Please allow some more time, or feel free to contact our delivery executive. Alternatively, choose an option for further assistance:\",\n  \"options\": [\"Call delivery executive\", \"Talk to an agent\", \"I have other concerns\",\"I will wait\"]\n}",
+                  "executedValue": null,
+                  "name": "next_step",
+                  "dataType": "json"
+                }
+              },
+              "executedValue": {
+                "next_step": {
+                  "options": [
+                    "Call delivery executive",
+                    "Talk to an agent",
+                    "I have other concerns",
+                    "I will wait"
+                  ],
+                  "text": "We apologize for any inconvenience. Our system shows that your order was expected to arrive by 2023-11-30T18:30:00.000Z. Please allow some more time, or feel free to contact our delivery executive. Alternatively, choose an option for further assistance:",
+                  "type": "question",
+                  "key": "eta_breached"
+                }
+              },
+              "settings": {
+                "timeout": 60
+              },
+              "nodeType": "responseNode",
+              "entity": "responseNode",
+              "entityId": "node_ly8ogqcz5mpvwkfc2xb",
+              "-": "success",
+              "name": "Response8",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 523.34765625,
+              "y": 2597.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8ogqczvdrhjvu8hw",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 1435,
+              "x": 1443.34765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8oliud4z3cyidbqh9",
+            "type": "switchNode",
+            "data": {
+              "input": {
+                "defaultPath": {
+                  "value": false,
+                  "executedValue": null
+                }
+              },
+              "executedValue": {
+                "output": {
+                  "path": ""
+                }
+              },
+              "settings": {
+                "timeout": 30
+              },
+              "nodeType": "switchNode",
+              "entity": "switch",
+              "entityId": "node_ly8oliud4z3cyidbqh9",
+              "-": "success",
+              "name": "Resolution",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {},
+              "switcher": [
+                {
+                  "name": "No , Talk to an agent",
+                  "pathId": "group_ly8oliudf2s9quwvphg"
+                },
+                {
+                  "name": "I have other concerns",
+                  "pathId": "group_ly8pl5ae9c7mdyumpjb"
+                },
+                {
+                  "name": "I will wait",
+                  "pathId": "group_ly8pltoxou3v9qgs919"
+                },
+                {
+                  "name": "Call delivery executive",
+                  "pathId": "group_ly8pmbjqy4gexn1aaid"
+                },
+                {
+                  "name": "Resolved!",
+                  "pathId": "group_ly8pmpsbofnqpeibpe"
+                },
+                {
+                  "name": "contains_prev_q",
+                  "pathId": "group_ly8qu7morioyy70to5r"
+                }
+              ],
+              "conditions": {
+                "nodes": {
+                  "group_ly8pl5ae9c7mdyumpjb": {
+                    "nodeType": "group",
+                    "operator": "",
+                    "children": [
+                      "condition_ly8pl5aezo69dc899l"
+                    ],
+                    "name": "I have other concerns"
+                  },
+                  "lhs_ly8pmpsbicf0u4ne6vk": {
+                    "nodeType": "params",
+                    "parent": "condition_ly8pmpsb99ipmtgewhi",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "answer",
+                    "dataType": "string"
+                  },
+                  "rhs_ly9rwck011c9vd40b1n": {
+                    "nodeType": "constant",
+                    "parent": "condition_ly8qu7moxy58079k5kr",
+                    "source": null,
+                    "sourceType": "",
+                    "value": [
+                      "is_resolved"
+                    ],
+                    "attribute": null,
+                    "dataType": "list",
+                    "executedValue": [
+                      "is_resolved"
+                    ]
+                  },
+                  "group_ly8pmbjqy4gexn1aaid": {
+                    "operator": "",
+                    "children": [
+                      "condition_ly8pmbjqur4xlhdvie"
+                    ],
+                    "name": "Call delivery executive",
+                    "nodeType": "group"
+                  },
+                  "rhs_ly8orc9oeflu80xx4n5": {
+                    "source": null,
+                    "sourceType": "",
+                    "value": "No",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "No",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8oopdkx1ffxo1rqpc"
+                  },
+                  "lhs_ly8oopdk7j6rbu74y5": {
+                    "nodeType": "params",
+                    "parent": "condition_ly8oopdkx1ffxo1rqpc",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "answer",
+                    "dataType": "string"
+                  },
+                  "group_ly8pmpsbofnqpeibpe": {
+                    "name": "Resolved!",
+                    "nodeType": "group",
+                    "operator": "",
+                    "children": [
+                      "condition_ly8pmpsb99ipmtgewhi"
+                    ]
+                  },
+                  "rhs_ly8oprbmkr2anjxd9ip": {
+                    "sourceType": "",
+                    "value": "eta_breached",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "eta_breached",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8opg62650z64a8s0u",
+                    "source": null
+                  },
+                  "rhs_ly8ore3f7mg9vcampq": {
+                    "source": null,
+                    "sourceType": "",
+                    "value": "Talk to an agent",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "Talk to an agent",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8oqwjemnxoz170m7"
+                  },
+                  "condition_ly8pmbjqur4xlhdvie": {
+                    "leftNode": [
+                      "lhs_ly8pmbjqaedkwx001kc"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "eq",
+                    "parent": "group_ly8pmbjqy4gexn1aaid",
+                    "rightNode": [
+                      "rhs_ly8pmk8y9zly6tj1jbr"
+                    ],
+                    "dataType": "string"
+                  },
+                  "condition_ly8pltox6ufgaxidc69": {
+                    "operator": "eq",
+                    "parent": "group_ly8pltoxou3v9qgs919",
+                    "rightNode": [
+                      "rhs_ly8pm2wclpeucnjx76n"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8pltoxu404dw2p6x"
+                    ],
+                    "nodeType": "condition"
+                  },
+                  "rhs_ly8pm2wclpeucnjx76n": {
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "I will wait",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8pltox6ufgaxidc69",
+                    "source": null,
+                    "sourceType": "",
+                    "value": "I will wait"
+                  },
+                  "lhs_ly8pltoxu404dw2p6x": {
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8pltox6ufgaxidc69",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "answer"
+                  },
+                  "lhs_ly9utqng60fe554tbso": {
+                    "dataType": "list",
+                    "nodeType": "params",
+                    "parent": "condition_ly9utqnfdpqp3oug7wp",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q_list"
+                  },
+                  "lhs_ly8pmbjqaedkwx001kc": {
+                    "attribute": "answer",
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8pmbjqur4xlhdvie",
+                    "sourceType": "Trigger",
+                    "value": null
+                  },
+                  "group_ly8qu7morioyy70to5r": {
+                    "children": [
+                      "condition_ly8qu7moxy58079k5kr",
+                      "condition_ly9utqnfdpqp3oug7wp"
+                    ],
+                    "name": "contains_prev_q",
+                    "nodeType": "group",
+                    "operator": "or"
+                  },
+                  "condition_ly8pl5aezo69dc899l": {
+                    "parent": "group_ly8pl5ae9c7mdyumpjb",
+                    "rightNode": [
+                      "rhs_ly8plmb2kw72haygdq"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8pl5ae277gdscep0x"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "eq"
+                  },
+                  "condition_ly8oopdkx1ffxo1rqpc": {
+                    "rightNode": [
+                      "rhs_ly8orc9oeflu80xx4n5"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8oopdk7j6rbu74y5"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "eq",
+                    "parent": "group_ly8oquyyadtcoecveu7"
+                  },
+                  "condition_ly8opg62650z64a8s0u": {
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8opg62cip3yh1j9zw"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "eq",
+                    "parent": "group_ly8oomqmn89va17a6t",
+                    "rightNode": [
+                      "rhs_ly8oprbmkr2anjxd9ip"
+                    ]
+                  },
+                  "condition_ly9utqnfdpqp3oug7wp": {
+                    "dataType": "list",
+                    "leftNode": [
+                      "lhs_ly9utqng60fe554tbso"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "contains",
+                    "parent": "group_ly8qu7morioyy70to5r",
+                    "rightNode": [
+                      "rhs_ly9utzxchgc7povncci"
+                    ]
+                  },
+                  "lhs_ly8pl5ae277gdscep0x": {
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8pl5aezo69dc899l",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "answer"
+                  },
+                  "condition_ly8oqwjemnxoz170m7": {
+                    "operator": "eq",
+                    "parent": "group_ly8oquyyadtcoecveu7",
+                    "rightNode": [
+                      "rhs_ly8ore3f7mg9vcampq"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8oqwjefe6kagk343i"
+                    ],
+                    "nodeType": "condition"
+                  },
+                  "rhs_ly8pn1h2k2ze7i5zfka": {
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "Resolved!",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8pmpsb99ipmtgewhi",
+                    "source": null,
+                    "sourceType": "",
+                    "value": "Resolved!"
+                  },
+                  "group_ly8oquyyadtcoecveu7": {
+                    "nodeType": "group",
+                    "operator": "or",
+                    "parent": "group_ly8oliudf2s9quwvphg",
+                    "children": [
+                      "condition_ly8oopdkx1ffxo1rqpc",
+                      "condition_ly8oqwjemnxoz170m7"
+                    ]
+                  },
+                  "condition_ly8oliudaotslow3mi7": {
+                    "parent": "group_ly8oomqmn89va17a6t",
+                    "rightNode": [
+                      "rhs_ly8opp56tf5mz694t"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8oliudkylajoxtn4b"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "eq"
+                  },
+                  "rhs_ly9utzxchgc7povncci": {
+                    "value": [
+                      "eta_breached"
+                    ],
+                    "attribute": null,
+                    "dataType": "list",
+                    "executedValue": [
+                      "eta_breached"
+                    ],
+                    "nodeType": "constant",
+                    "parent": "condition_ly9utqnfdpqp3oug7wp",
+                    "source": null,
+                    "sourceType": ""
+                  },
+                  "lhs_ly8qu7mo0o7s1fa5y5f": {
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q_list",
+                    "dataType": "list",
+                    "nodeType": "params",
+                    "parent": "condition_ly8qu7moxy58079k5kr"
+                  },
+                  "lhs_ly8oqwjefe6kagk343i": {
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8oqwjemnxoz170m7",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "answer"
+                  },
+                  "lhs_ly8opg62cip3yh1j9zw": {
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q",
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8opg62650z64a8s0u"
+                  },
+                  "group_ly8pltoxou3v9qgs919": {
+                    "operator": "",
+                    "children": [
+                      "condition_ly8pltox6ufgaxidc69"
+                    ],
+                    "name": "I will wait",
+                    "nodeType": "group"
+                  },
+                  "rhs_ly8pmk8y9zly6tj1jbr": {
+                    "executedValue": "Call delivery executive",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8pmbjqur4xlhdvie",
+                    "source": null,
+                    "sourceType": "",
+                    "value": "Call delivery executive",
+                    "attribute": null,
+                    "dataType": "string"
+                  },
+                  "condition_ly8qu7moxy58079k5kr": {
+                    "rightNode": [
+                      "rhs_ly9rwck011c9vd40b1n"
+                    ],
+                    "dataType": "list",
+                    "leftNode": [
+                      "lhs_ly8qu7mo0o7s1fa5y5f"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "contains",
+                    "parent": "group_ly8qu7morioyy70to5r"
+                  },
+                  "rhs_ly8opp56tf5mz694t": {
+                    "sourceType": "",
+                    "value": "is_resolved",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "is_resolved",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8oliudaotslow3mi7",
+                    "source": null
+                  },
+                  "group_ly8oomqmn89va17a6t": {
+                    "nodeType": "group",
+                    "operator": "or",
+                    "parent": "group_ly8oliudf2s9quwvphg",
+                    "children": [
+                      "condition_ly8oliudaotslow3mi7",
+                      "condition_ly8opg62650z64a8s0u"
+                    ]
+                  },
+                  "rhs_ly8plmb2kw72haygdq": {
+                    "executedValue": "I have other concerns",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8pl5aezo69dc899l",
+                    "source": null,
+                    "sourceType": "",
+                    "value": "I have other concerns",
+                    "attribute": null,
+                    "dataType": "string"
+                  },
+                  "lhs_ly8oliudkylajoxtn4b": {
+                    "parent": "condition_ly8oliudaotslow3mi7",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q",
+                    "dataType": "string",
+                    "nodeType": "params"
+                  },
+                  "condition_ly8pmpsb99ipmtgewhi": {
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8pmpsbicf0u4ne6vk"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "eq",
+                    "parent": "group_ly8pmpsbofnqpeibpe",
+                    "rightNode": [
+                      "rhs_ly8pn1h2k2ze7i5zfka"
+                    ]
+                  },
+                  "group_ly8oliudf2s9quwvphg": {
+                    "operator": "and",
+                    "children": [
+                      "group_ly8oomqmn89va17a6t",
+                      "group_ly8oquyyadtcoecveu7"
+                    ],
+                    "name": "No , Talk to an agent",
+                    "nodeType": "group"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "y": 2207.5,
+              "x": 983.34765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8oliuda71xumqll69",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8oliud4z3cyidbqh9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2467.5,
+              "x": 753.34765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8oliudjjle1f3qqt",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8oliud4z3cyidbqh9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2597.5,
+              "x": 1443.34765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8oliudbzekwy2r0wg",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8oliud4z3cyidbqh9",
+              "isMergeNode": true,
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 983.34765625,
+              "y": 2310
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8pipq3kqr2ivew4h",
+            "type": "responseNode",
+            "data": {
+              "input": {
+                "next_step": {
+                  "value": "{\n  \"type\": \"message\",\n  \"key\": \"agent_connect\",\n  \"text\": \"We have assigned you an agent for customer support, he/she will contact you soon :)\"\n}",
+                  "executedValue": null,
+                  "name": "next_step",
+                  "dataType": "json"
+                }
+              },
+              "executedValue": {
+                "next_step": {
+                  "key": "agent_connect",
+                  "text": "We have assigned you an agent for customer support, he/she will contact you soon :)",
+                  "type": "message"
+                }
+              },
+              "settings": {
+                "timeout": 60
+              },
+              "nodeType": "responseNode",
+              "entity": "responseNode",
+              "entityId": "node_ly8pipq3kqr2ivew4h",
+              "-": "success",
+              "name": "Response9",
+              "rootId": "node_ly8oliud4z3cyidbqh9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 983.34765625,
+              "y": 2467.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8pipq3onzuisyljg",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8oliud4z3cyidbqh9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2207.5,
+              "x": 1213.34765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8pn42gndp6robn9wb",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8oliud4z3cyidbqh9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 1443.34765625,
+              "y": 2207.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8pn42g9o13n017lo8",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8oliud4z3cyidbqh9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 1673.34765625,
+              "y": 2207.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8pn42gho1m5wepo6d",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8oliud4z3cyidbqh9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2207.5,
+              "x": 1903.34765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8pn42gomii4lpl5ih",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8oliud4z3cyidbqh9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 1213.34765625,
+              "y": 2310
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8pnffkp3giq7m67fj",
+            "type": "responseNode",
+            "data": {
+              "input": {
+                "next_step": {
+                  "value": "{\n  \"type\": \"question\",\n  \"key\": \"help_with_order1\",\n  \"text\": \"Please select an issue:\",\n  \"options\": [\n    \"I did not receive this order\", \n    \"Item(s) portion size is not adequate\", \n    \"Few item(s) are missing in my order\",\n    \"Item delivered are incorrect or wrong\",\n    \"Other Issues\"\n   ]\n}",
+                  "executedValue": null,
+                  "name": "next_step",
+                  "dataType": "json"
+                }
+              },
+              "executedValue": {
+                "next_step": {
+                  "options": [
+                    "I did not receive this order",
+                    "Item(s) portion size is not adequate",
+                    "Few item(s) are missing in my order",
+                    "Item delivered are incorrect or wrong",
+                    "Other Issues"
+                  ],
+                  "text": "Please select an issue:",
+                  "type": "question",
+                  "key": "help_with_order1"
+                }
+              },
+              "settings": {
+                "timeout": 60
+              },
+              "nodeType": "responseNode",
+              "entity": "responseNode",
+              "entityId": "node_ly8pnffkp3giq7m67fj",
+              "-": "success",
+              "name": "Response10",
+              "rootId": "node_ly8oliud4z3cyidbqh9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 1213.34765625,
+              "y": 2467.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8pnffk2gm7xrq1n7f",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8oliud4z3cyidbqh9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2310,
+              "x": 1443.34765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8pog67nscbvcq6sdf",
+            "type": "responseNode",
+            "data": {
+              "input": {
+                "next_step": {
+                  "value": "{\n  \"type\": \"message\",\n  \"key\": \"resolved\",\n  \"text\": \"Thank you for your patience. We appreciate it greatly. If you encounter any further issues, please don't hesitate to contact us.\",\n  \"followup\" : {\n    \"type\": \"feedback\",\n    \"key\": \"feedback_thumbs\",\n    \"text\": \"Please rate your experience: \"\n  }\n}",
+                  "executedValue": null,
+                  "name": "next_step",
+                  "dataType": "json"
+                }
+              },
+              "executedValue": {
+                "next_step": {
+                  "key": "resolved",
+                  "text": "Thank you for your patience. We appreciate it greatly. If you encounter any further issues, please don't hesitate to contact us.",
+                  "type": "message",
+                  "followup": {
+                    "type": "feedback",
+                    "key": "feedback_thumbs",
+                    "text": "Please rate your experience: "
+                  }
+                }
+              },
+              "settings": {
+                "timeout": 60
+              },
+              "nodeType": "responseNode",
+              "entity": "responseNode",
+              "entityId": "node_ly8pog67nscbvcq6sdf",
+              "-": "success",
+              "name": "Response11",
+              "rootId": "node_ly8oliud4z3cyidbqh9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 1443.34765625,
+              "y": 2467.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8pog67j2kydfkiyv",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8oliud4z3cyidbqh9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2310,
+              "x": 1673.34765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8ppv39hs8zd03ty99",
+            "type": "responseNode",
+            "data": {
+              "input": {
+                "next_step": {
+                  "value": "{\n  \"type\": \"message\",\n  \"key\": \"call_delivery_agent\",\n  \"text\": \"Your delivery executive is {{.Trigger.delivery_agent_name}}. You can reach them at {{.Trigger.delivery_agent_number}}. Feel free to call if you have any questions or need assistance.\",\n  \"followup\": {\n    \"type\": \"question\",\n    \"key\": \"is_resolved\",\n    \"text\": \"Has your concern been resolved?\",\n    \"options\": [\"No\", \"I have other concerns\", \"Resolved!\"]\n  }\n}",
+                  "executedValue": null,
+                  "name": "next_step",
+                  "dataType": "json"
+                }
+              },
+              "executedValue": {
+                "next_step": {
+                  "type": "message",
+                  "followup": {
+                    "text": "Has your concern been resolved?",
+                    "type": "question",
+                    "key": "is_resolved",
+                    "options": [
+                      "No",
+                      "I have other concerns",
+                      "Resolved!"
+                    ]
+                  },
+                  "key": "call_delivery_agent",
+                  "text": "Your delivery executive is agent name. You can reach them at +12394811. Feel free to call if you have any questions or need assistance."
+                }
+              },
+              "settings": {
+                "timeout": 60
+              },
+              "nodeType": "responseNode",
+              "entity": "responseNode",
+              "entityId": "node_ly8ppv39hs8zd03ty99",
+              "-": "success",
+              "name": "Response12",
+              "rootId": "node_ly8oliud4z3cyidbqh9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2467.5,
+              "x": 1673.34765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8ppv398r04b3vcubm",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8oliud4z3cyidbqh9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 1903.34765625,
+              "y": 2310
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8prwb4og3d8kdho4i",
+            "type": "responseNode",
+            "data": {
+              "input": {
+                "next_step": {
+                  "value": "{\n  \"type\": \"message\",\n  \"key\": \"resolved\",\n  \"text\": \"Thank you for your patience. We appreciate it greatly. If you encounter any further issues, please don't hesitate to contact us.\",\n  \"followup\" : {\n    \"type\": \"feedback\",\n    \"key\": \"feedback_thumbs\",\n    \"text\": \"Please rate your experience: \"\n  }\n}",
+                  "executedValue": null,
+                  "name": "next_step",
+                  "dataType": "json"
+                }
+              },
+              "executedValue": {
+                "next_step": {
+                  "text": "Thank you for your patience. We appreciate it greatly. If you encounter any further issues, please don't hesitate to contact us.",
+                  "type": "message",
+                  "followup": {
+                    "type": "feedback",
+                    "key": "feedback_thumbs",
+                    "text": "Please rate your experience: "
+                  },
+                  "key": "resolved"
+                }
+              },
+              "settings": {
+                "timeout": 60
+              },
+              "nodeType": "responseNode",
+              "entity": "responseNode",
+              "entityId": "node_ly8prwb4og3d8kdho4i",
+              "-": "success",
+              "name": "Response13",
+              "rootId": "node_ly8oliud4z3cyidbqh9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2467.5,
+              "x": 1903.34765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8prwb4k73dlcfklqm",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8oliud4z3cyidbqh9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 3230.84765625,
+              "y": 2337.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8qhr7khi784337p6",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2337.5,
+              "x": 3460.84765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8qhr7kdoiz5s5uwb8",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2440,
+              "x": 3230.84765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8qn0nvmb3knwzbgl",
+            "type": "responseNode",
+            "data": {
+              "input": {
+                "next_step": {
+                  "value": "{\n  \"type\": \"message\",\n  \"key\": \"agent_connect\",\n  \"text\": \"We have assigned you an agent for customer support, he/she will contact you soon :)\"\n}",
+                  "executedValue": null,
+                  "name": "next_step",
+                  "dataType": "json"
+                }
+              },
+              "executedValue": {
+                "next_step": {
+                  "type": "message",
+                  "key": "agent_connect",
+                  "text": "We have assigned you an agent for customer support, he/she will contact you soon :)"
+                }
+              },
+              "settings": {
+                "timeout": 60
+              },
+              "nodeType": "responseNode",
+              "entity": "responseNode",
+              "entityId": "node_ly8qn0nvmb3knwzbgl",
+              "-": "success",
+              "name": "Response14",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2597.5,
+              "x": 3230.84765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8qn0nvrtpzhgqf0fl",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2440,
+              "x": 3460.84765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8qoab2t9e8l2cm00m",
+            "type": "responseNode",
+            "data": {
+              "input": {
+                "next_step": {
+                  "value": "{\n  \"type\": \"message\",\n  \"key\": \"coupon_query\",\n  \"text\": \"1. I am unable to find my coupon: You can view available coupons for your order, by going to the 'APPLY COUPON' section on the cart page while placing your order. <br><br>2. I unable to apply my coupon: Please check if you have adhered to all the coupon's terms and conditions. Choose your coupon in the 'APPLY COUPON' section and click '+MORE' to review all T&Cs to avail the benefits <br><br>3. I forgot to apply my coupon: It looks like you missed applying your coupon. No worries, though! Your coupon is still valid and waiting for you. Simply apply it to your next order and enjoy the savings. We appreciate your understanding and look forward to serving you again soon!\",\n  \"followup\": {\n    \"type\": \"question\",\n    \"key\": \"is_resolved\",\n    \"text\": \"Has your concern been resolved?\",\n    \"options\": [\"No\", \"I have other concerns\"]\n  }\n}",
+                  "executedValue": null,
+                  "name": "next_step",
+                  "dataType": "json"
+                }
+              },
+              "executedValue": {
+                "next_step": {
+                  "followup": {
+                    "type": "question",
+                    "key": "is_resolved",
+                    "options": [
+                      "No",
+                      "I have other concerns"
+                    ],
+                    "text": "Has your concern been resolved?"
+                  },
+                  "key": "coupon_query",
+                  "text": "1. I am unable to find my coupon: You can view available coupons for your order, by going to the 'APPLY COUPON' section on the cart page while placing your order. <br><br>2. I unable to apply my coupon: Please check if you have adhered to all the coupon's terms and conditions. Choose your coupon in the 'APPLY COUPON' section and click '+MORE' to review all T&Cs to avail the benefits <br><br>3. I forgot to apply my coupon: It looks like you missed applying your coupon. No worries, though! Your coupon is still valid and waiting for you. Simply apply it to your next order and enjoy the savings. We appreciate your understanding and look forward to serving you again soon!",
+                  "type": "message"
+                }
+              },
+              "settings": {
+                "timeout": 60
+              },
+              "nodeType": "responseNode",
+              "entity": "responseNode",
+              "entityId": "node_ly8qoab2t9e8l2cm00m",
+              "-": "success",
+              "name": "Response15",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 3460.84765625,
+              "y": 2597.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8qoab271uciwos6x3",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8mfy9aeqr0m2w7b5e",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 2540.84765625,
+              "y": 1565
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8qvxybwi5ahs8l1k",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8oliud4z3cyidbqh9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 2540.84765625,
+              "y": 1640
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8qwfjwzzyhmlvjha9",
+            "type": "switchNode",
+            "data": {
+              "input": {
+                "defaultPath": {
+                  "value": false,
+                  "executedValue": null
+                }
+              },
+              "executedValue": {
+                "output": {
+                  "path": ""
+                }
+              },
+              "settings": {
+                "timeout": 30
+              },
+              "nodeType": "switchNode",
+              "entity": "switch",
+              "entityId": "node_ly8qwfjwzzyhmlvjha9",
+              "-": "success",
+              "name": "AskFeedback",
+              "rootId": "node_ly8oliud4z3cyidbqh9",
+              "runInLoop": {},
+              "switcher": [
+                {
+                  "name": "feedback_thumbs_good",
+                  "pathId": "group_ly8qwfjwu134bdgs4hg"
+                },
+                {
+                  "name": "feedback_thumbs_bad",
+                  "pathId": "group_ly8r09qcn00c7hqvmrf"
+                },
+                {
+                  "name": "contains_prev_q",
+                  "pathId": "group_ly8r2ix2jcoaezea96d"
+                }
+              ],
+              "conditions": {
+                "nodes": {
+                  "rhs_ly8r0nf7j02c5pu5oc": {
+                    "sourceType": "",
+                    "value": "feedback_thumbs",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "feedback_thumbs",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8r09qc9c6nt40r49",
+                    "source": null
+                  },
+                  "group_ly8qwfjwu134bdgs4hg": {
+                    "nodeType": "group",
+                    "operator": "and",
+                    "children": [
+                      "condition_ly8qwfjwuiglik3f9v8",
+                      "condition_ly8qzrce35zyqk9cl3a"
+                    ],
+                    "name": "feedback_thumbs_good"
+                  },
+                  "group_ly8r2ix2jcoaezea96d": {
+                    "operator": "",
+                    "children": [
+                      "condition_ly8r2ix2xew2uvk63yi"
+                    ],
+                    "name": "contains_prev_q",
+                    "nodeType": "group"
+                  },
+                  "lhs_ly8qwfjw7ye29mlc30c": {
+                    "parent": "condition_ly8qwfjwuiglik3f9v8",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q",
+                    "dataType": "string",
+                    "nodeType": "params"
+                  },
+                  "lhs_ly8r09qc3zwbc56ygmm": {
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8r09qc9c6nt40r49",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q"
+                  },
+                  "rhs_ly8r16ejlr3ufgx8eml": {
+                    "dataType": "string",
+                    "executedValue": "Bad",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8r0vwaoeu9fere1ma",
+                    "source": null,
+                    "sourceType": "",
+                    "value": "Bad",
+                    "attribute": null
+                  },
+                  "lhs_ly8r0vwaiwv3dz8gmmf": {
+                    "value": null,
+                    "attribute": "answer",
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8r0vwaoeu9fere1ma",
+                    "sourceType": "Trigger"
+                  },
+                  "lhs_ly8qzrceqnmpi8p9vyb": {
+                    "nodeType": "params",
+                    "parent": "condition_ly8qzrce35zyqk9cl3a",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "answer",
+                    "dataType": "string"
+                  },
+                  "rhs_ly8qzx7p8g8nekay0t8": {
+                    "nodeType": "constant",
+                    "parent": "condition_ly8qzrce35zyqk9cl3a",
+                    "source": null,
+                    "sourceType": "",
+                    "value": "Good",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "Good"
+                  },
+                  "group_ly8r09qcn00c7hqvmrf": {
+                    "name": "feedback_thumbs_bad",
+                    "nodeType": "group",
+                    "operator": "and",
+                    "children": [
+                      "condition_ly8r09qc9c6nt40r49",
+                      "condition_ly8r0vwaoeu9fere1ma"
+                    ]
+                  },
+                  "condition_ly8r0vwaoeu9fere1ma": {
+                    "rightNode": [
+                      "rhs_ly8r16ejlr3ufgx8eml"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8r0vwaiwv3dz8gmmf"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "eq",
+                    "parent": "group_ly8r09qcn00c7hqvmrf"
+                  },
+                  "condition_ly8qzrce35zyqk9cl3a": {
+                    "operator": "eq",
+                    "parent": "group_ly8qwfjwu134bdgs4hg",
+                    "rightNode": [
+                      "rhs_ly8qzx7p8g8nekay0t8"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8qzrceqnmpi8p9vyb"
+                    ],
+                    "nodeType": "condition"
+                  },
+                  "rhs_ly9tyube5m4aetxhep3": {
+                    "dataType": "list",
+                    "executedValue": [
+                      "feedback_thumbs"
+                    ],
+                    "nodeType": "constant",
+                    "parent": "condition_ly8r2ix2xew2uvk63yi",
+                    "source": null,
+                    "sourceType": "",
+                    "value": [
+                      "feedback_thumbs"
+                    ],
+                    "attribute": null
+                  },
+                  "condition_ly8r2ix2xew2uvk63yi": {
+                    "nodeType": "condition",
+                    "operator": "contains",
+                    "parent": "group_ly8r2ix2jcoaezea96d",
+                    "rightNode": [
+                      "rhs_ly9tyube5m4aetxhep3"
+                    ],
+                    "dataType": "list",
+                    "leftNode": [
+                      "lhs_ly8r2ix2zedw4plea7l"
+                    ]
+                  },
+                  "lhs_ly8r2ix2zedw4plea7l": {
+                    "dataType": "list",
+                    "nodeType": "params",
+                    "parent": "condition_ly8r2ix2xew2uvk63yi",
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q_list"
+                  },
+                  "condition_ly8qwfjwuiglik3f9v8": {
+                    "leftNode": [
+                      "lhs_ly8qwfjw7ye29mlc30c"
+                    ],
+                    "nodeType": "condition",
+                    "operator": "eq",
+                    "parent": "group_ly8qwfjwu134bdgs4hg",
+                    "rightNode": [
+                      "rhs_ly8qxnqsse28wwuz2un"
+                    ],
+                    "dataType": "string"
+                  },
+                  "condition_ly8r09qc9c6nt40r49": {
+                    "nodeType": "condition",
+                    "operator": "eq",
+                    "parent": "group_ly8r09qcn00c7hqvmrf",
+                    "rightNode": [
+                      "rhs_ly8r0nf7j02c5pu5oc"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8r09qc3zwbc56ygmm"
+                    ]
+                  },
+                  "rhs_ly8qxnqsse28wwuz2un": {
+                    "sourceType": "",
+                    "value": "feedback_thumbs",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "feedback_thumbs",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8qwfjwuiglik3f9v8",
+                    "source": null
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "y": 2077.5,
+              "x": 2770.84765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8qwfjw1wr7w8ajz3r",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8qwfjwzzyhmlvjha9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 2133.34765625,
+              "y": 2337.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8qwfjwrnyduwx3d7",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8qwfjwzzyhmlvjha9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 2540.84765625,
+              "y": 2467.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8qwfjwd24zbxych4q",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8qwfjwzzyhmlvjha9",
+              "isMergeNode": true,
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 3000.84765625,
+              "y": 2077.5
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8r4lj5tujkdnind",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8qwfjwzzyhmlvjha9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 1770,
+              "x": 2425.84765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8r4lj5w0s2hexu9hs",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8qwfjwzzyhmlvjha9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 1845,
+              "x": 2425.84765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8r65es1om0ghbyqy",
+            "type": "switchNode",
+            "data": {
+              "input": {
+                "defaultPath": {
+                  "value": false,
+                  "executedValue": null
+                }
+              },
+              "executedValue": {
+                "output": {
+                  "path": ""
+                }
+              },
+              "settings": {
+                "timeout": 30
+              },
+              "nodeType": "switchNode",
+              "entity": "switch",
+              "entityId": "node_ly8r65es1om0ghbyqy",
+              "-": "success",
+              "name": "SwitchBlock7",
+              "rootId": "node_ly8qwfjwzzyhmlvjha9",
+              "runInLoop": {},
+              "switcher": [
+                {
+                  "name": "feedback_bad",
+                  "pathId": "group_ly8r65es5u39fniiffb"
+                }
+              ],
+              "conditions": {
+                "nodes": {
+                  "condition_ly8r65esvp8zkraaoc8": {
+                    "nodeType": "condition",
+                    "operator": "eq",
+                    "parent": "group_ly8r65es5u39fniiffb",
+                    "rightNode": [
+                      "rhs_ly8r6jobvsefxheljwb"
+                    ],
+                    "dataType": "string",
+                    "leftNode": [
+                      "lhs_ly8r65esdccwgyywldi"
+                    ]
+                  },
+                  "group_ly8r65es5u39fniiffb": {
+                    "children": [
+                      "condition_ly8r65esvp8zkraaoc8"
+                    ],
+                    "name": "feedback_bad",
+                    "nodeType": "group",
+                    "operator": ""
+                  },
+                  "lhs_ly8r65esdccwgyywldi": {
+                    "sourceType": "Trigger",
+                    "value": null,
+                    "attribute": "prev_q",
+                    "dataType": "string",
+                    "nodeType": "params",
+                    "parent": "condition_ly8r65esvp8zkraaoc8"
+                  },
+                  "rhs_ly8r6jobvsefxheljwb": {
+                    "sourceType": "",
+                    "value": "feedback_bad",
+                    "attribute": null,
+                    "dataType": "string",
+                    "executedValue": "feedback_bad",
+                    "nodeType": "constant",
+                    "parent": "condition_ly8r65esvp8zkraaoc8",
+                    "source": null
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 2540.84765625,
+              "y": 1975
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8r65es02bhs2x8fh8v",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8r65es1om0ghbyqy",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2207.5,
+              "x": 2310.84765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8r65esppmqkinb26",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8r65es1om0ghbyqy",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2337.5,
+              "x": 2425.84765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8r65es6fpzmw6xua",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8r65es1om0ghbyqy",
+              "isMergeNode": true,
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 2770.84765625,
+              "y": 2180
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8r75c3uw69x5z8kl",
+            "type": "responseNode",
+            "data": {
+              "input": {
+                "next_step": {
+                  "value": "{\n  \"type\": \"message\",\n  \"key\": \"feedback_good\",\n  \"text\": \"Thank you for the Feedback :)\"\n}",
+                  "executedValue": null,
+                  "name": "next_step",
+                  "dataType": "json"
+                }
+              },
+              "executedValue": {
+                "next_step": {
+                  "text": "Thank you for the Feedback :)",
+                  "type": "message",
+                  "key": "feedback_good"
+                }
+              },
+              "settings": {
+                "timeout": 60
+              },
+              "nodeType": "responseNode",
+              "entity": "responseNode",
+              "entityId": "node_ly8r75c3uw69x5z8kl",
+              "-": "success",
+              "name": "Response16",
+              "rootId": "node_ly8qwfjwzzyhmlvjha9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2337.5,
+              "x": 2770.84765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8r75c3qus0noyzwdo",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8qwfjwzzyhmlvjha9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 3000.84765625,
+              "y": 2180
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8r8bkp06c89yckfwia",
+            "type": "responseNode",
+            "data": {
+              "input": {
+                "next_step": {
+                  "value": "{\n  \"type\": \"reply\",\n  \"key\": \"feedback_bad\",\n  \"text\": \"We're sorry for your bad experience, please share it so we can improve.\"\n}",
+                  "executedValue": null,
+                  "name": "next_step",
+                  "dataType": "json"
+                }
+              },
+              "executedValue": {
+                "next_step": {
+                  "text": "We're sorry for your bad experience, please share it so we can improve.",
+                  "type": "reply",
+                  "key": "feedback_bad"
+                }
+              },
+              "settings": {
+                "timeout": 60
+              },
+              "nodeType": "responseNode",
+              "entity": "responseNode",
+              "entityId": "node_ly8r8bkp06c89yckfwia",
+              "-": "success",
+              "name": "Response17",
+              "rootId": "node_ly8qwfjwzzyhmlvjha9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2337.5,
+              "x": 3000.84765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8r8bkp28c03nvmzcr",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8qwfjwzzyhmlvjha9",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "x": 2540.84765625,
+              "y": 2050
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8rby0g45nz47an1lv",
+            "type": "responseNode",
+            "data": {
+              "input": {
+                "next_step": {
+                  "value": "{\n  \"type\": \"message\",\n  \"key\": \"feedback_reply\",\n  \"text\": \"Thank you for the Feedback :)\",\n  \"reply_ans\": \"{{.Trigger.answer}}\"\n}",
+                  "executedValue": null,
+                  "name": "next_step",
+                  "dataType": "json"
+                }
+              },
+              "executedValue": {
+                "output": {
+                  "next_step": {
+                    "text": "Thank you for the Feedback :)",
+                    "type": "message",
+                    "key": "feedback_reply",
+                    "reply_ans": "Payment and billing related query"
+                  }
+                }
+              },
+              "settings": {
+                "timeout": 60
+              },
+              "nodeType": "responseNode",
+              "entity": "responseNode",
+              "entityId": "node_ly8rby0g45nz47an1lv",
+              "-": "success",
+              "name": "Response18",
+              "rootId": "node_ly8r65es1om0ghbyqy",
+              "runInLoop": {}
+            }
+          },
+          {
+            "position": {
+              "y": 2207.5,
+              "x": 2540.84765625
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "id": "node_ly8rby0gg1p8ocapoz4",
+            "type": "addNode",
+            "data": {
+              "nodeType": "addNodeMd",
+              "rootId": "node_ly8r65es1om0ghbyqy",
+              "runInLoop": {}
+            }
+          }
+        ],
+        "edges": [
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly7bczvnarejveqascj",
+            "source": "1",
+            "target": "node_ly7bczvn1avdw34xakj",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly7biwa36drt8rznsw",
+            "source": "node_ly7biwa3lfy9xdnbb3d",
+            "target": "node_ly7biwa3al3k5g60kal",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly7biwa3iet540cnthd",
+            "source": "node_ly7bczvn1avdw34xakj",
+            "target": "node_ly7biwa3lfy9xdnbb3d",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly7bqowbwt3za12hrlf",
+            "source": "node_ly7biwa3al3k5g60kal",
+            "target": "node_ly7bqowa97i3ki9u3aa",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly7bqowbee70npec1p8",
+            "source": "node_ly7bqowa97i3ki9u3aa",
+            "target": "node_ly7bqowah0eorobvv0m",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly7bqowazsyf8bz84v"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly7bqowbdsytezjgnst",
+            "source": "node_ly7bqowa97i3ki9u3aa",
+            "target": "node_ly7bqowanma9eqtioi",
+            "data": {
+              "edgeType": "defaultCase"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly7bqowbsrdwc6a3chq",
+            "source": "node_ly7bqowanma9eqtioi",
+            "target": "node_ly7bqowaz6w12sqyqrk",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly7bw5yuhfvzf5tdwwl",
+            "source": "node_ly7bqowah0eorobvv0m",
+            "target": "node_ly8f9idekkxuoh4yol",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8f6by7xe7zf5kv3ym",
+            "source": "node_ly7bqowa97i3ki9u3aa",
+            "target": "node_ly8f6by75t28c7r0ro4",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8f5m21cxcbcsgkjcl"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8f9idedqet440ebl",
+            "source": "node_ly8f9idey4slnj716po",
+            "target": "node_ly7bqowaz6w12sqyqrk",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8f9ideytw8ypgd9lb",
+            "source": "node_ly8f9idekkxuoh4yol",
+            "target": "node_ly8f9idey4slnj716po",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8fdwhqzb1u4sdbuop",
+            "source": "node_ly8fdwhq6qw28lkgq3u",
+            "target": "node_ly7bqowaz6w12sqyqrk",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8fdwhqqwj0vdqg0cm",
+            "source": "node_ly8f6by75t28c7r0ro4",
+            "target": "node_ly8fdwhqwc6kc1t2m",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8fdwhqnw8s1100y2s",
+            "source": "node_ly8fdwhqwc6kc1t2m",
+            "target": "node_ly8fdwhqty3lpx65dc",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8fdwhq8y4m2w8dh9v"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8fdwhqep0hdfcdzqe",
+            "source": "node_ly8fdwhqwc6kc1t2m",
+            "target": "node_ly8fdwhq0rdu2hx2pqc",
+            "data": {
+              "edgeType": "defaultCase"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8fdwhqva10mmlgzaa",
+            "source": "node_ly8fdwhq0rdu2hx2pqc",
+            "target": "node_ly8fdwhq6qw28lkgq3u",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8jsx3bdwy1iujvoiv",
+            "source": "node_ly8fdwhqwc6kc1t2m",
+            "target": "node_ly8jsx3b47xkks8n9av",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8js28h5l4reaxe4h"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8ld00x10gdhpyb7y39",
+            "source": "node_ly8ld00wh6fbra5i1a",
+            "target": "node_ly8fdwhq6qw28lkgq3u",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8ld00xsyq2h4w1ri",
+            "source": "node_ly8ld00w08k8t1ycjr5o",
+            "target": "node_ly8ld00wh6fbra5i1a",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8ld00xsql714lwbn",
+            "source": "node_ly8fdwhqty3lpx65dc",
+            "target": "node_ly8ld00w08k8t1ycjr5o",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8lgxiogtiy56qmry6",
+            "source": "node_ly8lgxio473th0b02aq",
+            "target": "node_ly8fdwhq6qw28lkgq3u",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8lgxioe056g6ko5cp",
+            "source": "node_ly8jsx3b47xkks8n9av",
+            "target": "node_ly8lgxio1dceuuj7z8v",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8lgxiphi4syrdmo24",
+            "source": "node_ly8lgxio1dceuuj7z8v",
+            "target": "node_ly8lgxio0obr7cf8w2l",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8lgxiov3bekbb5ibo"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8lgxipfmje60hs45i",
+            "source": "node_ly8lgxio1dceuuj7z8v",
+            "target": "node_ly8lgxiovuljsw1rwpi",
+            "data": {
+              "edgeType": "defaultCase"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8lgxipamlxoii4t9",
+            "source": "node_ly8lgxiovuljsw1rwpi",
+            "target": "node_ly8lgxio473th0b02aq",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8lj0ukb15768c32g",
+            "source": "node_ly8lgxio1dceuuj7z8v",
+            "target": "node_ly8lj0ukfdjci62al16",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8lhp8cgoyi5to2tha"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8lm9tn1llbmolhzfc",
+            "source": "node_ly8lm9tm7z839138f6h",
+            "target": "node_ly8lgxio473th0b02aq",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8lm9tnnhdzc2q5n5n",
+            "source": "node_ly8lm9tmkng23f07ct",
+            "target": "node_ly8lm9tm7z839138f6h",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8lm9tnl8j6zk6rl5j",
+            "source": "node_ly8lgxio0obr7cf8w2l",
+            "target": "node_ly8lm9tmkng23f07ct",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8lpvsxv2mflfx53pa",
+            "source": "node_ly8lpvsxffs7jehnhq8",
+            "target": "node_ly8lgxio473th0b02aq",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8lpvsxy6yiqxpaafs",
+            "source": "node_ly8lj0ukfdjci62al16",
+            "target": "node_ly8lpvsxekf75wcutjd",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8lpvsxg2i8hqd41ve",
+            "source": "node_ly8lpvsxekf75wcutjd",
+            "target": "node_ly8lpvsxxuaaho5lhtm",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8lpvsxgu4ff7df8jr"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8lpvsx39iavs48nr8",
+            "source": "node_ly8lpvsxekf75wcutjd",
+            "target": "node_ly8lpvsx7o2vha78pq",
+            "data": {
+              "edgeType": "defaultCase"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8lpvsxiax0dg7t27",
+            "source": "node_ly8lpvsx7o2vha78pq",
+            "target": "node_ly8lpvsxffs7jehnhq8",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8lu83woznk5kqdgz",
+            "source": "node_ly8lpvsxekf75wcutjd",
+            "target": "node_ly8lu83w3ez8goy7jxx",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8ltazqgtesi9laxwo"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8lwf7azhws60exezk",
+            "source": "node_ly8lwf79mzjymw254jd",
+            "target": "node_ly8lpvsxffs7jehnhq8",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8lwf79couzvepxtxk",
+            "source": "node_ly8lwf79c3slhe89cae",
+            "target": "node_ly8lwf79mzjymw254jd",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8lwf79odrxje4q2pc",
+            "source": "node_ly8lpvsxxuaaho5lhtm",
+            "target": "node_ly8lwf79c3slhe89cae",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8mfy9adp6g1d7f6vc",
+            "source": "node_ly8lu83w3ez8goy7jxx",
+            "target": "node_ly8mfy9aeqr0m2w7b5e",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8mfyb2e9yddfq9qiv",
+            "source": "node_ly8mfy9aeqr0m2w7b5e",
+            "target": "node_ly8mfy9a0n3psxe73iz",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8mfy9a49ts1bvejw9"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8mfyb2g2e6jpnbkw8",
+            "source": "node_ly8mfy9aeqr0m2w7b5e",
+            "target": "node_ly8mfy9a95dtpe7ru9",
+            "data": {
+              "edgeType": "defaultCase"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8mfyb2ygc4gt77dya",
+            "source": "node_ly8mfy9a95dtpe7ru9",
+            "target": "node_ly8mfy9apk78o6pagz",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8mwbevmkkbzfkk3t",
+            "source": "node_ly8mfy9aeqr0m2w7b5e",
+            "target": "node_ly8mwbevotzu0mle7zk",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8mqhort6qkrfrmjhh"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8mwitbzykx0sy5d2i",
+            "source": "node_ly8mwita5hwf2dwtpss",
+            "target": "node_ly8mfy9apk78o6pagz",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8mwitb7oqatzhfxje",
+            "source": "node_ly8mwitagj6kww9hc2t",
+            "target": "node_ly8mwita5hwf2dwtpss",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8mwitbp39pplb39df",
+            "source": "node_ly8mfy9a0n3psxe73iz",
+            "target": "node_ly8mwitagj6kww9hc2t",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8mxiz7iggxtq5qmt",
+            "source": "node_ly8mxiz63o141s7ysa9",
+            "target": "node_ly8mfy9apk78o6pagz",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8mxiz7r6shlhbcs6p",
+            "source": "node_ly8mxiz6hjv82wp29ip",
+            "target": "node_ly8mxiz63o141s7ysa9",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8mxiz7ibnk7pnjl3j",
+            "source": "node_ly8mwbevotzu0mle7zk",
+            "target": "node_ly8mxiz6hjv82wp29ip",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8n77jv51fwovgr3dq",
+            "source": "node_ly8mfy9apk78o6pagz",
+            "target": "node_ly8lpvsxffs7jehnhq8",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8oemm661t6ybbj13w",
+            "source": "node_ly8mfy9aeqr0m2w7b5e",
+            "target": "node_ly8oemm6rtje9h4s0yq",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8o57a47adtg0v36pe"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8oemm6wvj2fx9tvol",
+            "source": "node_ly8mfy9aeqr0m2w7b5e",
+            "target": "node_ly8oemm6hxj5dtpdj56",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8o57xwh08o9gbnj0c"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8oemm60f3tkplcnv9o",
+            "source": "node_ly8mfy9aeqr0m2w7b5e",
+            "target": "node_ly8oemm6yd8etc4kpdl",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8odb4z7hxzclje1bo"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8off7dgnzvp44hvvg",
+            "source": "node_ly8off7dj6j4hj08ps",
+            "target": "node_ly8mfy9apk78o6pagz",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8off7dev6owyuoxt9",
+            "source": "node_ly8off7d98gfalghka",
+            "target": "node_ly8off7dj6j4hj08ps",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8off7datnilumcib",
+            "source": "node_ly8oemm6rtje9h4s0yq",
+            "target": "node_ly8off7d98gfalghka",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8ogqd0hhr6rrbesa",
+            "source": "node_ly8ogqczvdrhjvu8hw",
+            "target": "node_ly8mfy9apk78o6pagz",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8ogqd0h0lajzhiw75",
+            "source": "node_ly8ogqcz5mpvwkfc2xb",
+            "target": "node_ly8ogqczvdrhjvu8hw",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8ogqd07mubw9hci88",
+            "source": "node_ly8oemm6hxj5dtpdj56",
+            "target": "node_ly8ogqcz5mpvwkfc2xb",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8oliuexev1hyq9t",
+            "source": "node_ly8oliudbzekwy2r0wg",
+            "target": "node_ly8mfy9apk78o6pagz",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8oliuetqnkjgslrdq",
+            "source": "node_ly8oemm6yd8etc4kpdl",
+            "target": "node_ly8oliud4z3cyidbqh9",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8oliufog0fnj4aux",
+            "source": "node_ly8oliud4z3cyidbqh9",
+            "target": "node_ly8oliuda71xumqll69",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8oliudf2s9quwvphg"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8oliuf9j4zmfyp6d",
+            "source": "node_ly8oliud4z3cyidbqh9",
+            "target": "node_ly8oliudjjle1f3qqt",
+            "data": {
+              "edgeType": "defaultCase"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8oliufz11yj84e8mr",
+            "source": "node_ly8oliudjjle1f3qqt",
+            "target": "node_ly8oliudbzekwy2r0wg",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8pipq4f5m00x9a3s8",
+            "source": "node_ly8pipq3onzuisyljg",
+            "target": "node_ly8oliudbzekwy2r0wg",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8pipq433lsvoko5ex",
+            "source": "node_ly8pipq3kqr2ivew4h",
+            "target": "node_ly8pipq3onzuisyljg",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8pipq420tshro3n6s",
+            "source": "node_ly8oliuda71xumqll69",
+            "target": "node_ly8pipq3kqr2ivew4h",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8pn42gtepiugm67j",
+            "source": "node_ly8oliud4z3cyidbqh9",
+            "target": "node_ly8pn42gndp6robn9wb",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8pl5ae9c7mdyumpjb"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8pn42gfjvntupsynm",
+            "source": "node_ly8oliud4z3cyidbqh9",
+            "target": "node_ly8pn42g9o13n017lo8",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8pltoxou3v9qgs919"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8pn42gh251xpeh4kf",
+            "source": "node_ly8oliud4z3cyidbqh9",
+            "target": "node_ly8pn42gho1m5wepo6d",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8pmbjqy4gexn1aaid"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8pn42gp9sfsoyxzxa",
+            "source": "node_ly8oliud4z3cyidbqh9",
+            "target": "node_ly8pn42gomii4lpl5ih",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8pmpsbofnqpeibpe"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8pnffk0mlso8zxyv3",
+            "source": "node_ly8pnffk2gm7xrq1n7f",
+            "target": "node_ly8oliudbzekwy2r0wg",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8pnffk0cly2kqu8hki",
+            "source": "node_ly8pnffkp3giq7m67fj",
+            "target": "node_ly8pnffk2gm7xrq1n7f",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8pnffk4nx8k6cf5ic",
+            "source": "node_ly8pn42gndp6robn9wb",
+            "target": "node_ly8pnffkp3giq7m67fj",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8pog68w7th582oc4",
+            "source": "node_ly8pog67j2kydfkiyv",
+            "target": "node_ly8oliudbzekwy2r0wg",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8pog68wiia1k4b4r",
+            "source": "node_ly8pog67nscbvcq6sdf",
+            "target": "node_ly8pog67j2kydfkiyv",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8pog680lwan2x5aj8o",
+            "source": "node_ly8pn42g9o13n017lo8",
+            "target": "node_ly8pog67nscbvcq6sdf",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8ppv3atjllg8v2y8b",
+            "source": "node_ly8ppv398r04b3vcubm",
+            "target": "node_ly8oliudbzekwy2r0wg",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8ppv3974p7nl0h6wi",
+            "source": "node_ly8ppv39hs8zd03ty99",
+            "target": "node_ly8ppv398r04b3vcubm",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8ppv395uceckd746j",
+            "source": "node_ly8pn42gho1m5wepo6d",
+            "target": "node_ly8ppv39hs8zd03ty99",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8prwb5r2798g6qyki",
+            "source": "node_ly8prwb4k73dlcfklqm",
+            "target": "node_ly8oliudbzekwy2r0wg",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8prwb5smx2e69s17",
+            "source": "node_ly8prwb4og3d8kdho4i",
+            "target": "node_ly8prwb4k73dlcfklqm",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8prwb54akfs7hk755",
+            "source": "node_ly8pn42gomii4lpl5ih",
+            "target": "node_ly8prwb4og3d8kdho4i",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8qhr7k0vycxopr49i",
+            "source": "node_ly8mfy9aeqr0m2w7b5e",
+            "target": "node_ly8qhr7khi784337p6",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8pvto29nf46stnrur"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8qhr7kb649un2pwhm",
+            "source": "node_ly8mfy9aeqr0m2w7b5e",
+            "target": "node_ly8qhr7kdoiz5s5uwb8",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8pvuqaduin3u3s8q"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8qn0nvp4z2j3sh4o",
+            "source": "node_ly8qn0nvrtpzhgqf0fl",
+            "target": "node_ly8mfy9apk78o6pagz",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8qn0nvc77fe141epk",
+            "source": "node_ly8qn0nvmb3knwzbgl",
+            "target": "node_ly8qn0nvrtpzhgqf0fl",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8qn0nvdpatbe91o8",
+            "source": "node_ly8qhr7khi784337p6",
+            "target": "node_ly8qn0nvmb3knwzbgl",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8qoab3gy9h15a5wuw",
+            "source": "node_ly8qoab271uciwos6x3",
+            "target": "node_ly8mfy9apk78o6pagz",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8qoab3cr43nagln1v",
+            "source": "node_ly8qoab2t9e8l2cm00m",
+            "target": "node_ly8qoab271uciwos6x3",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8qoab3txn19ckfwcb",
+            "source": "node_ly8qhr7kdoiz5s5uwb8",
+            "target": "node_ly8qoab2t9e8l2cm00m",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8qvxyb61zzslckiqj",
+            "source": "node_ly8oliud4z3cyidbqh9",
+            "target": "node_ly8qvxybwi5ahs8l1k",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8qu7morioyy70to5r"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8qwfjwnpfcqg8qmds",
+            "source": "node_ly8qwfjwd24zbxych4q",
+            "target": "node_ly8oliudbzekwy2r0wg",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8qwfjwggm5mdtsadi",
+            "source": "node_ly8qvxybwi5ahs8l1k",
+            "target": "node_ly8qwfjwzzyhmlvjha9",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8qwfjxmky8t7u5qx",
+            "source": "node_ly8qwfjwzzyhmlvjha9",
+            "target": "node_ly8qwfjw1wr7w8ajz3r",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8qwfjwu134bdgs4hg"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8qwfjxdqtsfzm6c7h",
+            "source": "node_ly8qwfjwzzyhmlvjha9",
+            "target": "node_ly8qwfjwrnyduwx3d7",
+            "data": {
+              "edgeType": "defaultCase"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8qwfjx8jy2rzz0pwo",
+            "source": "node_ly8qwfjwrnyduwx3d7",
+            "target": "node_ly8qwfjwd24zbxych4q",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8r4lj5mpnn7mbuyj",
+            "source": "node_ly8qwfjwzzyhmlvjha9",
+            "target": "node_ly8r4lj5tujkdnind",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8r09qcn00c7hqvmrf"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8r4lj58ezn0yw6bwf",
+            "source": "node_ly8qwfjwzzyhmlvjha9",
+            "target": "node_ly8r4lj5w0s2hexu9hs",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8r2ix2jcoaezea96d"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8r65etkez0ytlxom",
+            "source": "node_ly8r65es6fpzmw6xua",
+            "target": "node_ly8qwfjwd24zbxych4q",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8r65et26sujb800sh",
+            "source": "node_ly8r4lj5w0s2hexu9hs",
+            "target": "node_ly8r65es1om0ghbyqy",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8r65etr0f7owfihv",
+            "source": "node_ly8r65es1om0ghbyqy",
+            "target": "node_ly8r65es02bhs2x8fh8v",
+            "data": {
+              "edgeType": "case",
+              "pathId": "group_ly8r65es5u39fniiffb"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8r65et5hv70bekkew",
+            "source": "node_ly8r65es1om0ghbyqy",
+            "target": "node_ly8r65esppmqkinb26",
+            "data": {
+              "edgeType": "defaultCase"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8r65etn7osktlqrdn",
+            "source": "node_ly8r65esppmqkinb26",
+            "target": "node_ly8r65es6fpzmw6xua",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8r75c3ir7xuqd0b0h",
+            "source": "node_ly8r75c3qus0noyzwdo",
+            "target": "node_ly8qwfjwd24zbxych4q",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8r75c3adgushhxh36",
+            "source": "node_ly8r75c3uw69x5z8kl",
+            "target": "node_ly8r75c3qus0noyzwdo",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8r75c3m82waohyygd",
+            "source": "node_ly8qwfjw1wr7w8ajz3r",
+            "target": "node_ly8r75c3uw69x5z8kl",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8r8bkqz15woggiuun",
+            "source": "node_ly8r8bkp28c03nvmzcr",
+            "target": "node_ly8qwfjwd24zbxych4q",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8r8bkq4tmzf3lvw39",
+            "source": "node_ly8r8bkp06c89yckfwia",
+            "target": "node_ly8r8bkp28c03nvmzcr",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8r8bkq55kqp0lv462",
+            "source": "node_ly8r4lj5tujkdnind",
+            "target": "node_ly8r8bkp06c89yckfwia",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8rby0gmyfdl6345a",
+            "source": "node_ly8rby0gg1p8ocapoz4",
+            "target": "node_ly8r65es6fpzmw6xua",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "strokeWidth": 1,
+              "stroke": "gray"
+            },
+            "id": "edge_ly8rby0g122s3gwzddv",
+            "source": "node_ly8rby0g45nz47an1lv",
+            "target": "node_ly8rby0gg1p8ocapoz4",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          },
+          {
+            "style": {
+              "stroke": "gray",
+              "strokeWidth": 1
+            },
+            "id": "edge_ly8rby0g9ubqd0ck9is",
+            "source": "node_ly8r65es02bhs2x8fh8v",
+            "target": "node_ly8rby0g45nz47an1lv",
+            "data": {
+              "edgeType": "then"
+            },
+            "type": "smoothEdge"
+          }
+        ],
+        "isEnabled": true,
+        "staging": {},
+        "production": {}
+      }
+    },
+    "669a0f8f062bab480db53acd": {
+      "entity": "connector",
+      "category": "restAPI",
+      "name": "User_Data",
+      "data": {
+        "name": "User_Data",
+        "staging": {
+          "conf": {
+            "baseUrl": "https://65bb3e3452189914b5bb8364.mockapi.io"
+          }
+        },
+        "production": {
+          "conf": {
+            "baseUrl": "https://65bb3e3452189914b5bb8364.mockapi.io"
+          }
+        },
+        "category": "api",
+        "isAction": true,
+        "isTrigger": true
+      }
+    }
+  },
+  "timestamp": "2024-07-19T07:02:39.023756366Z"
+}

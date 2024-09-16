@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .chat-container {
+            width: 500px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .chat-box {
+            height: 500px;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #e9ecef;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        .chat-input button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .chat-input button:disabled {
+            background-color: #aaa;
+            cursor: not-allowed;
+        }
+
+        .clear-button {
+            margin-left: 10px;
+        }
+
+        .message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            max-width: 75%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .message.user-message {
+            align-self: flex-end;
+            background-color: #007bff;
+            color: white;
+            align-items: flex-end;
+            margin-right: 24px;
+        }
+
+        .message.bot-message {
+            background-color: #ccc;
+            color: black;
+            margin-left: 24px;
+        }
+
+        .logo {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #007bff;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 10px;
+            position: absolute;
+            top: 2px;
+        }
+
+        .bot-message .logo {
+            background: none;
+            color: black;
+            left: -26px;
+        }
+
+        .user-message .logo {
+            right: -36px;
+        }
+
+        .option-button {
+            margin-top: 5px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .option-button:hover {
+            background-color: #0056b3;
+        }
+
+        .option-button:disabled {
+            background-color: #aaa;
+            cursor: not-allowed;
+        }
+
+        #loading-animation {
+            display: flex;
+            margin-top: 10px;
+            margin-left: 25px;
+            font-size: 32px;
+        }
+
+        #loading-animation span {
+            margin-right: 3px;
+            animation: loading-animation 1s infinite;
+        }
+
+        @keyframes loading-animation {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .chat-container {
+                width: 100%;
+                height: 100%;
+                border-radius: 0px;
+            }
+
+            .chat-box {
+                height: 100%;
+            }
+
+            .chat-input button {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Chatbot</h2>
+        </div>
+        <div class="chat-box" id="chat-box"></div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type a message..." disabled>
+            <button id="send-button" onclick="sendMessage()" disabled>Send</button>
+            <button id="clear-button" class="clear-button" onclick="clearChat()">Clear</button>
+        </div>
+    </div>
+    <script>
+        let api_body = {
+            environment: "staging",
+            params: {
+                answer: null,
+                email: null,
+                eta: null,
+                order_status: null,
+                shipped_or_verified: null,
+                prev_q: "start",
+                user_id: 3
+            }
+        };
+
+        let prev_q_key_global = null;
+
+        let firstUserLetter = "";
+
+        let waitingForResponse = false;
+        let orders = [];
+
+        window.onload = async () => {
+            await initializeChat();
+        }
+
+        async function initializeChat() {
+            try {
+                api_body.params.prev_q = "start";
+                console.log('Initializing chat with API body:', JSON.stringify(api_body, null, 2));
+                const initialResponse = await getBotResponseFromAPI(api_body);
+                console.log('Initial response:', initialResponse);
+                firstUserLetter = initialResponse.data.output[0].next_step.followup.user_data.name[0];
+                handleApiResponse(initialResponse.data.output[0].next_step);
+            } catch (error) {
+                console.error('Error initializing chat:', error);
+                appendMessage('bot', 'Sorry, something went wrong.');
+            }
+        }
+
+        async function sendMessage() {
+            if (waitingForResponse) return;
+
+            const userInput = document.getElementById('user-input');
+            const message = userInput.value.trim();
+
+            if (message === '') return;
+            appendMessage('user', message);
+            userInput.value = '';
+            disableInput();
+
+            await handleBotResponse(message, prev_q_key_global);
+        }
+
+        function appendMessage(sender, message, options = [], prev_q_key) {
+            const chatBox = document.getElementById('chat-box');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', `${sender}-message`);
+
+            const logo = document.createElement('div');
+            logo.classList.add('logo');
+            if (sender === 'user') {
+                logo.textContent = firstUserLetter;
+            } else {
+                logo.textContent = "1mg";
+            }
+
+            messageElement.appendChild(logo);
+
+            const textElement = document.createElement('div');
+            textElement.textContent = message;
+            messageElement.appendChild(textElement);
+
+            document.querySelectorAll('.option-button').forEach(button => button.disabled = true);
+
+            if (options.length > 0) {
+                options.forEach(option => {
+                    const optionButton = document.createElement('button');
+                    optionButton.classList.add('option-button');
+                    optionButton.textContent = option;
+                    optionButton.onclick = () => selectOption(option, prev_q_key);
+                    messageElement.appendChild(optionButton);
+                });
+            }
+
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        async function selectOption(option, prev_q_key) {
+            appendMessage('user', option);
+            disableInput();
+
+            const selectedOrder = orders.find(order => `${order.order_num}: ${order.order_name}` === option);
+            console.log("selectOption", selectedOrder)
+            if (selectedOrder) {
+                updateApiBodyWithOrderInfo(selectedOrder);
+            }
+
+            await handleBotResponse(option, prev_q_key);
+        }
+
+        async function handleBotResponse(userMessage, prev_q_key) {
+            // Show loading animation
+            appendLoadingAnimation();
+
+            api_body.params.prev_q = prev_q_key;
+            api_body.params.answer = userMessage;
+
+            try {
+                console.log('Sending API request with body:', JSON.stringify(api_body, null, 2));
+                const apiResponse = await getBotResponseFromAPI(api_body);
+                prev_q_key_global = apiResponse.data.output[0].next_step.key;
+                if(apiResponse.data.output[0].next_step.followup)   prev_q_key_global = apiResponse.data.output[0].next_step.followup.key;
+                console.log('API response:', apiResponse);
+                console.log("prev_q_key_global:", prev_q_key_global);
+                removeLoadingAnimation();
+                handleApiResponse(apiResponse.data.output[0].next_step);
+            } catch (error) {
+                console.error('Error getting bot response:', error);
+                removeLoadingAnimation();
+                appendMessage('bot', 'Sorry, something went wrong.');
+                //enableInput();
+            }
+        }
+
+        function handleApiResponse(response) {
+            const { type, text, options, followup, user_data } = response;
+            switch (type) {
+                case 'message':
+                    appendMessage('bot', text);
+                    if (followup) {
+                        handleApiResponse(followup);
+                    } else {
+                        //enableInput();
+                    }
+                    break;
+                case 'question':
+                    appendMessage('bot', text, options, response.key);
+                    break;
+                case 'list':
+                    orders = user_data.orders;
+                    const orderOptions = orders.map(order => `${order.order_num}: ${order.order_name}`);
+                    appendMessage('bot', text, orderOptions, response.key);
+                    break;
+                case 'feedback':
+                    appendMessage('bot', text);
+                    enableInput();
+                    break;
+                default:
+                    console.error('Unknown response type:', type);
+                    appendMessage('bot', 'Sorry, something went wrong.');
+                    //enableInput();
+            }
+
+            if (user_data) {
+                updateApiBodyWithUserData(user_data);
+            }
+        }
+
+        function updateApiBodyWithOrderInfo(order) {
+            api_body.params.eta = order.eta;
+            api_body.params.order_status = order.order_status;
+            api_body.params.shipped_or_verified = order.shipped_or_verified;
+            api_body.params.email = api_body.params.email
+        }
+
+        function updateApiBodyWithUserData(userData) {
+            api_body.params.email = userData.email;
+        }
+
+        async function getBotResponseFromAPI(api_body) {
+            const response = await fetch("______API Link Here______", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(api_body)
+            });
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        }
+
+        function appendLoadingAnimation() {
+            const chatBox = document.getElementById('chat-box');
+            const loadingAnimation = document.createElement('div');
+            loadingAnimation.id = 'loading-animation';
+            loadingAnimation.innerHTML = '<span>.</span><span>.</span><span>.</span>';
+            chatBox.appendChild(loadingAnimation);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function removeLoadingAnimation() {
+            const loadingAnimation = document.getElementById('loading-animation');
+            if (loadingAnimation) {
+                loadingAnimation.remove();
+            }
+        }
+
+        function disableInput() {
+            document.getElementById('user-input').disabled = true;
+            document.getElementById('send-button').disabled = true;
+            waitingForResponse = true;
+        }
+
+        function enableInput() {
+            document.getElementById('user-input').disabled = false;
+            document.getElementById('send-button').disabled = false;
+            waitingForResponse = false;
+        }
+
+        function clearChat() {
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML = '';
+            disableInput();
+            initializeChat();
+            document.getElementById('clear-button').disabled = true;
+            setTimeout(() => {
+                document.getElementById('clear-button').disabled = false;
+            }, 2000); // Disable the clear button for 2 seconds to prevent rapid reinitialization
+        }
+
+        document.getElementById('user-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+JSON FORMAT FOR BOT/API RESPONSE:
+
+
+type: message, question, list, feedback
+
+
+{
+  "type": "message",
+  "key": "intro_message",
+  "text": "Hi {{.customInput.user_data.Body.name}}, I am your TATA 1mg assistant.",
+  "followup": {
+    "type": "list",
+    "key": "select_order",
+    "text": "Choose an order:",
+    "user_data": {{.customInput.user_data.Body}}
+  }
+}
+
+{
+  "type": "list",
+  "key": "select_order",
+  "text": "Choose an order:",
+  "user_data": {{.customInput.user_data.Body}}
+}
+
+{
+  "type": "question",
+  "key": "help_with_order",
+  "text": "You selected: {{.customInput.answer}}.  Would you like help with this order?",
+  "options": ["Yes", "No, different order"]
+}
+
+{
+  "type": "question",
+  "key": "other_order",
+  "text": "Which order do you have an issue with?",
+  "options": [ "Load More", "Previous Orders" ]
+}
+
+{
+  "type": "message",
+  "key": "eta_breached_no",
+  "text": "{{.customInput.eta}} was your estimated time of delivery. Once an order is confirmed, shipping speed can not be upgraded to deliver sooner.",
+  "followup": {
+    "type": "question",
+    "key": "has_invoice",
+    "text": "Has Invoice and delivered?",
+    "options": ["No", "I have other concerns", "Receive invoice for my order"]
+  }
+}
+
+{
+  "type": "message",
+  "key": "eta_breached_yes",
+  "text": "{{.customInput.eta}} was your estimated time of delivery. We are sorry for the delay in delivery of your order and realize that timely delivery was essential. We are working to deliver this at the earliest.",
+  "followup": {
+    "type": "question",
+    "key": "has_invoice",
+    "text": "Has Invoice and delivered?",
+    "options": ["No", "I have other concerns", "Receive invoice for my order"]
+  }
+}
+
+{
+  "type": "question",
+  "key": "has_invoice",
+  "text": "Has Invoice and delivered?",
+  "options": ["No", "I have other concerns", "Receive invoice for my order"]
+}
+
+{
+  "type": "message",
+  "key": "agent_connect",
+  "text": "Sorry for Inconvenience. We have assigned you an agent for customer support, he/she will contact you soon :)",
+  "followup" : {
+    "type": "feedback",
+    "key": "give_feedback",
+    "text": "Thank you for using our service! We would love to hear your thoughts. Could you please take a moment to share your feedback with us?"
+  }
+}
+
+{
+  "type": "message",
+  "key": "has_email",
+  "text": "Copy of the invoice has been sent to your registered email- {{.customInput.email}}.  It may take a few minutes to reach your inbox. In case you don't receive it, please refresh or check your spam folder.",
+  "followup": {
+    "type": "question",
+    "key": "concern_resolve",
+    "text": "Hope we were able to resolve your concern.",
+    "options": ["Back to main menu", "My query has been resolved", "Connect me to an agent"]
+  }
+}
+
+{
+  "type": "message",
+  "key": "resolved",
+  "text": "I am happy that your concern is resolved. Thank you for contacting. :)"
+}
+-->

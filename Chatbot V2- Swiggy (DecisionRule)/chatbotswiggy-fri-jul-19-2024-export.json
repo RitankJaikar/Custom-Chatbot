@@ -1,0 +1,1769 @@
+{
+  "entity": "rule",
+  "rootId": "669a0e8028014c7f734db33a",
+  "ref": {
+    "669a0e8028014c7f734db33a": {
+      "entity": "rule",
+      "category": "decisionTable",
+      "name": "ChatBot_Swiggy",
+      "dependencies": [
+        "669a0e8028014c7f734db33b"
+      ],
+      "data": {
+        "name": "ChatBot_Swiggy",
+        "customInput": {
+          "user_id": {
+            "name": "user_id",
+            "dataType": "numeric",
+            "executedValue": 1,
+            "next": "user_data",
+            "previous": "email"
+          },
+          "delivered": {
+            "name": "delivered",
+            "dataType": "boolean",
+            "isNullable": true,
+            "executedValue": false,
+            "next": "eta",
+            "previous": "answer"
+          },
+          "delivery_agent_number": {
+            "name": "delivery_agent_number",
+            "dataType": "string",
+            "isNullable": true,
+            "executedValue": "+12394811",
+            "previous": "delivery_agent_name"
+          },
+          "delivery_agent_name": {
+            "name": "delivery_agent_name",
+            "dataType": "string",
+            "isNullable": true,
+            "executedValue": "agent name",
+            "next": "delivery_agent_number",
+            "previous": "user_data"
+          },
+          "answer": {
+            "name": "answer",
+            "dataType": "string",
+            "isNullable": true,
+            "executedValue": "Yes",
+            "next": "delivered",
+            "previous": "prev_q"
+          },
+          "eta": {
+            "name": "eta",
+            "dataType": "dateTime",
+            "isNullable": true,
+            "executedValue": "01/12/2023 00:00:00",
+            "next": "email",
+            "previous": "delivered"
+          },
+          "prev_q": {
+            "name": "prev_q",
+            "dataType": "string",
+            "executedValue": "select_order",
+            "next": "answer"
+          },
+          "email": {
+            "name": "email",
+            "dataType": "string",
+            "isNullable": true,
+            "executedValue": "a@b.com",
+            "next": "user_id",
+            "previous": "eta"
+          },
+          "user_data": {
+            "name": "user_data",
+            "dataType": "restAPI",
+            "attribute": "669a0e8028014c7f734db33b",
+            "sourceType": "restAPI",
+            "executedValue": {
+              "Body": {
+                "email": "prabhat@example.com",
+                "name": "Prabhat",
+                "orders": [
+                  {
+                    "order_name": "Pain Relief Medication",
+                    "order_status": 25,
+                    "shipped_or_verified": true,
+                    "eta": "25/05/2024 00:00:00",
+                    "order_id": 1
+                  },
+                  {
+                    "order_name": "Blood Pressure Monitor",
+                    "order_status": 35,
+                    "shipped_or_verified": true,
+                    "eta": "21/05/2024 00:00:00",
+                    "order_id": 2
+                  },
+                  {
+                    "order_name": "Diabetes Test Strips",
+                    "order_status": 35,
+                    "shipped_or_verified": false,
+                    "eta": "19/05/2024 00:00:00",
+                    "order_id": 3
+                  },
+                  {
+                    "order_status": 45,
+                    "shipped_or_verified": true,
+                    "eta": null,
+                    "order_id": 4,
+                    "order_name": "Vitamin D Supplements"
+                  }
+                ],
+                "phone_no": "+1234567890",
+                "user_id": "1"
+              },
+              "Headers": {
+                "Date": "Wed, 22 May 2024 14:06:16 GMT",
+                "Connection": "keep-alive",
+                "Server": "Cowboy",
+                "Access-Control-Allow-Headers": "X-Requested-With,Content-Type,Cache-Control,access_token",
+                "Via": "1.1 vegur",
+                "Content-Type": "application/json",
+                "Reporting-Endpoints": "heroku-nel=https://nel.heroku.com/reports?ts=1716386776&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=f9YxWgrJdJM7c8N8xLetSBqg4YQxJ6aDc4FSx0ns6Xc%3D",
+                "Content-Length": "583",
+                "X-Powered-By": "Express",
+                "Report-To": "{\"group\":\"heroku-nel\",\"max_age\":3600,\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?ts=1716386776&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=f9YxWgrJdJM7c8N8xLetSBqg4YQxJ6aDc4FSx0ns6Xc%3D\"}]}",
+                "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,OPTIONS",
+                "Nel": "{\"report_to\":\"heroku-nel\",\"max_age\":3600,\"success_fraction\":0.005,\"failure_fraction\":0.05,\"response_headers\":[\"Via\"]}",
+                "Access-Control-Allow-Origin": "*",
+                "Etag": "\"-1896766594\""
+              },
+              "StatusCode": 200,
+              "error": ""
+            },
+            "config": {
+              "query": "",
+              "queryParams": [],
+              "body": null,
+              "bodyParams": null,
+              "contentType": "",
+              "headers": [],
+              "method": "GET",
+              "path": "/user_data/{{.customInput.user_id}}"
+            },
+            "next": "delivery_agent_name",
+            "previous": "user_id"
+          }
+        },
+        "decisionTable": {
+          "rows": {
+            "rule_ly2pzbd5u41xve2ey3c": {
+              "nextId": "rule_ly2qevopqe5u1mgdiqm",
+              "prevId": "rule_ly2pwkhl6pfznsjn8b",
+              "firstOutputData": "output_ly2pzbd7rbssehyrfx",
+              "isEnabled": true
+            },
+            "rule_ly2n3jyf36c2aeu5fh7": {
+              "nextId": "rule_ly2n8u56ibnv9ycddj",
+              "prevId": "rule_lwg1burkjnl3khlcf1e",
+              "firstOutputData": "output_ly2n3jyh75cvvfp4e5b",
+              "isEnabled": true
+            },
+            "rule_ly2n8u56ibnv9ycddj": {
+              "nextId": "rule_ly2mjt0c7f3t1osfj2c",
+              "prevId": "rule_ly2n3jyf36c2aeu5fh7",
+              "firstOutputData": "output_ly2n8u57f9aq4mh7y9j",
+              "isEnabled": true
+            },
+            "rule_ly2qevopqe5u1mgdiqm": {
+              "nextId": "rule_ly76fpksu2rm61jozp",
+              "prevId": "rule_ly2pzbd5u41xve2ey3c",
+              "firstOutputData": "output_ly2qevor5whoryn7qo5",
+              "isEnabled": true
+            },
+            "rule_ly7946sylbxsl7lindj": {
+              "prevId": "rule_ly78y2k1fqz14te8lx",
+              "firstOutputData": "output_ly7946sz9o41mfuntl7",
+              "isEnabled": true
+            },
+            "rule_lwiscymm15qzsw7rggu": {
+              "nextId": "rule_lwhvmhqj3zkv6qjq6am",
+              "prevId": "rule_01",
+              "firstOutputData": "output_lwiscymo656dha73s54",
+              "isEnabled": true
+            },
+            "rule_ly2r7a5ofo0krt2c8rr": {
+              "nextId": "rule_ly2t1o24rrdib8s3fjg",
+              "prevId": "rule_ly771wtd91t7hma309",
+              "firstOutputData": "output_ly2r7a5pxjwb4dbzgx8",
+              "isEnabled": true
+            },
+            "rule_ly2mm0mhojo7ttxiki": {
+              "nextId": "rule_ly78y2k1fqz14te8lx",
+              "prevId": "rule_ly2t1o24rrdib8s3fjg",
+              "firstOutputData": "output_ly2mm0mifloybov55nh",
+              "isEnabled": true
+            },
+            "rule_lwhvmhqj3zkv6qjq6am": {
+              "nextId": "rule_lwg1burkjnl3khlcf1e",
+              "prevId": "rule_lwiscymm15qzsw7rggu",
+              "firstOutputData": "output_lwhvmhqk19ikpl6chyz",
+              "isEnabled": true
+            },
+            "rule_ly2t1o24rrdib8s3fjg": {
+              "nextId": "rule_ly2mm0mhojo7ttxiki",
+              "prevId": "rule_ly2r7a5ofo0krt2c8rr",
+              "firstOutputData": "output_ly2t1o25wpwtplfurwk",
+              "isEnabled": true
+            },
+            "rule_ly2pwkhl6pfznsjn8b": {
+              "nextId": "rule_ly2pzbd5u41xve2ey3c",
+              "prevId": "rule_ly2oaga0w6ikmyg1sin",
+              "firstOutputData": "output_ly2pwkhnzvq8adnrqu",
+              "isEnabled": true
+            },
+            "rule_lwg1burkjnl3khlcf1e": {
+              "nextId": "rule_ly2n3jyf36c2aeu5fh7",
+              "prevId": "rule_lwhvmhqj3zkv6qjq6am",
+              "firstOutputData": "output_lwg1burlpgdktn0le3m",
+              "isEnabled": true
+            },
+            "rule_ly2mjt0c7f3t1osfj2c": {
+              "nextId": "rule_ly2oaga0w6ikmyg1sin",
+              "prevId": "rule_ly2n8u56ibnv9ycddj",
+              "firstOutputData": "output_ly2mjt0ddwu9e9lkgqn",
+              "isEnabled": true
+            },
+            "rule_ly78y2k1fqz14te8lx": {
+              "nextId": "rule_ly7946sylbxsl7lindj",
+              "prevId": "rule_ly2mm0mhojo7ttxiki",
+              "firstOutputData": "output_ly78y2k3hm4ndt7knhn",
+              "isEnabled": true
+            },
+            "rule_ly76fpksu2rm61jozp": {
+              "nextId": "rule_ly771wtd91t7hma309",
+              "prevId": "rule_ly2qevopqe5u1mgdiqm",
+              "firstOutputData": "output_ly76fpkumjlcbjktitl",
+              "isEnabled": true
+            },
+            "rule_ly771wtd91t7hma309": {
+              "nextId": "rule_ly2r7a5ofo0krt2c8rr",
+              "prevId": "rule_ly76fpksu2rm61jozp",
+              "firstOutputData": "output_ly771wteibhyfnndpoc",
+              "isEnabled": true
+            },
+            "rule_ly2oaga0w6ikmyg1sin": {
+              "nextId": "rule_ly2pwkhl6pfznsjn8b",
+              "prevId": "rule_ly2mjt0c7f3t1osfj2c",
+              "firstOutputData": "output_ly2oaga1gs836xl9yde",
+              "isEnabled": true
+            },
+            "rule_01": {
+              "nextId": "rule_lwiscymm15qzsw7rggu",
+              "firstOutputData": "output_lqlh6vchwlvam9ll84",
+              "isEnabled": true
+            }
+          },
+          "properties": {
+            "rule_lqlguc23wqay5offwu": {
+              "nextId": "rule_lqlhd38sli96yrvfs5b",
+              "type": "simpleCondition"
+            },
+            "rule_lqlhd38sli96yrvfs5b": {
+              "nextId": "rule_lqlj3v8lztenvkpfvs",
+              "prevId": "rule_lqlguc23wqay5offwu",
+              "type": "simpleCondition"
+            },
+            "rule_lqlj3v8lztenvkpfvs": {
+              "prevId": "rule_lqlhd38sli96yrvfs5b",
+              "type": "simpleCondition"
+            }
+          },
+          "results": {
+            "result_lqlh6vce8prms55g3rr": {
+              "dataType": "json",
+              "keyName": "next_step"
+            }
+          },
+          "firstRow": "rule_01",
+          "firstProperty": "rule_lqlguc23wqay5offwu",
+          "firstResult": "result_lqlh6vce8prms55g3rr"
+        },
+        "action": {
+          "then": {
+            "outputData": {
+              "output_ly2r7a5pxjwb4dbzgx8": {
+                "name": "next_step",
+                "dataType": "json",
+                "value": "{\n  \"type\": \"message\",\n  \"key\": \"agent_connect\",\n  \"text\": \"We have assigned you an agent for customer support, he/she will contact you soon :)\"\n}",
+                "executedValue": {
+                  "key": "agent_connect",
+                  "text": "We have assigned you an agent for customer support, he/she will contact you soon :)",
+                  "type": "message"
+                }
+              },
+              "output_lwiscymo656dha73s54": {
+                "name": "next_step",
+                "dataType": "json",
+                "value": "{\n  \"type\": \"list\",\n  \"key\": \"select_order\",\n  \"text\": \"Choose an order:\",\n  \"user_data\": {{.customInput.user_data.Body}}\n}",
+                "executedValue": {
+                  "key": "select_order",
+                  "text": "Choose an order:",
+                  "type": "list",
+                  "user_data": {
+                    "name": "Prabhat",
+                    "orders": [
+                      {
+                        "order_status": 25,
+                        "shipped_or_verified": true,
+                        "eta": "25/05/2024 00:00:00",
+                        "order_id": 1,
+                        "order_name": "Pain Relief Medication"
+                      },
+                      {
+                        "shipped_or_verified": true,
+                        "eta": "21/05/2024 00:00:00",
+                        "order_id": 2,
+                        "order_name": "Blood Pressure Monitor",
+                        "order_status": 35
+                      },
+                      {
+                        "shipped_or_verified": false,
+                        "eta": "19/05/2024 00:00:00",
+                        "order_id": 3,
+                        "order_name": "Diabetes Test Strips",
+                        "order_status": 35
+                      },
+                      {
+                        "shipped_or_verified": true,
+                        "eta": null,
+                        "order_id": 4,
+                        "order_name": "Vitamin D Supplements",
+                        "order_status": 45
+                      }
+                    ],
+                    "phone_no": "+1234567890",
+                    "user_id": "1",
+                    "email": "prabhat@example.com"
+                  }
+                }
+              },
+              "output_ly2mjt0ddwu9e9lkgqn": {
+                "name": "next_step",
+                "dataType": "json",
+                "value": "{\n  \"type\": \"message\",\n  \"key\": \"on_the_way\",\n  \"text\": \"We apologize for any inconvenience. Our system shows that your order is currently on its way and is expected to arrive by {{.customInput.eta}}. Please allow some more time, or feel free to contact our delivery executive for further assistance.\",\n  \"followup\": {\n    \"type\": \"question\",\n    \"key\": \"is_resolved\",\n    \"text\": \"Has your concern been resolved?\",\n    \"options\": [\"No\", \"Call delivery executive\", \"I have other concerns\", \"Resolved!\"]\n  }\n}",
+                "executedValue": {
+                  "type": "message",
+                  "followup": {
+                    "key": "is_resolved",
+                    "options": [
+                      "No",
+                      "Call delivery executive",
+                      "I have other concerns",
+                      "Resolved!"
+                    ],
+                    "text": "Has your concern been resolved?",
+                    "type": "question"
+                  },
+                  "key": "on_the_way",
+                  "text": "We apologize for any inconvenience. Our system shows that your order is currently on its way and is expected to arrive by 01/12/2023 00:00:00. Please allow some more time, or feel free to contact our delivery executive for further assistance."
+                }
+              },
+              "output_ly76fpkumjlcbjktitl": {
+                "name": "next_step",
+                "dataType": "json",
+                "value": "{\n  \"type\": \"message\",\n  \"key\": \"call_delivery_agent\",\n  \"text\": \"Your delivery executive is {{.customInput.delivery_agent_name}}. You can reach them at {{.customInput.delivery_agent_number}}. Feel free to call if you have any questions or need assistance.\",\n  \"followup\": {\n    \"type\": \"question\",\n    \"key\": \"is_resolved\",\n    \"text\": \"Has your concern been resolved?\",\n    \"options\": [\"No\", \"I have other concerns\", \"Resolved!\"]\n  }\n}",
+                "executedValue": {
+                  "followup": {
+                    "text": "Has your concern been resolved?",
+                    "type": "question",
+                    "key": "is_resolved",
+                    "options": [
+                      "No",
+                      "I have other concerns",
+                      "Resolved!"
+                    ]
+                  },
+                  "key": "call_delivery_agent",
+                  "text": "Your delivery executive is agent name. You can reach them at +12394811. Feel free to call if you have any questions or need assistance.",
+                  "type": "message"
+                }
+              },
+              "output_ly2pwkhnzvq8adnrqu": {
+                "name": "next_step",
+                "dataType": "json",
+                "value": "{\n  \"type\": \"message\",\n  \"key\": \"agent_connect\",\n  \"text\": \"We have assigned you an agent for customer support, he/she will contact you soon :)\"\n}",
+                "executedValue": {
+                  "type": "message",
+                  "key": "agent_connect",
+                  "text": "We have assigned you an agent for customer support, he/she will contact you soon :)"
+                }
+              },
+              "output_ly78y2k3hm4ndt7knhn": {
+                "name": "next_step",
+                "dataType": "json",
+                "value": "{\n  \"type\": \"reply\",\n  \"key\": \"feedback_bad\",\n  \"text\": \"We're sorry for your bad experience, please share it so we can improve.\"\n}",
+                "executedValue": {
+                  "key": "feedback_bad",
+                  "text": "We're sorry for your bad experience, please share it so we can improve.",
+                  "type": "reply"
+                }
+              },
+              "output_lqlh6vchwlvam9ll84": {
+                "name": "next_step",
+                "dataType": "json",
+                "value": "{\n  \"type\": \"message\",\n  \"key\": \"intro_message\",\n  \"text\": \"Hi {{.customInput.user_data.Body.name}}, I am your Swiggy assistant.\",\n  \"followup\": {\n    \"type\": \"list\",\n    \"key\": \"select_order\",\n    \"text\": \"Choose an order:\",\n    \"user_data\": {{.customInput.user_data.Body}}\n  }\n}",
+                "executedValue": "{\n  \"type\": \"message\",\n  \"key\": \"intro_message\",\n  \"text\": \"Hi {{.customInput.user_data.Body.name}}, I am your Swiggy assistant.\",\n  \"followup\": {\n    \"type\": \"list\",\n    \"key\": \"select_order\",\n    \"text\": \"Choose an order:\",\n    \"user_data\": {{.customInput.user_data.Body}}\n  }\n}"
+              },
+              "output_ly771wteibhyfnndpoc": {
+                "name": "next_step",
+                "dataType": "json",
+                "value": "{\n  \"type\": \"message\",\n  \"key\": \"resolved\",\n  \"text\": \"Thank you for your patience. We appreciate it greatly. If you encounter any further issues, please don't hesitate to contact us.\",\n  \"followup\" : {\n    \"type\": \"feedback\",\n    \"key\": \"feedback_thumbs\",\n    \"text\": \"Please rate your experience: \"\n  }\n}",
+                "executedValue": {
+                  "type": "message",
+                  "followup": {
+                    "type": "feedback",
+                    "key": "feedback_thumbs",
+                    "text": "Please rate your experience: "
+                  },
+                  "key": "resolved",
+                  "text": "Thank you for your patience. We appreciate it greatly. If you encounter any further issues, please don't hesitate to contact us."
+                }
+              },
+              "output_ly7946sz9o41mfuntl7": {
+                "name": "next_step",
+                "dataType": "json",
+                "value": "{\n  \"type\": \"message\",\n  \"key\": \"feedback_reply\",\n  \"text\": \"Thank you for the Feedback :)\",\n  \"reply_ans\": \"{{.customInput.answer}}\"\n}",
+                "executedValue": {
+                  "reply_ans": "Yes",
+                  "text": "Thank you for the Feedback :)",
+                  "type": "message",
+                  "key": "feedback_reply"
+                }
+              },
+              "output_lwg1burlpgdktn0le3m": {
+                "name": "next_step",
+                "dataType": "json",
+                "value": "{\n  \"type\": \"question\",\n  \"key\": \"help_with_order1\",\n  \"text\": \"Please select an issue:\",\n  \"options\": [\n    \"I did not receive this order\", \n    \"Item(s) portion size is not adequate\", \n    \"Few item(s) are missing in my order\",\n    \"Item delivered are incorrect or wrong\",\n    \"Other Issues\"\n   ]\n}",
+                "executedValue": {
+                  "options": [
+                    "I did not receive this order",
+                    "Item(s) portion size is not adequate",
+                    "Few item(s) are missing in my order",
+                    "Item delivered are incorrect or wrong",
+                    "Other Issues"
+                  ],
+                  "text": "Please select an issue:",
+                  "type": "question",
+                  "key": "help_with_order1"
+                }
+              },
+              "output_ly2qevor5whoryn7qo5": {
+                "name": "next_step",
+                "dataType": "json",
+                "value": "{\n  \"type\": \"message\",\n  \"key\": \"resolved\",\n  \"text\": \"Thank you for your patience. We appreciate it greatly. If you encounter any further issues, please don't hesitate to contact us.\",\n  \"followup\" : {\n    \"type\": \"feedback\",\n    \"key\": \"feedback_thumbs\",\n    \"text\": \"Please rate your experience: \"\n  }\n}",
+                "executedValue": {
+                  "type": "message",
+                  "followup": {
+                    "type": "feedback",
+                    "key": "feedback_thumbs",
+                    "text": "Please rate your experience: "
+                  },
+                  "key": "resolved",
+                  "text": "Thank you for your patience. We appreciate it greatly. If you encounter any further issues, please don't hesitate to contact us."
+                }
+              },
+              "output_ly2n8u57f9aq4mh7y9j": {
+                "name": "next_step",
+                "dataType": "json",
+                "value": "{\n  \"type\": \"question\",\n  \"key\": \"help_with_order1\",\n  \"text\": \"Please select an issue:\",\n  \"options\": [\n    \"I did not receive this order\", \n    \"Item(s) portion size is not adequate\", \n    \"Few item(s) are missing in my order\",\n    \"Item delivered are incorrect or wrong\",\n    \"Other Issues\"\n   ]\n}",
+                "executedValue": {
+                  "text": "Please select an issue:",
+                  "type": "question",
+                  "key": "help_with_order1",
+                  "options": [
+                    "I did not receive this order",
+                    "Item(s) portion size is not adequate",
+                    "Few item(s) are missing in my order",
+                    "Item delivered are incorrect or wrong",
+                    "Other Issues"
+                  ]
+                }
+              },
+              "output_ly2n3jyh75cvvfp4e5b": {
+                "name": "next_step",
+                "dataType": "json",
+                "value": "{\n  \"type\": \"question\",\n  \"key\": \"help_with_order2\",\n  \"text\": \"Please select an issue:\",\n  \"options\": [\n    \"Item(s) quality is poor\",\n    \"Item(s) has spillage issue\",\n    \"I have coupon related query for this order\",\n    \"Payment and billing related query\",\n    \"Previous\"\n   ]\n}",
+                "executedValue": {
+                  "key": "help_with_order2",
+                  "options": [
+                    "Item(s) quality is poor",
+                    "Item(s) has spillage issue",
+                    "I have coupon related query for this order",
+                    "Payment and billing related query",
+                    "Previous"
+                  ],
+                  "text": "Please select an issue:",
+                  "type": "question"
+                }
+              },
+              "output_ly2mm0mifloybov55nh": {
+                "name": "next_step",
+                "dataType": "json",
+                "value": "{\n  \"type\": \"message\",\n  \"key\": \"feedback_good\",\n  \"text\": \"Thank you for the Feedback :)\"\n}",
+                "executedValue": {
+                  "text": "Thank you for the Feedback :)",
+                  "type": "message",
+                  "key": "feedback_good"
+                }
+              },
+              "output_lwhvmhqk19ikpl6chyz": {
+                "name": "next_step",
+                "dataType": "json",
+                "value": "{\n  \"type\": \"question\",\n  \"key\": \"confirm_order\",\n  \"text\": \"You selected: \\\"{{.customInput.answer}}\\\".  Would you like help with this order?\",\n  \"options\": [\"Yes\", \"No, different order\"]\n}",
+                "executedValue": {
+                  "key": "confirm_order",
+                  "options": [
+                    "Yes",
+                    "No, different order"
+                  ],
+                  "text": "You selected: \"Yes\".  Would you like help with this order?",
+                  "type": "question"
+                }
+              },
+              "output_ly2pzbd7rbssehyrfx": {
+                "name": "next_step",
+                "dataType": "json",
+                "value": "{\n  \"type\": \"question\",\n  \"key\": \"help_with_order1\",\n  \"text\": \"Please select an issue:\",\n  \"options\": [\n    \"I did not receive this order\", \n    \"Item(s) portion size is not adequate\", \n    \"Few item(s) are missing in my order\",\n    \"Item delivered are incorrect or wrong\",\n    \"Other Issues\"\n   ]\n}",
+                "executedValue": {
+                  "text": "Please select an issue:",
+                  "type": "question",
+                  "key": "help_with_order1",
+                  "options": [
+                    "I did not receive this order",
+                    "Item(s) portion size is not adequate",
+                    "Few item(s) are missing in my order",
+                    "Item delivered are incorrect or wrong",
+                    "Other Issues"
+                  ]
+                }
+              },
+              "output_ly2t1o25wpwtplfurwk": {
+                "name": "next_step",
+                "dataType": "json",
+                "value": "{\n  \"type\": \"message\",\n  \"key\": \"coupon_query\",\n  \"text\": \"1. I am unable to find my coupon: You can view available coupons for your order, by going to the 'APPLY COUPON' section on the cart page while placing your order. <br><br>2. I unable to apply my coupon: Please check if you have adhered to all the coupon's terms and conditions. Choose your coupon in the 'APPLY COUPON' section and click '+MORE' to review all T&Cs to avail the benefits <br><br>3. I forgot to apply my coupon: It looks like you missed applying your coupon. No worries, though! Your coupon is still valid and waiting for you. Simply apply it to your next order and enjoy the savings. We appreciate your understanding and look forward to serving you again soon!\",\n  \"followup\": {\n    \"type\": \"question\",\n    \"key\": \"is_resolved\",\n    \"text\": \"Has your concern been resolved?\",\n    \"options\": [\"No\", \"I have other concerns\"]\n  }\n}",
+                "executedValue": {
+                  "text": "1. I am unable to find my coupon: You can view available coupons for your order, by going to the 'APPLY COUPON' section on the cart page while placing your order. <br><br>2. I unable to apply my coupon: Please check if you have adhered to all the coupon's terms and conditions. Choose your coupon in the 'APPLY COUPON' section and click '+MORE' to review all T&Cs to avail the benefits <br><br>3. I forgot to apply my coupon: It looks like you missed applying your coupon. No worries, though! Your coupon is still valid and waiting for you. Simply apply it to your next order and enjoy the savings. We appreciate your understanding and look forward to serving you again soon!",
+                  "type": "message",
+                  "followup": {
+                    "key": "is_resolved",
+                    "options": [
+                      "No",
+                      "I have other concerns"
+                    ],
+                    "text": "Has your concern been resolved?",
+                    "type": "question"
+                  },
+                  "key": "coupon_query"
+                }
+              },
+              "output_ly2oaga1gs836xl9yde": {
+                "name": "next_step",
+                "dataType": "json",
+                "value": "{\n  \"type\": \"question\",\n  \"key\": \"eta_breached\",\n  \"text\": \"We apologize for any inconvenience. Our system shows that your order was expected to arrive by {{.customInput.eta}}. Please allow some more time, or feel free to contact our delivery executive. Alternatively, choose an option for further assistance:\",\n  \"options\": [\"Call delivery executive\", \"Talk to an agent\", \"I have other concerns\",\"I will wait\"]\n}",
+                "executedValue": {
+                  "key": "eta_breached",
+                  "options": [
+                    "Call delivery executive",
+                    "Talk to an agent",
+                    "I have other concerns",
+                    "I will wait"
+                  ],
+                  "text": "We apologize for any inconvenience. Our system shows that your order was expected to arrive by 01/12/2023 00:00:00. Please allow some more time, or feel free to contact our delivery executive. Alternatively, choose an option for further assistance:",
+                  "type": "question"
+                }
+              }
+            }
+          },
+          "else": {}
+        },
+        "conditions": {
+          "nodes": {
+            "rule_ly76fpktvr0lxyzen49": {
+              "value": "",
+              "operator": "eq",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly76fpksu2rm61jozp",
+              "leftNode": [
+                "rule_lqlhd38sli96yrvfs5b"
+              ],
+              "rightNode": [
+                "rule_ly76fpktvklklgh0s3k"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2n8u562m2e6t46aye": {
+              "value": "",
+              "operator": "eq",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2n8u56ibnv9ycddj",
+              "leftNode": [
+                "rule_lqlguc23wqay5offwu"
+              ],
+              "rightNode": [
+                "rule_ly2n8u56wmyk605ey8"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly78y2k252borrehdr9": {
+              "value": "",
+              "operator": "eq",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly78y2k1fqz14te8lx",
+              "leftNode": [
+                "rule_lqlhd38sli96yrvfs5b"
+              ],
+              "rightNode": [
+                "rule_ly78y2k2hjihljnjju7"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_lqlhd38scy9pura572o": {
+              "value": "",
+              "operator": "any",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_01",
+              "leftNode": [
+                "rule_lqlhd38sli96yrvfs5b"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_01": {
+              "operator": "and",
+              "nodeType": "group",
+              "children": [
+                "rule_lqlguc234zcctypma4",
+                "rule_lqlhd38scy9pura572o",
+                "rule_lqlj3v8llwvy29owt0i"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2oaga15xebv595j8": {
+              "value": "",
+              "operator": "lt",
+              "dataType": "dateTime",
+              "nodeType": "condition",
+              "parent": "rule_ly2oaga0w6ikmyg1sin",
+              "leftNode": [
+                "rule_lqlj3v8lztenvkpfvs"
+              ],
+              "rightNode": [
+                "rule_ly2oaga1nsvunz3r21h"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2mjt0ct7q3feyngae": {
+              "value": [
+                "help_with_order1",
+                "help_with_order2"
+              ],
+              "dataType": "list",
+              "nodeType": "constant",
+              "parent": "rule_ly2mjt0ck1y6wtqjlao",
+              "siblingIndex": 1
+            },
+            "rule_ly2r7a5p9k7mnat389": {
+              "value": "",
+              "operator": "any",
+              "dataType": "dateTime",
+              "nodeType": "condition",
+              "parent": "rule_ly2r7a5ofo0krt2c8rr",
+              "leftNode": [
+                "rule_lqlj3v8lztenvkpfvs"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2oaga1nsvunz3r21h": {
+              "value": "",
+              "sourceType": "systemVar",
+              "dataType": "dateTime",
+              "nodeType": "params",
+              "attribute": "CurrentTime",
+              "parent": "rule_ly2oaga15xebv595j8",
+              "siblingIndex": 1
+            },
+            "rule_ly2n3jyg7qgvqnreqxq": {
+              "value": "",
+              "operator": "eq",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2n3jyf36c2aeu5fh7",
+              "leftNode": [
+                "rule_lqlhd38sli96yrvfs5b"
+              ],
+              "rightNode": [
+                "rule_ly2n3jygdeck8d1fkpo"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly76fpktvklklgh0s3k": {
+              "value": "Call delivery executive",
+              "dataType": "string",
+              "nodeType": "constant",
+              "parent": "rule_ly76fpktvr0lxyzen49",
+              "siblingIndex": 1
+            },
+            "rule_lwiscymnuhqcqh8bsa": {
+              "value": "",
+              "operator": "in",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_lwiscymm15qzsw7rggu",
+              "leftNode": [
+                "rule_lqlhd38sli96yrvfs5b"
+              ],
+              "rightNode": [
+                "rule_lwj3445u3xhu8n0cxkz"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly78y2k2hjihljnjju7": {
+              "value": "Bad",
+              "dataType": "string",
+              "nodeType": "constant",
+              "parent": "rule_ly78y2k252borrehdr9",
+              "siblingIndex": 1
+            },
+            "rule_ly2mjt0dhi29x80xmqn": {
+              "value": "",
+              "operator": "gte",
+              "dataType": "dateTime",
+              "nodeType": "condition",
+              "parent": "rule_ly2mjt0c7f3t1osfj2c",
+              "leftNode": [
+                "rule_lqlj3v8lztenvkpfvs"
+              ],
+              "rightNode": [
+                "rule_ly2nzjsjdi562g2r6di"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly76fpktpq0m4n4f4l": {
+              "value": "",
+              "operator": "any",
+              "dataType": "dateTime",
+              "nodeType": "condition",
+              "parent": "rule_ly76fpksu2rm61jozp",
+              "leftNode": [
+                "rule_lqlj3v8lztenvkpfvs"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly78xqkkbqmq16cr3zk": {
+              "value": "Good",
+              "dataType": "string",
+              "nodeType": "constant",
+              "parent": "rule_ly2mm0mhez9653dtl56",
+              "siblingIndex": 1
+            },
+            "rule_lwg1burkrucv76ebog": {
+              "value": "confirm_order",
+              "dataType": "string",
+              "nodeType": "constant",
+              "parent": "rule_lwg1burkfhmam3ybx7",
+              "siblingIndex": 1
+            },
+            "rule_ly2oaga0w6ikmyg1sin": {
+              "operator": "and",
+              "nodeType": "group",
+              "children": [
+                "rule_ly2oaga0jr6ozfmee",
+                "rule_ly2oaga1oi3vjukwsu",
+                "rule_ly2oaga15xebv595j8"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_lwj3445u3xhu8n0cxkz": {
+              "value": [
+                "No, different order",
+                "Back to Main Menu"
+              ],
+              "dataType": "list",
+              "nodeType": "constant",
+              "parent": "rule_lwiscymnuhqcqh8bsa",
+              "siblingIndex": 1
+            },
+            "rule_lwg1burkjnl3khlcf1e": {
+              "operator": "and",
+              "nodeType": "group",
+              "children": [
+                "rule_lwg1burkfhmam3ybx7",
+                "rule_lwg1burky43h0h5fsv",
+                "rule_lwg1burkkk4b3ffo2v"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2pwkhm50b3wpcfpuc": {
+              "value": "",
+              "operator": "any",
+              "dataType": "dateTime",
+              "nodeType": "condition",
+              "parent": "rule_ly2pwkhl6pfznsjn8b",
+              "leftNode": [
+                "rule_lqlj3v8lztenvkpfvs"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2mm0mhojo7ttxiki": {
+              "operator": "and",
+              "nodeType": "group",
+              "children": [
+                "rule_ly2mm0mh7l8c4d2g76p",
+                "rule_ly2mm0mhez9653dtl56",
+                "rule_ly2mm0mhej4ievjbxlw"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2mjt0ck1y6wtqjlao": {
+              "value": "",
+              "operator": "in",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2mjt0c7f3t1osfj2c",
+              "leftNode": [
+                "rule_lqlguc23wqay5offwu"
+              ],
+              "rightNode": [
+                "rule_ly2mjt0ct7q3feyngae"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2oaga0m3ij0nmm1d": {
+              "value": [
+                "help_with_order1",
+                "help_with_order2"
+              ],
+              "dataType": "list",
+              "nodeType": "constant",
+              "parent": "rule_ly2oaga0jr6ozfmee",
+              "siblingIndex": 1
+            },
+            "rule_ly2mjt0c7f3t1osfj2c": {
+              "operator": "and",
+              "nodeType": "group",
+              "children": [
+                "rule_ly2mjt0ck1y6wtqjlao",
+                "rule_ly2mjt0dy5f20kx69o",
+                "rule_ly2mjt0dhi29x80xmqn"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2n3jygzqjcqhwdf2": {
+              "value": "",
+              "operator": "eq",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2n3jyf36c2aeu5fh7",
+              "leftNode": [
+                "rule_lqlguc23wqay5offwu"
+              ],
+              "rightNode": [
+                "rule_ly2n3jygos4bwn5fmh"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_lqlj3v8llwvy29owt0i": {
+              "value": "",
+              "operator": "any",
+              "dataType": "dateTime",
+              "nodeType": "condition",
+              "parent": "rule_01",
+              "leftNode": [
+                "rule_lqlj3v8lztenvkpfvs"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2t1o256mhppybyprq": {
+              "value": "",
+              "operator": "in",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2t1o24rrdib8s3fjg",
+              "leftNode": [
+                "rule_lqlhd38sli96yrvfs5b"
+              ],
+              "rightNode": [
+                "rule_ly2t1o2511lx34yak2c"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2r7a5oce7rb3vvns6": {
+              "value": "",
+              "operator": "in",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2r7a5ofo0krt2c8rr",
+              "leftNode": [
+                "rule_lqlguc23wqay5offwu"
+              ],
+              "rightNode": [
+                "rule_ly2t0m7xry343517izp"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2nzjsjdi562g2r6di": {
+              "value": "",
+              "sourceType": "systemVar",
+              "dataType": "dateTime",
+              "nodeType": "params",
+              "attribute": "CurrentTime",
+              "parent": "rule_ly2mjt0dhi29x80xmqn",
+              "siblingIndex": 1
+            },
+            "rule_ly2oaga15rvw3ckub8o": {
+              "value": [
+                "I did not receive this order"
+              ],
+              "dataType": "list",
+              "nodeType": "constant",
+              "parent": "rule_ly2oaga1oi3vjukwsu",
+              "siblingIndex": 1
+            },
+            "rule_lwg1burky43h0h5fsv": {
+              "value": "",
+              "operator": "eq",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_lwg1burkjnl3khlcf1e",
+              "leftNode": [
+                "rule_lqlhd38sli96yrvfs5b"
+              ],
+              "rightNode": [
+                "rule_lwg1burkffilvvy39ys"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly771wtd71vj7pkqoqe": {
+              "value": "",
+              "operator": "any",
+              "dataType": "dateTime",
+              "nodeType": "condition",
+              "parent": "rule_ly771wtd91t7hma309",
+              "leftNode": [
+                "rule_lqlj3v8lztenvkpfvs"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly7946sztuitwsmnb3": {
+              "value": "",
+              "operator": "any",
+              "dataType": "dateTime",
+              "nodeType": "condition",
+              "parent": "rule_ly7946sylbxsl7lindj",
+              "leftNode": [
+                "rule_lqlj3v8lztenvkpfvs"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2n3jyf36c2aeu5fh7": {
+              "operator": "and",
+              "nodeType": "group",
+              "children": [
+                "rule_ly2n3jygzqjcqhwdf2",
+                "rule_ly2n3jyg7qgvqnreqxq",
+                "rule_ly2n3jygp5jr1bvgykm"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2n3jygp5jr1bvgykm": {
+              "value": "",
+              "operator": "any",
+              "dataType": "dateTime",
+              "nodeType": "condition",
+              "parent": "rule_ly2n3jyf36c2aeu5fh7",
+              "leftNode": [
+                "rule_lqlj3v8lztenvkpfvs"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_lwhvmhqjme7ktbc6iy": {
+              "value": "",
+              "operator": "any",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_lwhvmhqj3zkv6qjq6am",
+              "leftNode": [
+                "rule_lqlhd38sli96yrvfs5b"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_lqlguc234zcctypma4": {
+              "value": "",
+              "operator": "eq",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_01",
+              "leftNode": [
+                "rule_lqlguc23wqay5offwu"
+              ],
+              "rightNode": [
+                "rule_lwhvtljqkebdl4h28k"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_lwg1burkffilvvy39ys": {
+              "value": "Yes",
+              "dataType": "string",
+              "nodeType": "constant",
+              "parent": "rule_lwg1burky43h0h5fsv",
+              "siblingIndex": 1
+            },
+            "rule_ly2n8u56wmyk605ey8": {
+              "value": "help_with_order2",
+              "dataType": "string",
+              "nodeType": "constant",
+              "parent": "rule_ly2n8u562m2e6t46aye",
+              "siblingIndex": 1
+            },
+            "rule_ly771wtd91t7hma309": {
+              "operator": "and",
+              "nodeType": "group",
+              "children": [
+                "rule_ly771wtdsh4wg92bocs",
+                "rule_ly771wtd7h44is51dd9",
+                "rule_ly771wtd71vj7pkqoqe"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_lwiscymm15qzsw7rggu": {
+              "operator": "and",
+              "nodeType": "group",
+              "children": [
+                "rule_lwiscymm4k1w3jw7oej",
+                "rule_lwiscymnuhqcqh8bsa",
+                "rule_lwiscymojq0i9aiogac"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_lwiscymojq0i9aiogac": {
+              "value": "",
+              "operator": "any",
+              "dataType": "dateTime",
+              "nodeType": "condition",
+              "parent": "rule_lwiscymm15qzsw7rggu",
+              "leftNode": [
+                "rule_lqlj3v8lztenvkpfvs"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_lqlhd38sli96yrvfs5b": {
+              "sourceType": "customInput",
+              "dataType": "string",
+              "nodeType": "params",
+              "attribute": "answer",
+              "siblingIndex": 1
+            },
+            "rule_ly771wtd7h44is51dd9": {
+              "value": "",
+              "operator": "eq",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly771wtd91t7hma309",
+              "leftNode": [
+                "rule_lqlhd38sli96yrvfs5b"
+              ],
+              "rightNode": [
+                "rule_ly771wtdkk1f803zws"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_lwiscymm4k1w3jw7oej": {
+              "value": "",
+              "operator": "any",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_lwiscymm15qzsw7rggu",
+              "leftNode": [
+                "rule_lqlguc23wqay5offwu"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2n3jygdeck8d1fkpo": {
+              "value": "Other Issues",
+              "dataType": "string",
+              "nodeType": "constant",
+              "parent": "rule_ly2n3jyg7qgvqnreqxq",
+              "siblingIndex": 1
+            },
+            "rule_ly2mm0mh7l8c4d2g76p": {
+              "value": "",
+              "operator": "eq",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2mm0mhojo7ttxiki",
+              "leftNode": [
+                "rule_lqlguc23wqay5offwu"
+              ],
+              "rightNode": [
+                "rule_ly2mm0mh50g3b4bj104"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2qevorhisezdgykzi": {
+              "value": "",
+              "operator": "any",
+              "dataType": "dateTime",
+              "nodeType": "condition",
+              "parent": "rule_ly2qevopqe5u1mgdiqm",
+              "leftNode": [
+                "rule_lqlj3v8lztenvkpfvs"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2pwkhlm21vn029st": {
+              "value": "",
+              "operator": "in",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2pwkhl6pfznsjn8b",
+              "leftNode": [
+                "rule_lqlguc23wqay5offwu"
+              ],
+              "rightNode": [
+                "rule_ly2pwkhlnwc0zu96ren"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2t1o2511lx34yak2c": {
+              "value": [
+                "I have coupon related query for this order"
+              ],
+              "dataType": "list",
+              "nodeType": "constant",
+              "parent": "rule_ly2t1o256mhppybyprq",
+              "siblingIndex": 1
+            },
+            "rule_ly2mm0mhej4ievjbxlw": {
+              "value": "",
+              "operator": "any",
+              "dataType": "dateTime",
+              "nodeType": "condition",
+              "parent": "rule_ly2mm0mhojo7ttxiki",
+              "leftNode": [
+                "rule_lqlj3v8lztenvkpfvs"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2t1o243r6zgfambcq": {
+              "value": "",
+              "operator": "in",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2t1o24rrdib8s3fjg",
+              "leftNode": [
+                "rule_lqlguc23wqay5offwu"
+              ],
+              "rightNode": [
+                "rule_ly2t1o24pyj8iktxlr"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2pzbd6a09gynsgxx7": {
+              "value": "",
+              "operator": "eq",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2pzbd5u41xve2ey3c",
+              "leftNode": [
+                "rule_lqlhd38sli96yrvfs5b"
+              ],
+              "rightNode": [
+                "rule_ly2pzbd6gcr8m3epggv"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_lqlj3v8lztenvkpfvs": {
+              "sourceType": "customInput",
+              "dataType": "dateTime",
+              "nodeType": "params",
+              "attribute": "eta",
+              "siblingIndex": 1
+            },
+            "rule_ly7946sywkjk90ox7lj": {
+              "value": "",
+              "operator": "eq",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly7946sylbxsl7lindj",
+              "leftNode": [
+                "rule_lqlguc23wqay5offwu"
+              ],
+              "rightNode": [
+                "rule_ly7946sywhwdske941i"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_lwhvmhqjlpy11uulvie": {
+              "value": "",
+              "operator": "eq",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_lwhvmhqj3zkv6qjq6am",
+              "leftNode": [
+                "rule_lqlguc23wqay5offwu"
+              ],
+              "rightNode": [
+                "rule_lwhvmhqjr8nb3gmzkol"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_lwg1burkkk4b3ffo2v": {
+              "value": "",
+              "operator": "any",
+              "dataType": "dateTime",
+              "nodeType": "condition",
+              "parent": "rule_lwg1burkjnl3khlcf1e",
+              "leftNode": [
+                "rule_lqlj3v8lztenvkpfvs"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_lwhvmhqj3zkv6qjq6am": {
+              "operator": "and",
+              "nodeType": "group",
+              "children": [
+                "rule_lwhvmhqjlpy11uulvie",
+                "rule_lwhvmhqjme7ktbc6iy",
+                "rule_lwhvmhqjhkh2xlioh4"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2mjt0d8drmi9kqubv": {
+              "value": [
+                "I did not receive this order"
+              ],
+              "dataType": "list",
+              "nodeType": "constant",
+              "parent": "rule_ly2mjt0dy5f20kx69o",
+              "siblingIndex": 1
+            },
+            "rule_lwhvmhqjr8nb3gmzkol": {
+              "value": "select_order",
+              "dataType": "string",
+              "nodeType": "constant",
+              "parent": "rule_lwhvmhqjlpy11uulvie",
+              "siblingIndex": 1
+            },
+            "rule_ly2n3jygos4bwn5fmh": {
+              "value": "help_with_order1",
+              "dataType": "string",
+              "nodeType": "constant",
+              "parent": "rule_ly2n3jygzqjcqhwdf2",
+              "siblingIndex": 1
+            },
+            "rule_ly2pwkhms0l7x7e3p28": {
+              "value": [
+                "No",
+                "Talk to an agent"
+              ],
+              "dataType": "list",
+              "nodeType": "constant",
+              "parent": "rule_ly2pwkhmdfycw5mh5cq",
+              "siblingIndex": 1
+            },
+            "rule_lwg1burkfhmam3ybx7": {
+              "value": "",
+              "operator": "eq",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_lwg1burkjnl3khlcf1e",
+              "leftNode": [
+                "rule_lqlguc23wqay5offwu"
+              ],
+              "rightNode": [
+                "rule_lwg1burkrucv76ebog"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_lwhvmhqjhkh2xlioh4": {
+              "value": "",
+              "operator": "any",
+              "dataType": "dateTime",
+              "nodeType": "condition",
+              "parent": "rule_lwhvmhqj3zkv6qjq6am",
+              "leftNode": [
+                "rule_lqlj3v8lztenvkpfvs"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_lwhvtljqkebdl4h28k": {
+              "value": "start",
+              "dataType": "string",
+              "nodeType": "constant",
+              "parent": "rule_lqlguc234zcctypma4",
+              "siblingIndex": 1
+            },
+            "rule_ly78y2k3aglwii2w1r": {
+              "value": "",
+              "operator": "any",
+              "dataType": "dateTime",
+              "nodeType": "condition",
+              "parent": "rule_ly78y2k1fqz14te8lx",
+              "leftNode": [
+                "rule_lqlj3v8lztenvkpfvs"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2n8u57zoy3qg5dto9": {
+              "value": "Previous",
+              "dataType": "string",
+              "nodeType": "constant",
+              "parent": "rule_ly2n8u57dr8r15qyp7n",
+              "siblingIndex": 1
+            },
+            "rule_ly2pzbd6updbqe7204": {
+              "value": "",
+              "operator": "any",
+              "dataType": "dateTime",
+              "nodeType": "condition",
+              "parent": "rule_ly2pzbd5u41xve2ey3c",
+              "leftNode": [
+                "rule_lqlj3v8lztenvkpfvs"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2qevoqr3arwyt86xs": {
+              "value": "",
+              "operator": "eq",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2qevopqe5u1mgdiqm",
+              "leftNode": [
+                "rule_lqlhd38sli96yrvfs5b"
+              ],
+              "rightNode": [
+                "rule_ly2qevoqrtpi5tzdee"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2t1o24pyj8iktxlr": {
+              "value": [
+                "help_with_order1",
+                "help_with_order2"
+              ],
+              "dataType": "list",
+              "nodeType": "constant",
+              "parent": "rule_ly2t1o243r6zgfambcq",
+              "siblingIndex": 1
+            },
+            "rule_ly2t1o24rrdib8s3fjg": {
+              "operator": "and",
+              "nodeType": "group",
+              "children": [
+                "rule_ly2t1o243r6zgfambcq",
+                "rule_ly2t1o256mhppybyprq",
+                "rule_ly2t1o25fxfxabia757"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2r7a5ou3ojqp6f0pc": {
+              "value": [
+                "Item(s) portion size is not adequate",
+                "Few item(s) are missing in my order",
+                "Item delivered are incorrect or wrong",
+                "Item(s) quality is poor",
+                "Item(s) has spillage issue",
+                "Payment and billing related query"
+              ],
+              "dataType": "list",
+              "nodeType": "constant",
+              "parent": "rule_ly2r7a5o34oowsgk78r",
+              "siblingIndex": 1
+            },
+            "rule_ly2r7a5o34oowsgk78r": {
+              "value": "",
+              "operator": "in",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2r7a5ofo0krt2c8rr",
+              "leftNode": [
+                "rule_lqlhd38sli96yrvfs5b"
+              ],
+              "rightNode": [
+                "rule_ly2r7a5ou3ojqp6f0pc"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2t0m7xry343517izp": {
+              "value": [
+                "help_with_order1",
+                "help_with_order2"
+              ],
+              "dataType": "list",
+              "nodeType": "constant",
+              "parent": "rule_ly2r7a5oce7rb3vvns6",
+              "siblingIndex": 1
+            },
+            "rule_ly2pzbd5u41xve2ey3c": {
+              "operator": "and",
+              "nodeType": "group",
+              "children": [
+                "rule_ly2pzbd5qmnl263u6sl",
+                "rule_ly2pzbd6a09gynsgxx7",
+                "rule_ly2pzbd6updbqe7204"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2mm0mh50g3b4bj104": {
+              "value": "feedback_thumbs",
+              "dataType": "string",
+              "nodeType": "constant",
+              "parent": "rule_ly2mm0mh7l8c4d2g76p",
+              "siblingIndex": 1
+            },
+            "rule_ly2pwkhl6pfznsjn8b": {
+              "operator": "and",
+              "nodeType": "group",
+              "children": [
+                "rule_ly2pwkhlm21vn029st",
+                "rule_ly2pwkhmdfycw5mh5cq",
+                "rule_ly2pwkhm50b3wpcfpuc"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2oaga0jr6ozfmee": {
+              "value": "",
+              "operator": "in",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2oaga0w6ikmyg1sin",
+              "leftNode": [
+                "rule_lqlguc23wqay5offwu"
+              ],
+              "rightNode": [
+                "rule_ly2oaga0m3ij0nmm1d"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2pwkhlnwc0zu96ren": {
+              "value": [
+                "is_resolved",
+                "eta_breached"
+              ],
+              "dataType": "list",
+              "nodeType": "constant",
+              "parent": "rule_ly2pwkhlm21vn029st",
+              "siblingIndex": 1
+            },
+            "rule_ly78y2k1b6khbogr6m": {
+              "value": "",
+              "operator": "eq",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly78y2k1fqz14te8lx",
+              "leftNode": [
+                "rule_lqlguc23wqay5offwu"
+              ],
+              "rightNode": [
+                "rule_ly78y2k256mqlwhnmk"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2pzbd6gcr8m3epggv": {
+              "value": "I have other concerns",
+              "dataType": "string",
+              "nodeType": "constant",
+              "parent": "rule_ly2pzbd6a09gynsgxx7",
+              "siblingIndex": 1
+            },
+            "rule_ly2pzbd5qmnl263u6sl": {
+              "value": "",
+              "operator": "any",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2pzbd5u41xve2ey3c",
+              "leftNode": [
+                "rule_lqlguc23wqay5offwu"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_lqlguc23wqay5offwu": {
+              "sourceType": "customInput",
+              "dataType": "string",
+              "nodeType": "params",
+              "attribute": "prev_q",
+              "siblingIndex": 1
+            },
+            "rule_ly76fpksu2rm61jozp": {
+              "operator": "and",
+              "nodeType": "group",
+              "children": [
+                "rule_ly76fpkssgfn7c4dqj",
+                "rule_ly76fpktvr0lxyzen49",
+                "rule_ly76fpktpq0m4n4f4l"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly771wtdsh4wg92bocs": {
+              "value": "",
+              "operator": "any",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly771wtd91t7hma309",
+              "leftNode": [
+                "rule_lqlguc23wqay5offwu"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly78y2k1fqz14te8lx": {
+              "operator": "and",
+              "nodeType": "group",
+              "children": [
+                "rule_ly78y2k1b6khbogr6m",
+                "rule_ly78y2k252borrehdr9",
+                "rule_ly78y2k3aglwii2w1r"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2mm0mhez9653dtl56": {
+              "value": "",
+              "operator": "eq",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2mm0mhojo7ttxiki",
+              "leftNode": [
+                "rule_lqlhd38sli96yrvfs5b"
+              ],
+              "rightNode": [
+                "rule_ly78xqkkbqmq16cr3zk"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2n8u57dr8r15qyp7n": {
+              "value": "",
+              "operator": "eq",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2n8u56ibnv9ycddj",
+              "leftNode": [
+                "rule_lqlhd38sli96yrvfs5b"
+              ],
+              "rightNode": [
+                "rule_ly2n8u57zoy3qg5dto9"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2t1o25fxfxabia757": {
+              "value": "",
+              "operator": "any",
+              "dataType": "dateTime",
+              "nodeType": "condition",
+              "parent": "rule_ly2t1o24rrdib8s3fjg",
+              "leftNode": [
+                "rule_lqlj3v8lztenvkpfvs"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2pwkhmdfycw5mh5cq": {
+              "value": "",
+              "operator": "in",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2pwkhl6pfznsjn8b",
+              "leftNode": [
+                "rule_lqlhd38sli96yrvfs5b"
+              ],
+              "rightNode": [
+                "rule_ly2pwkhms0l7x7e3p28"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2n8u57uexejgj3irs": {
+              "value": "",
+              "operator": "any",
+              "dataType": "dateTime",
+              "nodeType": "condition",
+              "parent": "rule_ly2n8u56ibnv9ycddj",
+              "leftNode": [
+                "rule_lqlj3v8lztenvkpfvs"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2qevopqe5u1mgdiqm": {
+              "operator": "and",
+              "nodeType": "group",
+              "children": [
+                "rule_ly2qevoq41fay2pn58m",
+                "rule_ly2qevoqr3arwyt86xs",
+                "rule_ly2qevorhisezdgykzi"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly7946szwjzwblct2q": {
+              "value": "",
+              "operator": "any",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly7946sylbxsl7lindj",
+              "leftNode": [
+                "rule_lqlhd38sli96yrvfs5b"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly771wtdkk1f803zws": {
+              "value": "Resolved!",
+              "dataType": "string",
+              "nodeType": "constant",
+              "parent": "rule_ly771wtd7h44is51dd9",
+              "siblingIndex": 1
+            },
+            "rule_ly2qevoqrtpi5tzdee": {
+              "value": "I will wait",
+              "dataType": "string",
+              "nodeType": "constant",
+              "parent": "rule_ly2qevoqr3arwyt86xs",
+              "siblingIndex": 1
+            },
+            "rule_ly2n8u56ibnv9ycddj": {
+              "operator": "and",
+              "nodeType": "group",
+              "children": [
+                "rule_ly2n8u562m2e6t46aye",
+                "rule_ly2n8u57dr8r15qyp7n",
+                "rule_ly2n8u57uexejgj3irs"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2qevoq41fay2pn58m": {
+              "value": "",
+              "operator": "any",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2qevopqe5u1mgdiqm",
+              "leftNode": [
+                "rule_lqlguc23wqay5offwu"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly78y2k256mqlwhnmk": {
+              "value": "feedback_thumbs",
+              "dataType": "string",
+              "nodeType": "constant",
+              "parent": "rule_ly78y2k1b6khbogr6m",
+              "siblingIndex": 1
+            },
+            "rule_ly76fpkssgfn7c4dqj": {
+              "value": "",
+              "operator": "any",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly76fpksu2rm61jozp",
+              "leftNode": [
+                "rule_lqlguc23wqay5offwu"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly7946sywhwdske941i": {
+              "value": "feedback_bad",
+              "dataType": "string",
+              "nodeType": "constant",
+              "parent": "rule_ly7946sywkjk90ox7lj",
+              "siblingIndex": 1
+            },
+            "rule_ly2mjt0dy5f20kx69o": {
+              "value": "",
+              "operator": "in",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2mjt0c7f3t1osfj2c",
+              "leftNode": [
+                "rule_lqlhd38sli96yrvfs5b"
+              ],
+              "rightNode": [
+                "rule_ly2mjt0d8drmi9kqubv"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly7946sylbxsl7lindj": {
+              "operator": "and",
+              "nodeType": "group",
+              "children": [
+                "rule_ly7946sywkjk90ox7lj",
+                "rule_ly7946szwjzwblct2q",
+                "rule_ly7946sztuitwsmnb3"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2oaga1oi3vjukwsu": {
+              "value": "",
+              "operator": "in",
+              "dataType": "string",
+              "nodeType": "condition",
+              "parent": "rule_ly2oaga0w6ikmyg1sin",
+              "leftNode": [
+                "rule_lqlhd38sli96yrvfs5b"
+              ],
+              "rightNode": [
+                "rule_ly2oaga15rvw3ckub8o"
+              ],
+              "siblingIndex": 1
+            },
+            "rule_ly2r7a5ofo0krt2c8rr": {
+              "operator": "and",
+              "nodeType": "group",
+              "children": [
+                "rule_ly2r7a5oce7rb3vvns6",
+                "rule_ly2r7a5o34oowsgk78r",
+                "rule_ly2r7a5p9k7mnat389"
+              ],
+              "siblingIndex": 1
+            }
+          }
+        },
+        "firstCustomInput": "prev_q",
+        "policy": "first",
+        "type": "decisionTable",
+        "dataSetId": "000000000000000000000000",
+        "staging": {
+          "startAt": "0001-01-01T00:00:00Z",
+          "endAt": "0001-01-01T00:00:00Z",
+          "api": {
+            "startAt": "0001-01-01T00:00:00Z",
+            "endAt": "0001-01-01T00:00:00Z",
+            "isEnabled": true
+          },
+          "isEnabled": true
+        },
+        "production": {
+          "startAt": "0001-01-01T00:00:00Z",
+          "endAt": "0001-01-01T00:00:00Z",
+          "api": {
+            "startAt": "0001-01-01T00:00:00Z",
+            "endAt": "0001-01-01T00:00:00Z",
+            "isEnabled": true
+          },
+          "isEnabled": true
+        },
+        "SchemaVersion": "0.1.1"
+      }
+    },
+    "669a0e8028014c7f734db33b": {
+      "entity": "connector",
+      "category": "restAPI",
+      "name": "User_Data",
+      "data": {
+        "name": "User_Data",
+        "staging": {
+          "conf": {
+            "baseUrl": "https://65bb3e3452189914b5bb8364.mockapi.io"
+          }
+        },
+        "production": {
+          "conf": {
+            "baseUrl": "https://65bb3e3452189914b5bb8364.mockapi.io"
+          }
+        },
+        "category": "api",
+        "isAction": true,
+        "isTrigger": true
+      }
+    }
+  },
+  "timestamp": "2024-07-19T06:58:08.27198316Z"
+}

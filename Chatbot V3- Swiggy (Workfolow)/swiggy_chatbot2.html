@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            margin: 0;
+        }
+
+        *::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        /* Track */
+        *::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        *::-webkit-scrollbar-thumb {
+            background: #b0b0b0;
+            border-radius: 4px;
+        }
+
+        /* Handle on hover */
+        *::-webkit-scrollbar-thumb:hover {
+            background: #808080;
+        }
+
+        .chat-container {
+            width: 500px;
+            border: 1px solid #dee2e6;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background-color: #ffffff;
+            color: black;
+            padding: 15px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0px 0px 16px 2px rgba(0, 0, 0, 0.1);
+            margin-bottom: 18px;
+        }
+
+        .chat-box {
+            height: 550px;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #dee2e6;
+            background-color: #fff;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            margin-right: 10px;
+        }
+
+        .chat-input button {
+            padding: 10px 20px;
+            background-color: #fc8019;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .chat-input button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .clear-button {
+            margin-left: 10px;
+            background-color: #dc3545;
+        }
+
+        .message {
+            padding: 16px;
+            margin: 10px 0;
+            border-radius: 20px;
+            max-width: 75%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+            font-size: 18px;
+        }
+
+        .message.user-message {
+            align-self: flex-end;
+            background-color: #5133B5;
+            color: white;
+            align-items: flex-end;
+            margin-right: 24px;
+            border-radius: 20px 20px 6px 20px;
+        }
+
+        .message.bot-message {
+            background-color: #F1F0F5;
+            color: black;
+            margin-left: 24px;
+            border-radius: 20px 20px 20px 6px;
+        }
+
+        .logo {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #5133B5;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 10px;
+            position: absolute;
+            /*top: 2px;*/
+            bottom: 7px;
+        }
+
+        .bot-message .logo {
+            background: none;
+            color: black;
+            left: -30px;
+        }
+
+        .user-message .logo {
+            right: -39px;
+        }
+
+        .option-button {
+            margin-top: 10px;
+            padding: 10px 16px;
+            background-color: white;
+            color: #fc8019;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        .option-button:hover {
+            background-color: #fc8019;
+            color: white;
+        }
+
+        .option-button:disabled {
+            background-color: #b4b4b4;
+            cursor: not-allowed;
+            color: black;
+        }
+
+        #loading-animation {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-top: 10px;
+            margin-left: 25px;
+            font-size: 32px;
+        }
+
+        #loading-animation span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: bounce 0.6s infinite alternate;
+        }
+
+        #loading-animation span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        #loading-animation span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounce {
+            to {
+                opacity: 0.3;
+                transform: translateY(-8px);
+            }
+        }
+
+        .feedback-buttons {
+            display: flex;
+            gap: 10px;
+            position: absolute;
+            top: 14px;
+            right: 15px;
+        }
+
+        .feedback-button {
+            padding: 0px 4px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .thumbs-up:hover:not(:disabled), .thumbs-down:hover:not(:disabled) {
+            transform: scale(1.4);
+        }
+
+        .feedback-button:disabled {
+            cursor: not-allowed;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .chat-container {
+                width: 100%;
+                height: 100%;
+                border-radius: 0px;
+            }
+
+            .chat-box {
+                height: 100%;
+            }
+
+            .chat-input button {
+                padding: 10px;
+            }
+
+            .feedback-buttons {
+                display: flex;
+                gap: 10px;
+                margin-top: 12px;
+                position: static;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Chat With Swiggy</h2>
+        </div>
+        <div class="chat-box" id="chat-box"></div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type a message..." disabled>
+            <button id="send-button" onclick="sendMessage()" disabled>Send</button>
+            <button id="clear-button" class="clear-button" onclick="clearChat()">Clear</button>
+        </div>
+    </div>
+    <script>
+        let api_body = {
+            environment: "staging",
+            params: {
+                answer: null,
+                email: null,
+                eta: null,
+                delivered: null,
+                delivery_agent_name: null,
+                delivery_agent_number: null,
+                prev_q: "start",
+                user_id: 1,
+                prev_q_list: []
+                //prev_q_list: ["start","intro_message","select_order","confirm_order","help_with_order1","help_with_order2","is_resolved","eta_breached","resolved","call_delivery_agent","is_resolved","feedback_thumbs","agent_connect","coupon_query","feedback_bad","feedback_good","feedback_reply"]
+            }
+        };
+
+        let prev_q_key_global = null;
+        let prev_prev_qs_list = ["start"];
+
+        let firstUserLetter = "";
+
+        let waitingForResponse = false;
+        let orders = [];
+
+        window.onload = async () => {
+            await initializeChat();
+        }
+
+        async function initializeChat() {
+            try {
+                api_body.params.prev_q = "start";
+                console.log('Initializing chat with API body:', JSON.stringify(api_body, null, 2));
+                const initialResponse = await getBotResponseFromAPI(api_body);
+                console.log('Initial response:', initialResponse);
+                firstUserLetter = initialResponse.data.output.next_step.followup.user_data.name[0];
+                handleApiResponse(initialResponse.data.output.next_step);
+            } catch (error) {
+                console.error('Error initializing chat:', error);
+                appendMessage('bot', 'Sorry, something went wrong.');
+            }
+        }
+
+        async function sendMessage() {
+            if (waitingForResponse) return;
+
+            const userInput = document.getElementById('user-input');
+            const message = userInput.value.trim();
+
+            if (message === '') return;
+            appendMessage('user', message);
+            userInput.value = '';
+            disableInput();
+
+            await handleBotResponse(message, prev_q_key_global);
+        }
+
+        function appendMessage(sender, message, options = [], prev_q_key) {
+            const chatBox = document.getElementById('chat-box');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', `${sender}-message`);
+
+            const logo = document.createElement('div');
+            logo.classList.add('logo');
+            if (sender === 'user') {
+                logo.textContent = firstUserLetter;
+            } else {
+                logo.textContent = "S";
+                logo.innerHTML = '<svg width="24" height="24" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
+<rect width="160" height="160" rx="80" fill="#F7881F"/>\
+<rect x="16" y="16" width="128" height="128" rx="64" fill="url(#pattern0_82_6)"/>\
+<defs>\
+<pattern id="pattern0_82_6" patternContentUnits="objectBoundingBox" width="1" height="1">\
+<use xlink:href="#image0_82_6" transform="translate(-0.452213 -0.102988) scale(0.00741332)"/>\
+</pattern>\
+<image id="image0_82_6" width="259" height="194" xlink:href="data:image/png;base64,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"/>\
+</defs>\
+</svg>';
+            }
+
+            messageElement.appendChild(logo);
+
+            const textElement = document.createElement('div');
+
+            if (message.includes(api_body.params.eta)) {
+                const dateString = api_body.params.eta;
+                // Split the date string into components and create a Date object
+                const [day, month, year, hours, minutes, seconds] = dateString.split(/[\/ :]/).map(Number);
+                const dateObject = new Date(year, month - 1, day, hours, minutes, seconds);
+                // Format the date in the desired format
+                const formattedDate = `${dateObject.getFullYear()}-${(dateObject.getMonth() + 1).toString().padStart(2, '0')}-${dateObject.getDate().toString().padStart(2, '0')} ${get12HourTime(dateObject)}`;
+                //console.log(formattedDate);
+                // Function to get 12-hour formatted time
+                function get12HourTime(date) {
+                    let hours = date.getHours();
+                    const minutes = date.getMinutes();
+                    const period = hours >= 12 ? 'PM' : 'AM';
+                    hours = hours % 12 || 12; // Convert 0 to 12 for midnight
+                    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} ${period}`;
+                }
+
+                message = message.replace(api_body.params.eta, formattedDate);
+            }
+
+            textElement.innerHTML = message;
+            messageElement.appendChild(textElement);
+
+            document.querySelectorAll('.option-button').forEach(button => button.disabled = true);
+
+            if (options.length > 0) {
+                options.forEach(option => {
+                    const optionButton = document.createElement('button');
+                    optionButton.classList.add('option-button');
+                    optionButton.textContent = option;
+                    optionButton.innerHTML = optionButton.innerHTML.replace(/\|/g, '<div style="height: 10px"></div>');
+                    optionButton.onclick = () => selectOption(option, prev_q_key);
+                    messageElement.appendChild(optionButton);
+                });
+            }
+
+            if (prev_q_key === 'feedback_thumbs') {
+                const feedbackButtons = document.createElement('div');
+                feedbackButtons.className = 'feedback-buttons';
+
+                const thumbsUpButton = document.createElement('button');
+                thumbsUpButton.className = 'feedback-button thumbs-up';
+                thumbsUpButton.innerHTML = '&#128077;';
+                thumbsUpButton.onclick = () => selectOption('Good', prev_q_key);
+
+                const thumbsDownButton = document.createElement('button');
+                thumbsDownButton.className = 'feedback-button thumbs-down';
+                thumbsDownButton.innerHTML = '&#128078;';
+                thumbsDownButton.onclick = () => selectOption('Bad', prev_q_key);
+
+
+                feedbackButtons.appendChild(thumbsUpButton);
+                feedbackButtons.appendChild(thumbsDownButton);
+
+                messageElement.appendChild(feedbackButtons);
+            }
+
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        async function selectOption(option, prev_q_key) {
+            appendMessage('user', option);
+            disableInput();
+
+            const selectedOrder = orders.find(order => `${order.order_num}: ${order.order_name}` === option);
+            console.log("selectOption", selectedOrder);
+            if (selectedOrder) {
+                updateApiBodyWithOrderInfo(selectedOrder);
+            }
+
+            await handleBotResponse(option, prev_q_key);
+        }
+
+        async function handleBotResponse(userMessage, prev_q_key) {
+            // Show loading animation
+            appendLoadingAnimation();
+
+            api_body.params.prev_q = prev_q_key;
+            api_body.params.answer = userMessage;
+
+            api_body.params.prev_q_list = [...prev_prev_qs_list];
+            api_body.params.prev_q_list.pop();
+            if (api_body.params.prev_q_list.includes(prev_q_key)) {
+                api_body.params.prev_q_list = api_body.params.prev_q_list.filter(item => item !== prev_q_key);
+            }
+            console.log("prev_q_list:",api_body.params.prev_q_list);
+
+            try {
+                console.log('Sending API request with body:', JSON.stringify(api_body, null, 2));
+                const apiResponse = await getBotResponseFromAPI(api_body);
+                console.log('API response:', apiResponse);
+                prev_q_key_global = apiResponse.data.output.next_step.key;
+                if(apiResponse.data.output.next_step.followup)   prev_q_key_global = apiResponse.data.output.next_step.followup.key;
+                console.log("prev_q_key_global:", prev_q_key_global);
+                removeLoadingAnimation();
+                handleApiResponse(apiResponse.data.output.next_step);
+            } catch (error) {
+                console.error('Error getting bot response:', error);
+                removeLoadingAnimation();
+                appendMessage('bot', 'Sorry, something went wrong.');
+                //enableInput();
+            }
+        }
+
+        function handleApiResponse(response) {
+            //console.log("response;",response)
+            if (!prev_prev_qs_list.includes(response.key)) {
+                prev_prev_qs_list.push(response.key);
+            }
+            console.log("prev_prev_qs_list:",prev_prev_qs_list);
+
+            const { type, text, options, followup, user_data } = response;
+            
+            switch (type) {
+                case 'message':
+                    appendMessage('bot', text);
+                    if (followup) {
+                        handleApiResponse(followup);
+                    } else {
+                        //enableInput();
+                    }
+                    break;
+                case 'question':
+                    appendMessage('bot', text, options, response.key);
+                    break;
+                case 'list':
+                    orders = user_data.orders;
+                    const orderOptions = orders.map(order => `${order.order_num}: ${order.order_name}`);
+                    appendMessage('bot', text, orderOptions, response.key);
+                    break;
+                case 'reply':
+                    appendMessage('bot', text);
+                    enableInput();
+                    break;
+                case 'feedback':
+                    appendMessage('bot', text, [], response.key);
+                    break;
+                default:
+                    console.error('Unknown response type:', type);
+                    appendMessage('bot', 'Sorry, something went wrong.');
+                    //enableInput();
+            }
+
+            if (user_data) {
+                updateApiBodyWithUserData(user_data);
+            }
+        }
+
+        function updateApiBodyWithOrderInfo(order) {
+            api_body.params.eta = order.eta;
+            api_body.params.delivered = order.delivered;
+            api_body.params.delivery_agent_name = order.delivery_agent_name;
+            api_body.params.delivery_agent_number = order.delivery_agent_number;
+        }
+
+        function updateApiBodyWithUserData(userData) {
+            api_body.params.email = userData.email;
+        }
+
+        async function getBotResponseFromAPI(api_body) {
+            const response = await fetch("______API Link Here______", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(api_body)
+            });
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        }
+
+        function appendLoadingAnimation() {
+            const chatBox = document.getElementById('chat-box');
+            const loadingAnimation = document.createElement('div');
+            loadingAnimation.id = 'loading-animation';
+            loadingAnimation.innerHTML = '<span>.</span><span>.</span><span>.</span>';
+            chatBox.appendChild(loadingAnimation);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function removeLoadingAnimation() {
+            const loadingAnimation = document.getElementById('loading-animation');
+            if (loadingAnimation) {
+                loadingAnimation.remove();
+            }
+        }
+
+        function disableInput() {
+            document.getElementById('user-input').disabled = true;
+            document.getElementById('send-button').disabled = true;
+            const feedbackButtons = document.getElementsByClassName('feedback-button');
+            for (let i = 0; i < feedbackButtons.length; i++) {
+                feedbackButtons[i].disabled = true;
+            }
+            waitingForResponse = true;
+        }
+
+        function enableInput() {
+            document.getElementById('user-input').disabled = false;
+            document.getElementById('send-button').disabled = false;
+            waitingForResponse = false;
+        }
+
+        function clearChat() {
+            prev_prev_qs_list = ["start"];
+            api_body.params.prev_q_list = [];
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML = '';
+            disableInput();
+            initializeChat();
+            document.getElementById('clear-button').disabled = true;
+            setTimeout(() => {
+                document.getElementById('clear-button').disabled = false;
+            }, 2000); // Disable the clear button for 2 seconds to prevent rapid reinitialization
+        }
+
+        document.getElementById('user-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+
+</html>
