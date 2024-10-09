@@ -1,7 +1,9 @@
 // netlify/functions/getBotResponse.js
-const fetch = require('node-fetch');
 
 exports.handler = async (event) => {
+    // Dynamically import node-fetch
+    const fetch = (await import('node-fetch')).default;
+
     const body = JSON.parse(event.body);
     const apiUrl = process.env.API_URL_V2; // Use the environment variable
 
@@ -17,6 +19,9 @@ exports.handler = async (event) => {
         if (!response.ok) {
             return {
                 statusCode: response.status,
+                headers: {
+                    "Access-Control-Allow-Origin": "*", // Allow requests from any origin
+                },
                 body: JSON.stringify({ error: "Error fetching from API" })
             };
         }
@@ -24,11 +29,17 @@ exports.handler = async (event) => {
         const data = await response.json();
         return {
             statusCode: 200,
+            headers: {
+                "Access-Control-Allow-Origin": "*", // Allow requests from any origin
+            },
             body: JSON.stringify(data)
         };
     } catch (error) {
         return {
             statusCode: 500,
+            headers: {
+                "Access-Control-Allow-Origin": "*", // Allow requests from any origin
+            },
             body: JSON.stringify({ error: "Server error" })
         };
     }
