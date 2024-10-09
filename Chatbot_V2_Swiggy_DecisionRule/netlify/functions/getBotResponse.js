@@ -1,27 +1,35 @@
 // netlify/functions/getBotResponse.js
-const API_URL = process.env.API_URL_V2;
+const fetch = require('node-fetch');
 
 exports.handler = async (event) => {
-    const api_body = JSON.parse(event.body);
+    const body = JSON.parse(event.body);
+    const apiUrl = process.env.API_URL_V2; // Use the environment variable
 
-    const response = await fetch(API_URL, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(api_body)
-    });
+    try {
+        const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        });
 
-    if (!response.ok) {
+        if (!response.ok) {
+            return {
+                statusCode: response.status,
+                body: JSON.stringify({ error: "Error fetching from API" })
+            };
+        }
+
+        const data = await response.json();
+        return {
+            statusCode: 200,
+            body: JSON.stringify(data)
+        };
+    } catch (error) {
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: 'Network response was not ok' }),
+            body: JSON.stringify({ error: "Server error" })
         };
     }
-
-    const data = await response.json();
-    return {
-        statusCode: 200,
-        body: JSON.stringify(data),
-    };
 };
