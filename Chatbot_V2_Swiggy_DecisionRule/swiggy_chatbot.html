@@ -502,7 +502,7 @@
         }
 
         async function getBotResponseFromAPI(api_body) {
-            const response = await fetch("______API Link Here______", {
+            const response = await fetch("/.netlify/functions/getBotResponse", {  //______API Link Here______
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
