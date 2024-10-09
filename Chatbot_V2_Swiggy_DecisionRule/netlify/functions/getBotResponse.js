@@ -9,6 +9,9 @@ exports.handler = async (event) => {
     const body = JSON.parse(event.body);
     const apiUrl = process.env.API_URL_V2; // Use the environment variable
 
+    // Define your allowed origin
+    const allowedOrigin = "https://custom-swiggy-style-chatbot.netlify.app";
+
     try {
         const response = await fetch(apiUrl, {
             method: "POST",
@@ -22,7 +25,8 @@ exports.handler = async (event) => {
             return {
                 statusCode: response.status,
                 headers: {
-                    "Access-Control-Allow-Origin": "*", // Allow requests from any origin
+                    //"Access-Control-Allow-Origin": "*", // Allow requests from any origin
+                    "Access-Control-Allow-Origin": allowedOrigin // Allow only specified origin
                 },
                 body: JSON.stringify({ error: "Error fetching from API" })
             };
@@ -32,7 +36,8 @@ exports.handler = async (event) => {
         return {
             statusCode: 200,
             headers: {
-                "Access-Control-Allow-Origin": "*", // Allow requests from any origin
+                //"Access-Control-Allow-Origin": "*", // Allow requests from any origin
+                "Access-Control-Allow-Origin": allowedOrigin
             },
             body: JSON.stringify(data)
         };
@@ -40,7 +45,8 @@ exports.handler = async (event) => {
         return {
             statusCode: 500,
             headers: {
-                "Access-Control-Allow-Origin": "*", // Allow requests from any origin
+                //"Access-Control-Allow-Origin": "*", // Allow requests from any origin
+                "Access-Control-Allow-Origin": allowedOrigin
             },
             body: JSON.stringify({ error: "Server error" })
         };
