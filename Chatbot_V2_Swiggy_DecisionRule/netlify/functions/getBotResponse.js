@@ -1,5 +1,7 @@
 // netlify/functions/getBotResponse.js
 
+//const fetch = require('node-fetch');    :will give error in netlify
+
 exports.handler = async (event) => {
     // Dynamically import node-fetch
     const fetch = (await import('node-fetch')).default;
